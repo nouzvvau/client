@@ -1,0 +1,90 @@
+*{box-sizing:border-box}
+body{margin:0;background:#FEFFC4;color:#3C1808;font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:700;margin:0}
+ul{list-style:none;margin:0;padding:0}
+a:focus-visible{outline:3px solid #C1272D;outline-offset:3px}
+.container{width:100%;max-width:1264px;margin:0 auto;padding:0 24px}
+.nav .container{max-width:none}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.12em;color:#C1272D}
+
+/* Navbar */
+.nav{background:#3C1808;border-bottom:4px solid #FFBC4C}
+.nav .container{min-height:100px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding-top:12px;padding-bottom:12px}
+.nav__links{display:flex;flex-wrap:wrap;align-items:center;gap:8px 32px}
+.nav__links a{color:#FEFFC4;text-decoration:none;font-size:17px;font-weight:500;padding:8px 0}
+.nav__links a.is-active{color:#FFBC4C;font-weight:700;border-bottom:3px solid #FFBC4C}
+.nav__links a.btn{padding:13px 26px;font-size:16px;font-weight:700}
+.btn{display:inline-block;text-decoration:none;font-weight:700;font-size:16px;border-radius:999px}
+.btn--amber{background:#FFBC4C;color:#3C1808!important}
+.btn--outline{border:2px solid #FEFFC4;color:#FEFFC4!important;padding:11px 24px!important}
+.btn--primary{background:#3C1808;color:#FEFFC4;padding:14px 36px}
+.logo{display:flex;align-items:center;justify-content:center;width:72px;height:72px;border:3px solid #FFBC4C;border-radius:50%;color:#FEFFC4;font:700 15px/1.1 'Fraunces',Georgia,serif;text-align:center}
+
+/* Header halaman */
+.hero{padding:56px 0 0}
+.hero h1{font-size:60px;line-height:1.1;max-width:1000px;margin-top:12px}
+.hero__lead{margin:24px 0 0;font-size:19px;line-height:1.6;max-width:640px}
+.hero h2{font-size:42px;line-height:1.15;margin:56px 0 32px}
+
+/* Kartu kegiatan */
+.cards{display:flex;flex-direction:column;gap:32px}
+.card{display:flex;flex-wrap:wrap;background:#FFFFFF;border:2px solid #3C1808}
+.card--green{box-shadow:8px 8px 0 #91A052}
+.card--amber{box-shadow:8px 8px 0 #FFBC4C}
+.card--red{box-shadow:8px 8px 0 #C1272D}
+.card__photo{flex:0 0 300px;min-height:224px;border-right:2px solid #3C1808;display:flex;align-items:center;justify-content:center;font-size:13px;overflow:hidden}
+.card__photo img{display:block;width:100%;height:100%;min-height:224px;object-fit:cover}
+.card--green .card__photo{background:#E6ECC4}
+.card--amber .card__photo{background:#FBE7B4}
+.card--red .card__photo{background:#F3CFCF}
+.card__body{flex:1 1 360px;padding:24px 32px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.card__body h3{font-size:28px;line-height:1.15}
+.card__body p{margin:0;font-size:15px;line-height:1.6;max-width:560px}
+.card__meta{display:flex;flex-wrap:wrap;gap:8px 32px;font-size:13px}
+.card__action{flex:0 0 auto;padding:24px 40px;display:flex;align-items:center}
+.badge{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.04em;padding:6px 12px}
+.badge--green{background:#91A052;color:#3C1808}
+.badge--amber{background:#FFBC4C;color:#3C1808}
+.badge--red{background:#C1272D;color:#FFFFFF}
+
+/* Kegiatan lainnya */
+.more{padding:56px 0 64px}
+.more h2{font-size:36px;line-height:1.15;margin:8px 0 24px}
+.chips{display:flex;flex-wrap:wrap;gap:16px}
+.chip{border:2px solid #3C1808;border-radius:999px;padding:11px 24px;font-size:15px;background:#FEFFC4}
+
+/* Band CTA */
+.cta{background:#91A052;border-top:4px solid #3C1808;border-bottom:4px solid #3C1808}
+.cta .container{padding-top:48px;padding-bottom:48px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
+.cta h2{font-size:36px;line-height:1.15}
+.cta .btn{background:#3C1808;color:#FEFFC4;padding:16px 32px;box-shadow:4px 4px 0 #FEFFC4}
+
+/* Footer */
+.footer{background:#3C1808;border-top:4px solid #FFBC4C;color:#FEFFC4}
+.footer .container{padding-top:48px;padding-bottom:32px}
+.footer__cols{display:flex;flex-wrap:wrap;gap:40px 64px;justify-content:space-between}
+.footer__brand{flex:1 1 280px;display:flex;flex-direction:column;gap:20px}
+.footer__brand p{margin:0;font-size:14px;max-width:300px}
+.footer__menu{flex:0 0 200px;display:flex;flex-direction:column;gap:18px}
+.footer__menu a{color:#FEFFC4;text-decoration:none;font-size:15px}
+.footer__menu ul{display:flex;flex-direction:column;gap:18px}
+.footer__label{font-size:12px;font-weight:700;letter-spacing:.1em;color:#FFBC4C}
+.footer__builder{flex:1 1 280px;max-width:320px;text-align:center}
+.footer__builder .footer__label{margin-bottom:8px}
+.footer__builder p{margin:0 0 12px;font-size:13px}
+.footer__builder li{padding:7px 0;border-bottom:1px solid rgba(254,255,196,.25);font-size:13px;letter-spacing:.03em}
+.footer__copy{margin-top:40px;padding-top:20px;border-top:1px solid rgba(254,255,196,.25);font-size:13px}
+
+@media (max-width:720px){
+  .hero h1{font-size:40px} .hero h2{font-size:32px}
+  .card__photo{flex-basis:100%;border-right:0;border-bottom:2px solid #3C1808}
+  .card__action{padding:0 32px 24px}
+  .cta h2{font-size:28px}
+}
+
+.lang-switch{display:inline-flex;flex:0 0 auto;align-items:center;gap:6px;padding:5px;border:2px solid #FEFFC4;border-radius:999px}
+.lang-switch__option{display:inline-flex;align-items:center;justify-content:center;min-width:40px;height:38px;padding:0 11px;border-radius:999px;color:#FEFFC4;font:700 15px/1 'Plus Jakarta Sans',system-ui,sans-serif;letter-spacing:.02em;white-space:nowrap}
+.lang-switch__option--active{background:#FFBC4C;color:#3C1808}
+@media (max-width:720px){
+  .lang-switch__option{min-width:42px;height:34px;font-size:14px}
+}

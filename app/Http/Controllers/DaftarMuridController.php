@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Murid;
 use Illuminate\Http\Request;
 
-class MuridController extends Controller
+class DaftarMuridController extends Controller
 {
     public function index(Request $request)
     {
@@ -13,7 +13,7 @@ class MuridController extends Controller
 
         // Pencarian murid
         if ($request->filled('search')) {
-            $query->where('nama', 'like', '%' . $request->search . '%');
+            $query->where('nama', 'like', '%'.$request->search.'%');
         }
 
         // Filter program

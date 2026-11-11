@@ -1,0 +1,191 @@
+/* --------------------------------------------------------------------------
+   Jadwal latihan — dipakai bersama halaman Program dan Galeri
+   -------------------------------------------------------------------------- */
+
+.schedule {
+  padding: 60px 0 58px;
+  border-top: 5px solid var(--amber);
+  background: var(--brown);
+  color: var(--cream);
+}
+
+.schedule .eyebrow {
+  margin-bottom: 10px;
+}
+
+.schedule__title {
+  margin: 0 0 18px;
+  font-family: var(--serif);
+  font-size: clamp(32px, 3vw, 38px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--cream);
+}
+
+.schedule__lead {
+  max-width: 680px;
+  margin: 0 0 40px;
+  color: rgba(254, 255, 196, 0.74);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: var(--cream);
+}
+
+.col-kelompok {
+  width: 43.9%;
+}
+
+.col-hari {
+  width: 14.5%;
+}
+
+.col-jam {
+  width: 15.1%;
+}
+
+.col-tempat {
+  width: 26.5%;
+}
+
+.schedule-table th,
+.schedule-table td {
+  padding: 26px 20px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.schedule-table th:first-child,
+.schedule-table td:first-child {
+  padding-left: 36px;
+}
+
+.schedule-table thead th {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  background: var(--amber);
+  color: var(--brown);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.schedule-table tbody td {
+  border-bottom: 1px solid var(--line);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.schedule-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (max-width: 860px) {
+  .schedule {
+    padding-top: 52px;
+    padding-bottom: 44px;
+  }
+
+  .schedule__title {
+    margin-bottom: 14px;
+  }
+
+  .schedule__lead {
+    margin-bottom: 28px;
+  }
+
+  .schedule-table {
+    min-width: 720px;
+  }
+}
+
+@media (max-width: 640px) {
+  .schedule-table {
+    min-width: 0;
+    table-layout: auto;
+  }
+
+  .schedule-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .schedule-table,
+  .schedule-table tbody,
+  .schedule-table tr,
+  .schedule-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .schedule-table tbody tr {
+    margin-bottom: 14px;
+    padding: 8px 18px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+
+  .schedule-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .schedule-table th,
+  .schedule-table td,
+  .schedule-table th:first-child,
+  .schedule-table td:first-child {
+    padding: 11px 0;
+  }
+
+  .schedule-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid var(--line);
+    text-align: right;
+  }
+
+  .schedule-table tbody tr td:last-child {
+    border-bottom: 0;
+  }
+
+  .schedule-table tbody td::before {
+    content: attr(data-label);
+    flex: 0 0 auto;
+    color: var(--amber);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+@media (max-width: 420px) {
+  .schedule-table tbody tr {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .schedule-table tbody td {
+    gap: 12px;
+    font-size: 15px;
+  }
+}
