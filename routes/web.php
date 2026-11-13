@@ -17,6 +17,6 @@ Route::post('/pendaftaran', [PendaftaranMuridController::class, 'store'])
 Route::get('/murid', [DaftarMuridController::class, 'index'])
     ->name('murid.index');
 
-Route::view('/program', 'pages.program')->name('program');
-Route::view('/galeri', 'pages.galeri')->name('galeri');
-Route::view('/lokasi', 'pages.lokasi')->name('lokasi');
+Route::view('/program', 'program')->name('program');
+Route::view('/galeri', 'galeri')->name('galeri');
+Route::view('/lokasi', 'lokasi')->name('lokasi');
