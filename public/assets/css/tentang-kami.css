@@ -1,0 +1,1059 @@
+/* RESET DAN WARNA */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --brown: #3c1808; /* Cokelat */
+    --cream: #feffc4; /* Kuning muda */
+    --gold: #ffbc4c;  /* kuning biasa */
+    --olive: #91a052; /* Hijau */
+    --red: #c1272d;   /* Merah */
+    --white: #FFFFFF;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--brown);
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+    width: 100vw;
+    max-width: none;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    height: 55px;
+    background: var(--brown);
+    border: 2px solid #3c1808;
+    border-bottom: 3px solid var(--gold);
+    overflow:visible;
+    z-index: 1000;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+    padding: 0 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* LOGO NAVBAR */
+.logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logo img {
+    width: 70px;
+    height: 50px;
+    object-fit: contain;
+    mix-blend-mode: screen;
+}
+
+/* MENU NAVIGASI */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 19px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #E8D8AE;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    position: relative;
+    padding: 19px 0;
+    transition: 0.3s;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: var(--gold);
+}
+
+.nav-menu a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    width: 100%;
+    height: 2px;
+    background: var(--gold);
+}
+
+/* TOMBOL DAFTAR DAN BOOKING */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    flex-shrink: 0;
+}
+
+.btn-daftar,
+.btn-booking {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 13px;
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.btn-daftar {
+    background: var(--gold);
+    color: var(--brown);
+}
+
+.btn-daftar:hover {
+    background: #FFD27C;
+}
+
+.btn-booking {
+    color: #FFF5D6;
+    border: 2px solid #d8c79d;
+}
+
+.btn-booking:hover {
+    background: var(--gold);
+    color: var(--brown);
+}
+
+
+/* LANGUAGE SWITCH */
+
+.language-switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60px;
+    height: 30px;
+    padding: 2px;
+    border: 1px solid var(--cream);
+    border-radius: 30px;
+    background: var(--brown);
+    flex-shrink: 0;
+}
+
+.language-option {
+    width: 50%;
+    height: 100%;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #fff5d6;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.language-option.active {
+    background: var(--gold);
+    color: var(--brown);
+    transform: scale(1.08);
+}
+
+/* TOMBOL MENU MOBILE */
+.menu-toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: var(--gold);
+    margin: 5px;
+}
+
+/* KONTEN UTAMA */
+.main-content {
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 25px 7.6% 30px;
+}
+
+/* JUDUL TENTANG KAMI */
+.page-heading {
+    margin-bottom: 14px;
+}
+
+.section-label {
+    display: block;
+    color: var(--red);
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.page-heading h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.04;
+    color: var(--brown);
+}
+
+/* PROFIL DAN SEJARAH */
+.profile-card {
+    width: 100%;
+    min-height: 337px;
+    display: grid;
+    grid-template-columns: 32% 68%;
+    align-items: center;
+    background: linear-gradient(
+        to right,
+        #4a200c 32%,
+        var(--brown) 32%
+    );
+    color: var(--white);
+    border: 1px solid var(--gold);
+    box-shadow: 5px 5px 0 var(--gold);
+    padding: 12px 18px;
+    gap: 8px;
+}
+
+/* LOGO PROFIL */
+.profile-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-image img {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    object-fit: contain;
+    mix-blend-mode: screen;
+}
+
+/* TEKS PROFIL */
+.profile-content {
+    padding: 0 3px;
+}
+
+.profile-label {
+    display: block;
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 1px;
+}
+
+.profile-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #FFF2CA;
+    margin-bottom: 9px;
+}
+
+.profile-content p {
+    color: #F3EAE2;
+    font-size: 12px;
+    line-height: 1.27;
+    text-align: left;
+    margin-bottom: 2px;
+}
+
+.profile-content blockquote {
+    border-left: 2px solid #C8B18D;
+    padding-left: 9px;
+    margin: 2px 0 4px;
+}
+
+.profile-content blockquote p {
+    font-style: italic;
+}
+
+/* VISI DAN MISI */
+.vision-mission {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 19px;
+    margin-top: 29px;
+    align-items: stretch;
+}
+
+/* KOTAK VISI */
+.vision-card {
+    background: var(--olive);
+    border: 2px solid var(--brown);
+    box-shadow: 5px 5px 0 var(--brown);
+    padding: 7px 13px;
+}
+
+.vision-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--brown);
+    margin-bottom: 10px;
+}
+
+.vision-card p {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.34;
+    color: #3c1808;
+}
+
+/* KOTAK MISI */
+.mission-card {
+    background: var(--white);
+    border: 2px solid var(--brown);
+    box-shadow: 5px 5px 0 var(--red);
+    padding: 7px 13px;
+}
+
+.mission-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--red);
+    margin-bottom: 5px;
+}
+
+.mission-card ol {
+    padding-left: 20px;
+}
+
+.mission-card li {
+    font-size: 12px;
+    line-height: 1.35;
+    color: #3c1808;
+    padding-left: 4px;
+    margin-bottom: 8px;
+}
+
+/* BAGIAN UTAMA PENDIRI */
+.founder-section {
+    width: 100vw;
+    max-width: none;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 25px;
+    background: var(--gold);
+    color: var(--brown);
+    padding: 45px 4.8%;
+    align-items: center;
+    box-sizing: border-box;
+    box-shadow:
+        0 -5px 0 #3c1808,
+        0 5px 0 #3c1808;
+}
+
+/* TEMPAT FOTO PENDIRI */
+.founder-photo {
+    width: 186px;
+    height: 300px;
+    border: 2px solid var(--brown);
+    background: transparent;
+    box-shadow:
+        -2px 0 0 var(--brown),
+        5px 5px 0 var(--brown);
+    box-sizing: border-box;
+}
+
+.founder-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+
+/* KONTEN PENDIRI */
+
+.founder-content {
+    min-width: 0;
+}
+
+.founder-label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.founder-heading h2 {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 0 12px;
+    line-height: 1.1;
+}
+
+.founder-heading p {
+    font-size: 12px;
+    margin: 0;
+}
+
+.founder-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(69, 32, 14, 0.3);
+    margin: 9px 0 15px;
+}
+
+/* ALASAN DAN HARAPAN */
+.founder-description {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.description-item {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.description-title {
+    display: block;
+    font-size: 13px;
+    color: var(--red);
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.description-box {
+    min-height: 100px;
+    padding: 10px;
+    flex: 1;
+    border: 1px dashed var(--brown);
+    border-radius: 10px;
+    background: rgba(255, 255, 168, 0.65);
+    font-size: 12px;
+    line-height: 1.55;
+    box-sizing: border-box;
+}
+
+/* KEAHLIAN */
+.founder-skills {
+    margin-top: 9px;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 16px;
+    border-radius: 30px;
+    background: var(--brown);
+    color: var(--cream);
+    font-size: 9px;
+    font-weight: bold;
+}
+
+/* PENDIDIKAN DAN SOSIAL MEDIA */
+.founder-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 14px;
+}
+
+.education-list {
+    position: relative;
+    margin-top: 10px;
+}
+
+.education-item {
+    display: grid;
+    grid-template-columns: 12px 38px 1fr;
+    align-items: start;
+    gap: 8px;
+    position: relative;
+    min-height: 36px;
+}
+
+.education-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 29px;
+    background: var(--brown);
+    left: 4px;
+    top: 9px;
+}
+
+.education-marker {
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid var(--brown);
+    border-radius: 50%;
+    background: var(--cream);
+    z-index: 1;
+    box-sizing: border-box;
+    margin-top: 2px;
+}
+
+.education-marker.active {
+    background: var(--red);
+}
+
+.education-year {
+    font-family: Georgia, serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.education-info strong {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.education-info p {
+    font-size: 10px;
+    margin: 0;
+}
+
+
+/* SOSIAL MEDIA */
+
+.social-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+.social-item {
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 12px;
+    border: 1.5px solid var(--brown);
+    border-radius: 30px;
+    background: var(--cream);
+    color: var(--brown);
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.social-item strong {
+    font-size: 11px;
+}
+
+.social-icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* AJAKAN DAFTAR NAMA MURID */
+.student-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    margin-top: 30px;
+    background: var(--olive);
+    padding: 52px 5% 50px;
+    box-sizing: border-box;
+    box-shadow: 0 -5px 0 #3c1808;
+}
+
+.student-card {
+    width: 100%;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 35px;
+    background: var(--brown);
+    color: var(--cream);
+    border-radius: 15px;
+    box-shadow: none;
+}
+
+.student-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 15px;
+}
+
+.student-text p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    color: #e8d8ae;
+}
+
+.student-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 39px;
+    padding: 0 14px;
+    background: var(--gold);
+    color: var(--white);
+    border-radius: 30px;
+    font-size: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.student-button:hover {
+    background: #ffd27c;
+    color: var(--brown);
+}
+
+/* LOKASI SANGGAR */
+.location-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    background: var(--olive);
+    padding: 0 8.3% 36px;
+    box-sizing: border-box;
+}
+
+.location-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    border-top: 2px solid rgba(60, 24, 8, 0.22);
+    padding-top: 35px;
+}
+
+.location-text {
+    min-width: 0;
+}
+
+.location-label {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--brown);
+    margin-bottom: 8px;
+}
+
+.location-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.5;
+    color: var(--brown);
+    margin-bottom: 8px;
+}
+
+.location-text p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    line-height: 1.8;
+    color: var(--brown);
+}
+
+.location-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--brown);
+    box-shadow: 3px 3px 0 var(--cream);
+    color: var(--cream);
+    padding: 16px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.location-button:hover {
+    background: #57270f;
+}
+
+/* FOOTER */
+.footer-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    background: var(--brown);
+    color: var(--cream);
+    border-top: 3px solid var(--gold);
+    padding: 40px 7.8% 20px;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.5fr 0.6fr 1fr;
+    gap: 35px;
+    align-items: start;
+}
+
+/* KOLOM LOGO */
+.footer-brand img {
+    display: block;
+    width: 100px;
+    height: 90px;
+    object-fit: contain;
+    mix-blend-mode: screen;
+    margin-bottom: 10px;
+}
+
+.footer-brand p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #e8d8ae;
+}
+
+/* KOLOM MENU */
+.footer-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-menu h3,
+.footer-builder h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 17px;
+}
+
+.footer-menu a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #e8d8ae;
+    text-decoration: none;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.footer-menu a:hover {
+    color: var(--gold);
+}
+
+
+/* KOLOM WEBSITE BUILDER */
+
+.footer-builder {
+    text-align: center;
+}
+
+.footer-builder h3 {
+    margin-bottom: 9px;
+}
+
+.footer-builder > p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    line-height: 1.3;
+    color: #cbbda9;
+    margin-bottom: 20px;
+}
+
+.builder-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.builder-list span {
+    display: block;
+    padding: 5px 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    color: #e8d8ae;
+}
+
+/*RESPONSIVE TABLET */
+@media (max-width: 900px) and (min-width: 651px) {
+
+    .nav-container {
+        padding: 0 3%;
+        gap: 8px;
+    }
+
+    .nav-menu {
+        gap: 10px;
+    }
+
+    .nav-menu a {
+        font-size: 10px;
+    }
+
+    .nav-actions {
+        gap: 6px;
+    }
+
+    .btn-daftar,
+    .btn-booking {
+        font-size: 8px;
+        padding: 8px 9px;
+    }
+
+    .main-content {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .profile-content p {
+        font-size: 9px;
+    }
+
+}
+/* RESPONSIVE MOBILE */
+
+@media (max-width: 650px) {
+
+    .navbar {
+        height: 60px;
+        width: 100%;
+        position: relative;
+        left: auto;
+        margin-left: 0;
+        overflow: visible;
+        z-index: 1000;
+    }
+
+    .nav-container {
+        width: 100%;
+        height: 100%;
+        padding: 0 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .logo img {
+        width: 50px;
+        height: 45px;
+        object-fit: contain;
+    }
+
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+    }
+    .menu-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        margin: 0;
+        background: var(--cream);
+        border-radius: 5px;
+    }
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        padding: 22px 6%;
+        background: var(--brown);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+   
+    .nav-menu.show {
+        display: flex;
+    }
+
+    .nav-menu a {
+        display: block;
+        font-size: 12px;
+        padding: 10px 0;
+        color: white;
+    }
+
+    .nav-actions {
+        display: none;
+    }
+
+    .main-content {
+        padding: 25px 5%;
+    }
+
+    .page-heading h1 {
+        font-size: 30px;
+    }
+
+    .profile-card {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .profile-image img {
+        width: 65%;
+        max-width: 190px;
+    }
+
+    .profile-content h2 {
+        font-size: 22px;
+    }
+
+    .profile-content p {
+        font-size: 24px;
+        line-height: 1.5;
+        margin-bottom: 5px;
+    }
+
+    .vision-mission {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .vision-card,
+    .mission-card {
+        padding: 15px;
+    }
+
+    .vision-card p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .mission-card li {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+}
+
+/* RESPONSIVE FOOTER DAN BAGIAN BAWAH */
+
+@media (max-width: 700px) {
+
+    .student-section {
+        padding: 35px 6% 40px;
+    }
+
+    .student-card {
+        min-height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px 20px;
+        gap: 20px;
+    }
+
+    .student-text h2 {
+        font-size: 19px;
+    }
+
+    .location-section {
+        padding: 0 6% 35px;
+    }
+
+    .location-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 25px;
+        padding-top: 28px;
+    }
+
+    .location-text h2 {
+        font-size: 22px;
+        line-height: 1.4;
+    }
+
+    .location-text p {
+        font-size: 11px;
+    }
+
+    .location-text p br {
+        display: none;
+    }
+
+    .footer-section {
+        padding: 35px 6% 25px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-builder {
+        grid-column: 1 / -1;
+    }
+
+}
