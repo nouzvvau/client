@@ -1,26 +1,4 @@
-
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Tentang Kami - Sanggar Cakra Aji</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --cream: #feffc4;
-            --yellow: #ffbc4c;
-            --green: #91a052;
-            --brown: #3c1808;
-            --red: #c1272d;
-            --white: #ffffff;
-        }
+/* Stylesheet halaman Pengurus (diekstrak dari inline style) */
 
         * {
             margin: 0;
@@ -29,8 +7,8 @@
         }
 
         body {
-            background: var(--cream);
-            color: var(--brown);
+            background: var(--color-cream);
+            color: var(--color-brown);
             font-family: 'DM Sans', sans-serif;
             overflow-x: hidden;
         }
@@ -38,12 +16,12 @@
         /* HERO / PENGURUS */
 
         .about-section {
-            background: var(--cream);
+            background: var(--color-cream);
             padding: 38px 7.7% 45px;
         }
 
         .section-label {
-            color: #b65b43;
+            color: var(--color-red);
             font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
@@ -62,7 +40,7 @@
             font-size: 13px;
             line-height: 1.8;
             margin-bottom: 38px;
-            color: #604b3d;
+            color: rgba(60, 24, 8, 0.65);
         }
 
         .team-label {
@@ -78,9 +56,9 @@
         }
 
         .team-card {
-            background: white;
-            border: 2px solid var(--brown);
-            box-shadow: 6px 6px 0 var(--brown);
+            background: #ffffff;
+            border: 2px solid var(--color-brown);
+            box-shadow: 6px 6px 0 var(--color-brown);
             min-width: 0;
             transition: transform .25s ease;
         }
@@ -95,25 +73,25 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            border-bottom: 2px solid var(--brown);
+            border-bottom: 2px solid var(--color-brown);
             position: relative;
             overflow: hidden;
         }
 
         .team-photo.hijau {
-            background: var(--green);
+            background: var(--color-olive);
         }
 
         .team-photo.kuning {
-            background: var(--yellow);
+            background: var(--color-gold);
         }
 
         .team-photo.krem {
-            background: var(--cream);
+            background: var(--color-cream);
         }
 
         .team-photo.merah {
-            background: var(--red);
+            background: var(--color-red);
         }
 
         .team-photo img {
@@ -132,7 +110,7 @@
         }
 
         .team-photo.merah .initials {
-            color: var(--cream);
+            color: var(--color-cream);
         }
 
         .photo-caption {
@@ -162,7 +140,7 @@
 
         .role {
             display: inline-block;
-            border: 1px solid var(--brown);
+            border: 1px solid var(--color-brown);
             border-radius: 30px;
             padding: 4px 12px;
             font-size: 9px;
@@ -170,18 +148,18 @@
         }
 
         .role.yellow {
-            background: var(--yellow);
+            background: var(--color-gold);
         }
 
         .role.green {
-            background: var(--green);
+            background: var(--color-olive);
         }
 
         /* ASISTEN */
 
         .assistant-section {
-            background: var(--yellow);
-            border-top: 3px solid var(--brown);
+            background: var(--color-gold);
+            border-top: 3px solid var(--color-brown);
             padding: 42px 7.3% 105px;
         }
 
@@ -203,38 +181,38 @@
         /* CTA */
 
         .cta-section {
-            background: var(--green);
-            border-top: 3px solid var(--brown);
+            background: var(--color-olive);
+            border-top: 3px solid var(--color-brown);
             padding: 30px 7.5% 35px;
         }
 
         .cta-box {
-            background: var(--brown);
+            background: var(--color-brown);
             border-radius: 20px;
             padding: 27px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 20px;
-            box-shadow: 9px 9px 0 var(--cream);
+            box-shadow: 9px 9px 0 var(--color-cream);
         }
 
         .cta-title {
-            color: var(--cream);
+            color: var(--color-cream);
             font-family: 'Playfair Display', serif;
             font-size: 21px;
             margin-bottom: 5px;
         }
 
         .cta-description {
-            color: #e4d6b6;
+            color: rgba(254, 255, 196, 0.85);
             font-size: 11px;
         }
 
         .cta-button {
             display: inline-block;
-            background: var(--yellow);
-            color: var(--brown);
+            background: var(--color-gold);
+            color: var(--color-brown);
             text-decoration: none;
             font-size: 12px;
             font-weight: 700;
@@ -245,7 +223,7 @@
         }
 
         .cta-button:hover {
-            background: var(--cream);
+            background: var(--color-cream);
             transform: translateY(-2px);
         }
 
@@ -294,7 +272,7 @@
             }
 
             .team-card {
-                box-shadow: 4px 4px 0 var(--brown);
+                box-shadow: 4px 4px 0 var(--color-brown);
             }
 
             .team-photo,
@@ -365,157 +343,3 @@
                 height: 180px;
             }
         }
-    </style>
-</head>
-
-<body>
-
-    {{-- NAVBAR YANG SUDAH ADA --}}
-    @include('components.navbar')
-
-
-    {{-- BAGIAN PENGURUS --}}
-    <section class="about-section">
-
-        <p class="section-label">Pengurus</p>
-
-        <h1 class="main-title">
-            Tangan-tangan yang<br>
-            merawat bunyi.
-        </h1>
-
-        <p class="main-description">
-            Pelatih, asisten, dan admin yang menemani setiap latihan
-            di Sanggar Seni Cakra Aji.
-        </p>
-
-        <p class="section-label team-label">
-            Pelatih & Admin
-        </p>
-
-        <div class="team-grid">
-
-            @foreach ($pengurus as $orang)
-
-                <div class="team-card">
-
-                    <div class="team-photo {{ $orang['warna'] }}">
-
-                        @if ($orang['foto'])
-                            <img src="{{ asset($orang['foto']) }}"
-                                 alt="{{ $orang['nama'] }}">
-                        @else
-                            <span class="initials">
-                                {{ $orang['inisial'] }}
-                            </span>
-
-                            <span class="photo-caption">
-                                GANTI DENGAN FOTO
-                            </span>
-                        @endif
-
-                    </div>
-
-                    <div class="team-info">
-
-                        <h3 class="team-name">
-                            {{ $orang['nama'] }}
-                        </h3>
-
-                        <span class="role {{ $orang['jabatan'] === 'Pelatih' ? 'yellow' : 'green' }}">
-                            {{ $orang['jabatan'] }}
-                        </span>
-
-                    </div>
-
-                </div>
-
-            @endforeach
-
-        </div>
-
-    </section>
-
-
-    {{-- BAGIAN ASISTEN PELATIH --}}
-    <section class="assistant-section">
-
-        <p class="section-label">
-            Bersama Para Pelatih
-        </p>
-
-        <h2 class="assistant-title">
-            Asisten Pelatih
-        </h2>
-
-        <div class="team-grid">
-
-            @foreach ($asisten as $orang)
-
-                <div class="team-card assistant-card">
-
-                    <div class="team-photo {{ $orang['warna'] }}">
-
-                        @if ($orang['foto'])
-                            <img src="{{ asset($orang['foto']) }}"
-                                 alt="{{ $orang['nama'] }}">
-                        @else
-                            <span class="initials">
-                                {{ $orang['inisial'] }}
-                            </span>
-
-                            <span class="photo-caption">
-                                GANTI DENGAN FOTO
-                            </span>
-                        @endif
-
-                    </div>
-
-                    <div class="team-info">
-
-                        <h3 class="team-name">
-                            {{ $orang['nama'] }}
-                        </h3>
-
-                    </div>
-
-                </div>
-
-            @endforeach
-
-        </div>
-
-    </section>
-
-
-    {{-- AJAKAN MENDAFTAR --}}
-    <section class="cta-section">
-
-        <div class="cta-box">
-
-            <div>
-                <h2 class="cta-title">
-                    Ingin ikut berlatih bersama kami?
-                </h2>
-
-                <p class="cta-description">
-                    Daftar jadi murid dan mulai belajar karawitan
-                    di Sanggar Seni Cakra Aji.
-                </p>
-            </div>
-
-            <a href="{{ url('/pendaftaran') }}" class="cta-button">
-                Daftar Murid
-            </a>
-
-        </div>
-
-    </section>
-
-
-    {{-- FOOTER YANG SUDAH ADA --}}
-    @include('components.footer')
-
-
-</body>
-</html>

@@ -9,7 +9,7 @@ class PendaftaranMuridController extends Controller
 {
     public function index()
     {
-        return view('pendaftaran.index');
+        return view('pendaftaran');
     }
 
     public function store(Request $request)
@@ -38,7 +38,7 @@ class PendaftaranMuridController extends Controller
         ]);
 
         return redirect()
-            ->route('pendaftaran.index')
+            ->route('pendaftaran')
             ->with('success', 'Pendaftaran berhasil dikirim!');
     }
 }

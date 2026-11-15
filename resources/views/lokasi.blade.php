@@ -3,6 +3,7 @@
 @section('title', 'Lokasi & Kontak — Sanggar Seni Cakra Aji')
 @section('description', 'Lokasi latihan Sanggar Cakra Aji di Beji dan Plosokandang, beserta informasi kontak.')
 @section('page', 'lokasi')
+@section('activeNav', 'lokasi')
 
 @push('styles')
   <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}">
@@ -10,7 +11,7 @@
 @endpush
 
 @push('scripts')
-  <script src="{{ asset('assets/js/navigation.js') }}" defer></script>
+  <script src="{{ asset('assets/js/script2.js') }}" defer></script>
 @endpush
 
 @section('content')

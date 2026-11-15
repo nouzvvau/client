@@ -63,6 +63,6 @@ class PengurusController extends Controller
             ],
         ];
 
-        return view('Pengurus', compact('pengurus', 'asisten'));
+        return view('pengurus', compact('pengurus', 'asisten'));
     }
 }

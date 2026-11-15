@@ -1,15 +1,16 @@
-@extends('layouts.main', [
-    'navbarView' => 'components.program-navbar',
-    'footerView' => 'components.program-footer',
-    'showSkipLink' => false,
-])
+@extends('layouts.main')
 
 @section('title', 'Program & Kegiatan — Sanggar Seni Cakra Aji')
 @section('description', 'Program dan kegiatan Sanggar Seni Cakra Aji, dari ruang edukasi sampai pentas kampung.')
 @section('page', 'program')
+@section('activeNav', 'program')
 
 @push('styles')
   <link rel="stylesheet" href="{{ asset('assets/css/program-kegiatan.css') }}">
+@endpush
+
+@push('scripts')
+  <script src="{{ asset('assets/js/script2.js') }}" defer></script>
 @endpush
 
 @section('content')
@@ -78,7 +79,7 @@
           <p>Pentas keliling yang mempertemukan musik, gerak, dan cerita dengan warga di ruang-ruang kampung.</p>
           <div class="card__meta"><span>Jadwal: Agustus 2025</span><span>Lokasi: Boyolangu, Tulungagung</span></div>
         </div>
-        <div class="card__action"><a class="btn btn--primary" href="{{ route('galeri') }}" aria-label="Lihat dokumentasi Grebek Kampung">View</a></div>
+        <div class="card__action"><a class="btn btn--primary" href="{{ route('program.detail', ['slug' => 'ruang-edukasi-workshop']) }}" aria-label="Lihat dokumentasi Ruang Edukasi &amp; Workshop">View</a></div>
       </article>
       </div>
     </div>

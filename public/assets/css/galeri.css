@@ -1,7 +1,8 @@
-/* --------------------------------------------------------------------------
-   Halaman galeri
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   GALERI & DOKUMENTASI
+   ========================================================================== */
 
+/* Header galeri */
 .gallery {
   padding: 0 0 80px;
 }
@@ -17,95 +18,39 @@
 }
 
 .gallery__intro {
-  max-width: 760px;
+  max-width: 720px;
 }
 
 .gallery__title {
-  margin: 0;
-  font-family: var(--serif);
-  font-size: clamp(30px, 3.2vw, 42px);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.01em;
-  color: var(--brown);
-}
-
-.gallery__lead {
-  max-width: 620px;
   margin: 12px 0 0;
-  font-size: 16px;
-  line-height: 1.7;
-  color: rgba(60, 24, 8, 0.74);
-}
-
-.gallery__count {
-  flex: 0 0 auto;
-  margin: 0;
-  padding: 8px 14px;
-  border: 2px solid var(--brown);
-  border-radius: 999px;
-  background: var(--paper);
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 1.1;
   color: var(--brown);
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
 }
 
-/* --------------------------------------------------------------------------
-   Editorial grid
-   -------------------------------------------------------------------------- */
-
+/* Grid galeri halaman galeri */
 .gallery-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.gallery-row {
   display: grid;
-  gap: 20px;
-  align-items: stretch;
-}
-
-.gallery-row--lead {
-  grid-template-columns: 1.75fr 1fr;
-  height: 500px;
-}
-
-.gallery-row--split {
-  grid-template-columns: 1fr 1.35fr 0.95fr;
-  height: 380px;
-}
-
-.gallery-row--strip {
-  grid-template-columns: 1.15fr 0.95fr 1.25fr 0.85fr;
-  height: 320px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px 24px;
+  align-items: start;
 }
 
 .gallery-card {
-  display: flex;
-  flex-direction: column;
   height: 100%;
   margin: 0;
   overflow: hidden;
   border: 2px solid var(--brown);
   background: var(--paper);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.gallery-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 8px 10px 0 rgba(60, 24, 8, 0.14);
 }
 
 .gallery-card__media {
-  flex: 1 1 auto;
-  min-height: 0;
+  position: relative;
+  flex: 1;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #e7dfd2;
+  background: rgba(60, 24, 8, 0.08);
 }
 
 .gallery-card__media img {
@@ -113,7 +58,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
   transition: transform 0.4s ease;
 }
 
@@ -123,81 +67,191 @@
 
 .gallery-card__body {
   display: flex;
-  flex: 0 0 auto;
   align-items: center;
-  gap: 12px;
-  min-height: 64px;
-  padding: 14px 16px;
+  gap: 16px;
+  padding: 18px;
   border-top: 2px solid var(--brown);
+  color: var(--brown);
 }
 
 .gallery-card__index {
   display: inline-flex;
-  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--amber);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.gallery-card__title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Detail kegiatan - foto utama */
+.activity-feature {
+  padding: 0 0 80px;
+}
+
+.activity-feature__figure {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.activity-feature__media {
+  width: 100%;
+  height: clamp(320px, 48vw, 620px);
+  overflow: hidden;
+  border: 2px solid var(--brown);
+  background: rgba(60, 24, 8, 0.1);
+}
+
+.activity-feature__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.activity-feature__caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: 2px solid rgba(60, 24, 8, 0.16);
+}
+
+.activity-feature__caption p {
+  margin: 0;
+  color: var(--brown);
+  font-weight: 600;
+  text-align: right;
+}
+
+/* Detail kegiatan - cerita */
+.activity-story {
+  padding: 72px 0;
+  background: var(--paper);
+}
+
+.activity-story__layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.activity-story__heading h2 {
+  margin: 12px 0 0;
+  font-family: var(--serif);
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.15;
+  color: var(--brown);
+}
+
+.activity-story__text {
+  max-width: 680px;
+  color: rgba(60, 24, 8, 0.8);
+  font-size: 17px;
+  line-height: 1.9;
+  white-space: pre-line;
+}
+
+/* Detail kegiatan - dokumentasi tambahan */
+.gallery--activity {
+  padding-top: 72px;
+}
+
+.activity-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* Foto pertama dokumentasi dibuat lebar */
+.activity-gallery__item:first-child {
+  grid-column: 1 / -1;
+}
+
+.activity-gallery__item:first-child .activity-gallery__media {
+  aspect-ratio: 16 / 9;
+}
+
+.activity-gallery__item {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 2px solid var(--brown);
+  background: var(--paper);
+}
+
+.activity-gallery__media {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: rgba(60, 24, 8, 0.08);
+}
+
+.activity-gallery__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.activity-gallery__item:hover img {
+  transform: scale(1.04);
+}
+
+.activity-gallery__item figcaption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-top: 2px solid var(--brown);
+  color: var(--brown);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.activity-gallery__number {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 28px;
   height: 28px;
-  border-radius: 999px;
+  flex-shrink: 0;
+  border-radius: 50%;
   background: var(--amber);
-  color: var(--brown);
   font-size: 11px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.04em;
 }
 
-.gallery-card__title {
-  color: var(--brown);
-  font-size: 14.5px;
-  font-weight: 600;
-  line-height: 1.35;
-}
-
-/* --------------------------------------------------------------------------
-   Responsive galeri
-   -------------------------------------------------------------------------- */
-
-@media (max-width: 1180px) {
-  .gallery-row--lead {
-    height: 440px;
-  }
-
-  .gallery-row--split {
-    height: 340px;
-  }
-
-  .gallery-row--strip {
-    height: 290px;
-  }
-}
-
+/* Responsive */
 @media (max-width: 1024px) {
-  .gallery__head {
-    align-items: flex-start;
+  .gallery-grid {
+    gap: 24px 18px;
   }
 
-  .gallery-row--lead {
-    grid-template-columns: 1.4fr 1fr;
-    height: 380px;
+  .gallery-card__body {
+    padding: 14px;
   }
 
-  .gallery-row--split {
-    grid-template-columns: 1.15fr 0.85fr;
-    grid-auto-rows: 300px;
-    height: auto;
+  .activity-story__layout {
+    gap: 40px;
   }
+}
 
-  .gallery-row--split .gallery-card:last-child {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: calc(50% - 10px);
-  }
-
-  .gallery-row--strip {
-    grid-template-columns: 1.15fr 0.85fr;
-    grid-auto-rows: 280px;
-    height: auto;
+@media (max-width: 768px) {
+  .activity-story__layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 }
 
@@ -207,57 +261,66 @@
   }
 
   .gallery__head {
+    align-items: flex-start;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
     margin-bottom: 24px;
     padding-bottom: 20px;
   }
 
-  .gallery__count {
-    align-self: flex-start;
-  }
-
   .gallery-grid {
-    gap: 16px;
-  }
-
-  .gallery-row {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    height: auto;
-  }
-
-  .gallery-row--split .gallery-card:last-child {
-    width: auto;
-  }
-
-  .gallery-card {
-    height: auto;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .gallery-card__media {
-    flex: 0 0 auto;
     aspect-ratio: 4 / 3;
   }
 
-  .gallery-card__body {
-    min-height: 58px;
-    padding: 12px 14px;
+  .activity-feature {
+    padding-bottom: 48px;
+  }
+
+  .activity-feature__media {
+    height: 300px;
+  }
+
+  .activity-feature__caption {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .activity-feature__caption p {
+    text-align: left;
+  }
+
+  .activity-story {
+    padding: 48px 0;
+  }
+
+  .activity-gallery {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .activity-gallery__item:first-child {
+    grid-column: auto;
+  }
+
+  .activity-gallery__item:first-child .activity-gallery__media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .gallery--activity {
+    padding-top: 48px;
   }
 }
 
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .gallery-card,
-  .gallery-card__media img {
+  .gallery-card__media img,
+  .activity-gallery__media img {
     transition: none;
-  }
-
-  .gallery-card:hover {
-    transform: none;
-  }
-
-  .gallery-card:hover .gallery-card__media img {
-    transform: none;
   }
 }

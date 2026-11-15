@@ -2,46 +2,55 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Murid;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class DaftarMuridController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Murid::query();
+        $query = Student::with('programs')->where('status', 'active');
 
         // Pencarian murid
         if ($request->filled('search')) {
-            $query->where('nama', 'like', '%'.$request->search.'%');
+            $query->where('full_name', 'like', '%'.$request->search.'%');
         }
 
         // Filter program
         if ($request->filled('program')) {
-            $query->where('program', $request->program);
+            $query->whereHas('programs', function ($programQuery) use ($request) {
+                $programQuery->where('programs.id', $request->program);
+            });
         }
 
         // Filter tahun masuk
         if ($request->filled('tahun')) {
-            $query->where('tahun_masuk', $request->tahun);
+            $query->whereYear('joined_at', $request->tahun);
         }
 
         $murids = $query
-            ->orderBy('nama', 'asc')
+            ->orderBy('full_name', 'asc')
             ->paginate(12)
             ->withQueryString();
 
-        $totalMurid = Murid::count();
+        $totalMurid = Student::where('status', 'active')->count();
 
-        $totalProgram = Murid::distinct('program')
-            ->count('program');
+        $totalProgram = Student::where('status', 'active')
+        ->with('programs')
+        ->get()
+        ->pluck('programs')
+        ->flatten()
+        ->unique('id')
+        ->count();
 
-        $tahunMasuk = Murid::select('tahun_masuk')
-            ->distinct()
-            ->orderBy('tahun_masuk', 'desc')
-            ->pluck('tahun_masuk');
+        $tahunMasuk = Student::where('status', 'active')
+        ->whereNotNull('joined_at')
+        ->selectRaw('YEAR(joined_at) as tahun')
+        ->distinct()
+        ->orderByDesc('tahun')
+        ->pluck('tahun');
 
-        return view('murid.index', compact(
+        return view('murid', compact(
             'murids',
             'totalMurid',
             'totalProgram',

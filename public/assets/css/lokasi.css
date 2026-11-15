@@ -24,7 +24,7 @@
   position: relative;
   height: 270px;
   border-bottom: 1px solid rgba(60, 24, 8, 0.16);
-  background: #d8d0c8;
+  background: rgba(60, 24, 8, 0.15);
 }
 
 .location-map iframe {

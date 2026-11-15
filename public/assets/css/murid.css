@@ -1,0 +1,265 @@
+/* --------------------------------------------------------------------------
+   Halaman daftar murid
+   Navbar, footer, hero dasar, dan band CTA memakai gaya bersama di global.css.
+   -------------------------------------------------------------------------- */
+
+.hero--murid {
+  padding: 85px 0 65px;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.hero__title--murid {
+  max-width: 650px;
+}
+
+.hero-content .hero__lead {
+  max-width: 570px;
+}
+
+/* Pencarian murid */
+.search-box {
+  display: flex;
+  align-items: center;
+  width: min(500px, 100%);
+  background: var(--white);
+  border: 1px solid var(--color-brown);
+  border-radius: 999px;
+  padding: 5px 18px;
+  gap: 10px;
+}
+
+.search-box span {
+  font-size: 20px;
+}
+
+.search-box input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 12px 0;
+  font-size: 14px;
+  background: transparent;
+  color: var(--color-brown);
+}
+
+/* Panel ilustrasi hero */
+.hero-illustration {
+  min-height: 290px;
+  background: var(--color-brown);
+  border-radius: 45% 45% 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-illustration::before,
+.hero-illustration::after {
+  content: "";
+  position: absolute;
+  border: 2px solid var(--color-gold);
+  border-radius: 50%;
+  width: 210px;
+  height: 210px;
+}
+
+.hero-illustration::after {
+  width: 150px;
+  height: 150px;
+  border-color: var(--color-cream);
+}
+
+.illustration-text {
+  margin: 0;
+  color: var(--color-cream);
+  font-family: var(--serif);
+  font-size: 28px;
+  text-align: center;
+  z-index: 1;
+  padding: 25px;
+}
+
+.illustration-text__accent {
+  color: var(--color-gold);
+}
+
+/* Daftar murid */
+.students {
+  padding: 25px 0 90px;
+}
+
+.class-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.class-heading::after {
+  content: "";
+  height: 1px;
+  background: rgba(60, 24, 8, 0.2);
+  flex: 1;
+}
+
+.class-badge {
+  background: var(--color-gold);
+  border: 1px solid var(--color-brown);
+  border-radius: 999px;
+  padding: 12px 22px;
+  color: var(--color-brown);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.student-card {
+  background: var(--white);
+  border: 1px solid var(--color-brown);
+  border-radius: 12px;
+  padding: 25px 20px;
+  min-height: 180px;
+  box-shadow: 5px 5px 0 var(--color-olive);
+  transition: transform 0.2s ease;
+}
+
+.student-card:hover {
+  transform: translateY(-4px);
+}
+
+.student-avatar {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--color-brown);
+  background: var(--color-cream);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.student-name {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.student-class {
+  margin: 0;
+  font-size: 11px;
+  color: rgba(60, 24, 8, 0.6);
+}
+
+.empty-state {
+  display: none;
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 14px;
+  color: rgba(60, 24, 8, 0.6);
+}
+
+.load-more-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 45px;
+}
+
+.load-more {
+  background: transparent;
+  border: 1px solid var(--color-brown);
+  border-radius: 999px;
+  padding: 13px 28px;
+  color: var(--color-brown);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.load-more:hover {
+  background: var(--color-brown);
+  color: var(--color-cream);
+}
+
+/* Responsif */
+@media (max-width: 1000px) {
+  .student-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hero-inner {
+    gap: 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero--murid {
+    padding: 55px 0 45px;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-illustration {
+    min-height: 220px;
+  }
+
+  .student-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  /* Minimal 16px agar tidak auto-zoom di Safari iOS */
+  .search-box input {
+    font-size: 16px;
+  }
+
+  .student-card {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .student-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .student-card {
+    min-height: 165px;
+    padding: 17px 12px;
+  }
+
+  .student-name {
+    font-size: 14px;
+  }
+
+  .student-class {
+    font-size: 10px;
+  }
+
+  .class-badge {
+    font-size: 10px;
+    padding: 10px 15px;
+  }
+}

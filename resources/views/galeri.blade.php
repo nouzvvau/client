@@ -3,6 +3,7 @@
 @section('title', 'Galeri — Sanggar Seni Cakra Aji')
 @section('description', 'Galeri latihan dan dokumentasi kegiatan Sanggar Seni Cakra Aji.')
 @section('page', 'galeri')
+@section('activeNav', 'galeri')
 
 @push('styles')
   <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}">
@@ -11,7 +12,7 @@
 @endpush
 
 @push('scripts')
-  <script src="{{ asset('assets/js/navigation.js') }}" defer></script>
+  <script src="{{ asset('assets/js/script2.js') }}" defer></script>
 @endpush
 
 @section('content')
@@ -36,7 +37,6 @@
             tampil bersama.
           </p>
         </div>
-        <p class="gallery__count">9 foto</p>
       </div>
 
       <div class="gallery-grid">
