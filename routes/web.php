@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengurusController;
 use App\Http\Controllers\ProgramPageController;
 use App\Http\Controllers\Admin\GaleriController;
+use App\Http\Controllers\BookingController;
 
 Route::get('/', function () {return view('beranda');});
 Route::get('/pendaftaran', [PendaftaranMuridController::class, 'index'])->name('pendaftaran.index');
@@ -17,7 +18,9 @@ Route::view('/galeri', 'galeri')->name('galeri');
 Route::view('/lokasi', 'lokasi')->name('lokasi');
 Route::get('/pengurus', [PengurusController::class, 'index'])->name('pengurus');
 Route::get('/tentang-kami', function () {return view('tentang-kami');});
-
+Route::view('/tanya-jawab', 'tanya-jawab')->name('tanya-jawab');
+Route::get('/booking-acara', [BookingController::class, 'create'])->name('booking.create');
+Route::post('/booking-acara', [BookingController::class, 'store'])->name('booking.store');
 
 Route::get('/admin/galeri', [GaleriController::class, 'index'])->name('admin.galeri');
 Route::get('/admin/galeri/create', [GaleriController::class, 'create'])->name('admin.galeri.create');
