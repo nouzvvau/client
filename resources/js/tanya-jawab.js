@@ -6,7 +6,7 @@
     const chatInput = document.getElementById("chat-input");
     const faqButtons = document.querySelectorAll(".faq-button");
     const menuToggle = document.querySelector(".menu-toggle");
-    const navMenu = document.getElementById("nav-menu");
+    const navMenu = document.getElementById("navMenu");
 
     // Ganti nilai ini dengan nomor WhatsApp admin sebenarnya (format internasional tanpa +).
     const ADMIN_WHATSAPP = "628XXXXXXXXXX";
@@ -84,14 +84,14 @@
 
     if (menuToggle && navMenu) {
         menuToggle.addEventListener("click", () => {
-            const isOpen = navMenu.classList.toggle("open");
+            const isOpen = navMenu.classList.toggle("show");
             menuToggle.setAttribute("aria-expanded", String(isOpen));
             menuToggle.setAttribute("aria-label", isOpen ? "Tutup menu" : "Buka menu");
         });
 
         navMenu.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
-                navMenu.classList.remove("open");
+                navMenu.classList.remove("show");
                 menuToggle.setAttribute("aria-expanded", "false");
                 menuToggle.setAttribute("aria-label", "Buka menu");
             });

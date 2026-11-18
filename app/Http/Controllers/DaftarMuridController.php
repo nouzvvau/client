@@ -36,19 +36,21 @@ class DaftarMuridController extends Controller
         $totalMurid = Student::where('status', 'active')->count();
 
         $totalProgram = Student::where('status', 'active')
-        ->with('programs')
-        ->get()
-        ->pluck('programs')
-        ->flatten()
-        ->unique('id')
-        ->count();
+            ->with('programs')
+            ->get()
+            ->pluck('programs')
+            ->flatten()
+            ->unique('id')
+            ->count();
 
         $tahunMasuk = Student::where('status', 'active')
-        ->whereNotNull('joined_at')
-        ->selectRaw('YEAR(joined_at) as tahun')
-        ->distinct()
-        ->orderByDesc('tahun')
-        ->pluck('tahun');
+            ->whereNotNull('joined_at')
+            ->get()
+            ->map(fn (Student $student) => $student->joined_at?->year)
+            ->filter()
+            ->unique()
+            ->sortDesc()
+            ->values();
 
         return view('murid', compact(
             'murids',

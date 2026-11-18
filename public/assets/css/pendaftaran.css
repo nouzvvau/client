@@ -1,338 +1,433 @@
-/* Stylesheet halaman Pendaftaran Murid */
+/* =========================================
+   PENDAFTARAN MURID — SANGGAR CAKRA AJI
+   Ukuran diselaraskan dengan Booking Acara
+========================================= */
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--color-cream);
-            color: var(--color-brown);
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* MAIN */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--color-cream);
+    color: var(--color-brown);
+}
 
-        .main {
-            max-width: 1300px;
-            margin: auto;
-            padding: 55px 5% 75px;
-        }
+/* =========================================
+   MAIN
+========================================= */
 
-        .heading {
-            margin-bottom: 35px;
-        }
+.main {
+    width: 90%;
+    max-width: 1300px;
+    margin: auto;
+    padding: 55px 0 75px;
+}
 
-        .heading-label {
-            color: var(--color-olive);
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-        }
+.heading {
+    margin-bottom: 35px;
+}
 
-        .heading h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(32px, 4vw, 50px);
-            line-height: 1.2;
-            margin: 15px 0;
-        }
+.heading-label {
+    color: var(--color-olive);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
 
-        .heading p {
-            max-width: 650px;
-            font-size: 13px;
-            line-height: 1.8;
-        }
+.heading h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 50px);
+    line-height: 1.2;
+    margin: 15px 0;
+}
 
-        .version {
-            display: inline-block;
-            background: var(--color-gold);
-            border: 1px solid var(--color-brown);
-            padding: 6px 12px;
-            font-size: 10px;
-            margin-top: 15px;
-        }
+.heading p {
+    max-width: 650px;
+    font-size: 13px;
+    line-height: 1.8;
+}
 
-        /* CONTENT */
+.version {
+    display: inline-block;
+    background: var(--color-gold);
+    border: 1px solid var(--color-brown);
+    padding: 6px 12px;
+    font-size: 10px;
+    margin-top: 15px;
+}
 
-        .content {
-            display: grid;
-            grid-template-columns: minmax(0, 1.7fr) minmax(250px, 0.8fr);
-            gap: 30px;
-            align-items: start;
-        }
+/* =========================================
+   CONTENT GRID
+========================================= */
 
-        /* FORM */
+.content {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(250px, 0.8fr);
+    gap: 30px;
+    align-items: start;
+}
 
-        .form-card {
-            background: #ffffff;
-            border: 1px solid var(--color-brown);
-            box-shadow: 5px 5px 0 var(--color-gold);
-            padding: 30px;
-        }
+/* =========================================
+   FORM CARD
+========================================= */
 
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            margin-bottom: 25px;
-        }
+.form-card {
+    min-width: 0;
+    padding: 30px;
+    background: #ffffff;
+    border: 1px solid var(--color-brown);
+    box-shadow: 5px 5px 0 var(--color-gold);
+}
 
-        .number {
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--color-brown);
-            color: var(--color-gold);
-            border-radius: 50%;
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-        }
+/* =========================================
+   SECTION TITLE
+========================================= */
 
-        .form-group {
-            margin-bottom: 22px;
-        }
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
 
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 9px;
-        }
+.number {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-brown);
+    color: var(--color-gold);
+    border-radius: 50%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
 
-        .required {
-            color: var(--color-red);
-        }
+/* =========================================
+   FORM GROUP
+========================================= */
 
-        .helper {
-            font-size: 10px;
-            color: rgba(60, 24, 8, 0.6);
-            margin-bottom: 9px;
-            line-height: 1.7;
-        }
+.form-group {
+    margin-bottom: 22px;
+}
 
-        .form-control {
-            width: 100%;
-            min-height: 45px;
-            padding: 12px 14px;
-            border: 1px solid rgba(60, 24, 8, 0.5);
-            background: #ffffff;
-            color: var(--color-brown);
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            outline: none;
-            border-radius: 0;
-        }
+.form-group:last-child {
+    margin-bottom: 0;
+}
 
-        .form-control:focus {
-            border-color: var(--color-gold);
-            box-shadow: 0 0 0 2px rgba(255, 188, 76, 0.3);
-        }
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 9px;
+    line-height: 1.6;
+}
 
-        textarea.form-control {
-            min-height: 110px;
-            resize: vertical;
-        }
+.required {
+    color: var(--color-red);
+}
 
-        .form-divider {
-            border: none;
-            border-top: 1px solid rgba(60, 24, 8, 0.2);
-            margin: 30px 0;
-        }
+.helper {
+    font-size: 10px;
+    color: rgba(60, 24, 8, 0.6);
+    margin-bottom: 9px;
+    line-height: 1.7;
+}
 
-        /* BUTTON */
+/* =========================================
+   FORM CONTROL
+========================================= */
 
-        .submit-btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            width: fit-content;
-            background: var(--color-brown);
-            color: var(--color-cream);
-            border: 1px solid var(--color-brown);
-            border-radius: 30px;
-            padding: 14px 25px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+.form-control {
+    display: block;
+    width: 100%;
+    min-height: 45px;
+    padding: 12px 14px;
+    border: 1px solid rgba(60, 24, 8, 0.5);
+    background: #ffffff;
+    color: var(--color-brown);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    outline: none;
+    border-radius: 0;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
 
-        .submit-btn:hover {
-            background: var(--color-gold);
-            color: var(--color-brown);
-            transform: translateY(-2px);
-        }
+.form-control::placeholder {
+    color: rgba(60, 24, 8, 0.45);
+    opacity: 1;
+}
 
-        .form-note {
-            font-size: 10px;
-            line-height: 1.8;
-            color: rgba(60, 24, 8, 0.6);
-            margin-top: 15px;
-        }
+.form-control:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 2px rgba(255, 188, 76, 0.3);
+}
 
-        /* SIDEBAR */
+textarea.form-control {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.7;
+}
 
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+/* =========================================
+   FORM DIVIDER
+========================================= */
 
-        .side-card {
-            background: #ffffff;
-            border: 1px solid var(--color-brown);
-            padding: 23px;
-        }
+.form-divider {
+    border: none;
+    border-top: 1px solid rgba(60, 24, 8, 0.2);
+    margin: 30px 0;
+}
 
-        .side-card.dark {
-            background: var(--color-brown);
-            color: var(--color-cream);
-            box-shadow: 4px 4px 0 var(--color-gold);
-        }
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
 
-        .side-card.light {
-            background: rgba(255, 255, 255, 0.65);
-        }
+.submit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    min-height: 48px;
+    background: var(--color-brown);
+    color: var(--color-cream);
+    border: 1px solid var(--color-brown);
+    border-radius: 30px;
+    padding: 14px 25px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        .side-title {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 18px;
-        }
+.submit-btn:hover {
+    background: var(--color-gold);
+    color: var(--color-brown);
+    transform: translateY(-2px);
+}
 
-        .side-list {
-            list-style: none;
-        }
+.submit-btn:focus-visible {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 4px;
+}
 
-        .side-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 10px;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
+.submit-btn:disabled {
+    opacity: 0.65;
+    cursor: wait;
+    transform: none;
+}
 
-        .check {
-            color: var(--color-gold);
-            font-weight: 700;
-        }
+.form-note {
+    font-size: 10px;
+    line-height: 1.8;
+    color: rgba(60, 24, 8, 0.6);
+    margin-top: 15px;
+}
 
-        .step {
-            min-width: 25px;
-            height: 25px;
-            background: var(--color-gold);
-            color: var(--color-brown);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            font-weight: 700;
-        }
+/* =========================================
+   SIDEBAR
+========================================= */
 
-        .side-list strong {
-            display: block;
-            font-size: 11px;
-            margin-bottom: 5px;
-        }
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
-        .description {
-            display: block;
-            color: rgba(60, 24, 8, 0.6);
-        }
+/* =========================================
+   SIDE CARD
+========================================= */
 
-        .dark .description {
-            color: rgba(254, 255, 196, 0.75);
-        }
+.side-card {
+    background: #ffffff;
+    border: 1px solid var(--color-brown);
+    padding: 23px;
+}
 
-        .side-card p {
-            font-size: 11px;
-            line-height: 1.8;
-        }
+.side-card.dark {
+    background: var(--color-brown);
+    color: var(--color-cream);
+    box-shadow: 4px 4px 0 var(--color-gold);
+}
 
-        .contact-link {
-            color: var(--color-brown);
-            font-weight: 700;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-        }
+.side-card.light {
+    background: rgba(255, 255, 255, 0.65);
+}
 
-        /* ALERT */
+/* =========================================
+   SIDEBAR TITLE
+========================================= */
 
-        .alert {
-            padding: 15px 20px;
-            margin-bottom: 25px;
-            font-size: 12px;
-            line-height: 1.8;
-            border: 1px solid var(--color-brown);
-        }
+.side-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 18px;
+}
 
-        .alert-success {
-            background: rgba(145, 160, 82, 0.35);
-        }
+/* =========================================
+   SIDEBAR LIST
+========================================= */
 
-        .alert-error {
-            background: rgba(193, 39, 45, 0.22);
-        }
+.side-list {
+    list-style: none;
+}
 
-        .error-text {
-            display: block;
-            color: var(--color-red);
-            font-size: 10px;
-            margin-top: 5px;
-        }
+.side-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 10px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
 
-        /* TABLET */
+.side-list li:last-child {
+    margin-bottom: 0;
+}
 
-        @media (max-width: 1000px) {
+.check {
+    color: var(--color-gold);
+    font-weight: 700;
+}
 
-            .content {
-                grid-template-columns: 1fr;
-            }
+.step {
+    min-width: 25px;
+    height: 25px;
+    flex: 0 0 25px;
+    background: var(--color-gold);
+    color: var(--color-brown);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-weight: 700;
+}
 
-            .sidebar {
-                display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
+.side-list strong {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
 
-        /* MOBILE */
+.description {
+    display: block;
+    color: rgba(60, 24, 8, 0.6);
+}
 
-        @media (max-width: 600px) {
+.dark .description {
+    color: rgba(254, 255, 196, 0.75);
+}
 
-            .main {
-                padding: 35px 5% 50px;
-            }
+/* =========================================
+   SIDEBAR TEXT
+========================================= */
 
-            .heading h1 {
-                font-size: 32px;
-            }
+.side-card p {
+    font-size: 11px;
+    line-height: 1.8;
+}
 
-            .heading p {
-                font-size: 11px;
-            }
+.contact-link {
+    color: var(--color-brown);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
 
-            .form-card {
-                padding: 20px 16px;
-            }
+/* =========================================
+   ALERT
+========================================= */
 
-            .section-title {
-                font-size: 17px;
-            }
+.alert {
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    font-size: 12px;
+    line-height: 1.8;
+    border: 1px solid var(--color-brown);
+}
 
-            .sidebar {
-                grid-template-columns: 1fr;
-            }
+.alert-success {
+    background: rgba(145, 160, 82, 0.35);
+}
 
-            .submit-btn {
-                width: 100%;
-            }
+.alert-error {
+    background: rgba(193, 39, 45, 0.22);
+}
 
-        }
+.error-text {
+    display: block;
+    color: var(--color-red);
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+    .content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+    .main {
+        width: 90%;
+        padding: 35px 0 50px;
+    }
+
+    .heading h1 {
+        font-size: 32px;
+    }
+
+    .heading p {
+        font-size: 11px;
+    }
+
+    .form-card {
+        padding: 20px 16px;
+    }
+
+    .section-title {
+        gap: 10px;
+        font-size: 17px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+
+    .side-card {
+        padding: 20px;
+    }
+}

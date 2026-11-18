@@ -12,14 +12,7 @@ class ProgramPageController extends Controller
         $activities = Activity::query()
             ->with('photos')
             ->orderByDesc('date')
-            ->get()
-            ->map(fn (Activity $activity): array => [
-                'title' => $activity->title,
-                'slug' => Str::slug($activity->title),
-                'date' => $activity->date,
-                'description' => $activity->description,
-                'photos' => $activity->photos,
-            ]);
+            ->get();
 
         return view('program', [
             'activities' => $activities,
@@ -44,7 +37,7 @@ class ProgramPageController extends Controller
             ->map(fn (Activity $activity): array => [
                 'title' => $activity->title,
                 'slug' => Str::slug($activity->title),
-        ]);
+            ]);
 
         return view('detail-kegiatan', [
             'activity' => $activity,

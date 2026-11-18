@@ -31,22 +31,15 @@
             </div>
 
             <nav class="space-y-2 text-sm">
-                <a href="#" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Dashboard</a>
-                <a href="#" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Pendaftar Siswa</a>
-                <a href="#" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Booking Acara</a>
-                <a href="#" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Beranda & Tentang Kami</a>
-                <a href="#" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Program & Kegiatan</a>
+                <a href="{{ route('admin.dashboard') }}" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Dashboard</a>
+                <a href="{{ route('admin.pendaftar') }}" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Pendaftar Siswa</a>
+                <a href="{{ route('admin.booking') }}" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Booking Acara</a>
+                <a href="{{ route('admin.nama-murid') }}" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Pengaturan Daftar Nama Siswa</a>
 
                 <a href="{{ route('admin.galeri') }}"
                    class="block py-2 px-3 rounded bg-amber-400 text-stone-900 font-bold shadow">
                     Galeri & Dokumentasi
                 </a>
-
-                <a href="#" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Pengaturan WhatsApp</a>
-                <a href="#" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Contact Person</a>
-                <a href="#" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Pengaturan Language Switcher</a>
-                <a href="#" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Pengaturan Daftar Nama Siswa</a>
-                <a href="#" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Pengaturan & Akun</a>
             </nav>
         </div>
 
@@ -56,7 +49,12 @@
                 Lihat website ↗
             </a>
 
-            <a href="#" class="block hover:text-red-400 transition">Keluar</a>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="block hover:text-red-400 transition">
+                    Keluar
+                </button>
+            </form>
         </div>
     </aside>
 
@@ -79,11 +77,10 @@
                 </p>
             </div>
 
-            <button disabled
-                    title="Form tambah kegiatan belum dibuat"
-                    class="bg-[#3a1d1d] text-amber-100 px-5 py-2.5 rounded-md font-semibold text-sm shadow opacity-60 cursor-not-allowed">
+            <a href="{{ route('admin.galeri.create') }}"
+               class="bg-[#3a1d1d] text-amber-100 px-5 py-2.5 rounded-md font-semibold text-sm shadow hover:bg-[#4a2727] transition">
                 + Tambah acara
-            </button>
+            </a>
         </div>
 
         <!-- PENCARIAN -->
@@ -170,11 +167,17 @@
                             <td class="py-4 px-4 text-center">
 
                                 <a
+                                    href="{{ route('admin.galeri.edit', $activity) }}"
+                                    class="inline-block bg-white border border-stone-400 hover:bg-stone-100 text-stone-800 px-3 py-1 rounded text-xs font-semibold shadow-sm">
+                                    Ubah
+                                </a>
+
+                                <a
                                     href="{{ route('program.detail', [
                                         'slug' => \Illuminate\Support\Str::slug($activity->title)
                                     ]) }}"
                                     target="_blank"
-                                    class="inline-block bg-white border border-stone-400 hover:bg-stone-100 text-stone-800 px-3 py-1 rounded text-xs font-semibold shadow-sm">
+                                    class="ml-1 inline-block bg-white border border-stone-400 hover:bg-stone-100 text-stone-800 px-3 py-1 rounded text-xs font-semibold shadow-sm">
                                     Lihat
                                 </a>
 

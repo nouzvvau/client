@@ -11,7 +11,6 @@
 
 @push('scripts')
   <script src="{{ asset('assets/js/script2.js') }}" defer></script>
-  <script src="{{ asset('assets/js/murid.js') }}" defer></script>
 @endpush
 
 @section('content')
@@ -27,13 +26,16 @@
         </p>
 
         <div class="search-box">
-          <span aria-hidden="true">⌕</span>
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Ketik nama panggilan"
-            aria-label="Cari nama murid atau kelas"
-          >
+          <form method="GET" action="{{ route('murid.index') }}" style="display: contents;">
+            <span aria-hidden="true">⌕</span>
+            <input
+              type="text"
+              name="search"
+              value="{{ request('search') }}"
+              placeholder="Ketik nama panggilan"
+              aria-label="Cari nama panggilan murid"
+            >
+          </form>
         </div>
       </div>
 
@@ -55,8 +57,8 @@
 
       <div class="student-grid" id="studentGrid">
 
-        @foreach ($murids as $index => $data)
-          <article class="student-card" data-name="{{ strtolower($data->full_name) }}" @if ($index >= 8) hidden @endif>
+        @forelse ($murids as $data)
+          <article class="student-card" data-name="{{ strtolower($data->full_name) }}">
             <div class="student-avatar">
               {{ strtoupper(substr($data->full_name, 0, 1)) }}
             </div>
@@ -77,14 +79,43 @@
 
       </div>
 
-      <div class="empty-state" id="emptyState">
-        Murid tidak ditemukan.
+      <div class="empty-state" id="emptyState" @if ($murids->isNotEmpty()) hidden @endif>
+        @if (request('search'))
+          Murid "{{ request('search') }}" tidak ditemukan.
+        @else
+          Belum ada murid yang aktif berlatih.
+        @endif
       </div>
 
       <div class="load-more-wrapper">
-        <button class="load-more" id="loadMore" type="button">
-          Tampilkan lebih banyak
-        </button>
+        @if ($murids->hasPages())
+          <nav aria-label="Navigasi halaman murid" class="murid-pagination">
+            <span class="murid-pagination__info">
+              Halaman {{ $murids->currentPage() }} dari {{ $murids->lastPage() }}
+            </span>
+            <div class="murid-pagination__links">
+              @if ($murids->onFirstPage())
+                <span class="load-more load-more--disabled" aria-disabled="true">‹ Sebelumnya</span>
+              @else
+                <a class="load-more" href="{{ $murids->previousPageUrl() }}" rel="prev">‹ Sebelumnya</a>
+              @endif
+
+              @foreach ($murids->getUrlRange(1, $murids->lastPage()) as $page => $url)
+                @if ($page == $murids->currentPage())
+                  <span class="load-more load-more--current" aria-current="page">{{ $page }}</span>
+                @else
+                  <a class="load-more" href="{{ $url }}">{{ $page }}</a>
+                @endif
+              @endforeach
+
+              @if ($murids->hasMorePages())
+                <a class="load-more" href="{{ $murids->nextPageUrl() }}" rel="next">Selanjutnya ›</a>
+              @else
+                <span class="load-more load-more--disabled" aria-disabled="true">Selanjutnya ›</span>
+              @endif
+            </div>
+          </nav>
+        @endif
       </div>
 
     </div>

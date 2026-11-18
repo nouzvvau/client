@@ -263,3 +263,48 @@
     padding: 10px 15px;
   }
 }
+
+.empty-state:not([hidden]) {
+  display: block;
+}
+
+.murid-pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.murid-pagination__info {
+  font-size: 13px;
+  color: rgba(60, 24, 8, 0.6);
+}
+
+.murid-pagination__links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.murid-pagination__links .load-more {
+  text-decoration: none;
+  padding: 10px 18px;
+}
+
+.load-more--current {
+  background: var(--color-brown);
+  color: var(--color-cream);
+  cursor: default;
+}
+
+.load-more--disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.load-more--disabled:hover {
+  background: transparent;
+  color: var(--color-brown);
+}

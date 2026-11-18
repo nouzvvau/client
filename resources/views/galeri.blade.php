@@ -40,93 +40,117 @@
       </div>
 
       <div class="gallery-grid">
-      <div class="gallery-row gallery-row--lead">
-        <figure class="gallery-card">
-          <div class="gallery-card__media">
-            <img src="{{ asset('assets/images/galeri/galeri-02.jpeg') }}" width="1600" height="1200" alt="Dokumentasi latihan gamelan Sanggar Seni Cakra Aji" loading="eager">
+      @if ($activities->contains(fn ($activity) => $activity->photos->isNotEmpty()))
+        @php
+          $galleryActivities = $activities->filter(fn ($activity) => $activity->photos->isNotEmpty())->values();
+        @endphp
+        @foreach ($galleryActivities->chunk(2) as $row)
+          <div class="gallery-row gallery-row--split">
+            @foreach ($row as $activity)
+              @php $photo = $activity->photos->first(); @endphp
+              <figure class="gallery-card">
+                <a href="{{ route('program.detail', ['slug' => \Illuminate\Support\Str::slug($activity->title)]) }}" style="display: block;">
+                  <div class="gallery-card__media">
+                    <img src="{{ Storage::url($photo->photo) }}" alt="{{ $photo->caption ?? $activity->title }}" loading="lazy" decoding="async">
+                  </div>
+                  <figcaption class="gallery-card__body">
+                    <span class="gallery-card__index" aria-hidden="true">{{ str_pad((string) $loop->parent->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                    <span class="gallery-card__title">{{ $photo->caption ?? $activity->title }}</span>
+                  </figcaption>
+                </a>
+              </figure>
+            @endforeach
           </div>
-          <figcaption class="gallery-card__body">
-            <span class="gallery-card__index" aria-hidden="true">01</span>
-            <span class="gallery-card__title">Dokumentasi latihan gamelan</span>
-          </figcaption>
-        </figure>
-        <figure class="gallery-card">
-          <div class="gallery-card__media">
-            <img src="{{ asset('assets/images/galeri/galeri-01.jpeg') }}" width="960" height="1280" alt="Peserta latihan karawitan Sanggar Seni Cakra Aji" loading="lazy" decoding="async">
-          </div>
-          <figcaption class="gallery-card__body">
-            <span class="gallery-card__index" aria-hidden="true">02</span>
-            <span class="gallery-card__title">Peserta latihan karawitan</span>
-          </figcaption>
-        </figure>
-      </div>
-      <div class="gallery-row gallery-row--split">
-        <figure class="gallery-card">
-          <div class="gallery-card__media">
-            <img src="{{ asset('assets/images/galeri/galeri-03.jpeg') }}" width="1600" height="900" alt="Suasana latihan karawitan Cakra Aji" loading="lazy" decoding="async">
-          </div>
-          <figcaption class="gallery-card__body">
-            <span class="gallery-card__index" aria-hidden="true">03</span>
-            <span class="gallery-card__title">Suasana latihan karawitan</span>
-          </figcaption>
-        </figure>
-        <figure class="gallery-card">
-          <div class="gallery-card__media">
-            <img src="{{ asset('assets/images/galeri/galeri-04.jpeg') }}" width="1600" height="1200" alt="Anggota Sanggar Seni Cakra Aji saat berlatih" loading="lazy" decoding="async">
-          </div>
-          <figcaption class="gallery-card__body">
-            <span class="gallery-card__index" aria-hidden="true">04</span>
-            <span class="gallery-card__title">Anggota saat berlatih</span>
-          </figcaption>
-        </figure>
-        <figure class="gallery-card">
-          <div class="gallery-card__media">
-            <img src="{{ asset('assets/images/galeri/galeri-05.jpeg') }}" width="1280" height="720" alt="Dokumentasi kegiatan Sanggar Seni Cakra Aji" loading="lazy" decoding="async">
-          </div>
-          <figcaption class="gallery-card__body">
-            <span class="gallery-card__index" aria-hidden="true">05</span>
-            <span class="gallery-card__title">Dokumentasi kegiatan</span>
-          </figcaption>
-        </figure>
-      </div>
-      <div class="gallery-row gallery-row--strip">
-        <figure class="gallery-card">
-          <div class="gallery-card__media">
-            <img src="{{ asset('assets/images/galeri/galeri-06.jpeg') }}" width="1536" height="864" alt="Latihan bersama anggota Cakra Aji" loading="lazy" decoding="async">
-          </div>
-          <figcaption class="gallery-card__body">
-            <span class="gallery-card__index" aria-hidden="true">06</span>
-            <span class="gallery-card__title">Latihan bersama anggota</span>
-          </figcaption>
-        </figure>
-        <figure class="gallery-card">
-          <div class="gallery-card__media">
-            <img src="{{ asset('assets/images/galeri/galeri-07.jpeg') }}" width="1600" height="900" alt="Dokumentasi latihan karawitan di sanggar" loading="lazy" decoding="async">
-          </div>
-          <figcaption class="gallery-card__body">
-            <span class="gallery-card__index" aria-hidden="true">07</span>
-            <span class="gallery-card__title">Latihan di sanggar</span>
-          </figcaption>
-        </figure>
-        <figure class="gallery-card">
-          <div class="gallery-card__media">
-            <img src="{{ asset('assets/images/galeri/galeri-08.jpeg') }}" width="1152" height="864" alt="Dokumentasi kegiatan Sanggar Seni Cakra Aji" loading="lazy" decoding="async">
-          </div>
-          <figcaption class="gallery-card__body">
-            <span class="gallery-card__index" aria-hidden="true">08</span>
-            <span class="gallery-card__title">Dokumentasi kegiatan sanggar</span>
-          </figcaption>
-        </figure>
-        <figure class="gallery-card">
-          <div class="gallery-card__media">
-            <img src="{{ asset('assets/images/galeri/galeri-09.jpeg') }}" width="1280" height="720" alt="Kegiatan bersama anggota Sanggar Seni Cakra Aji" loading="lazy" decoding="async">
-          </div>
-          <figcaption class="gallery-card__body">
-            <span class="gallery-card__index" aria-hidden="true">09</span>
-            <span class="gallery-card__title">Kegiatan anggota</span>
-          </figcaption>
-        </figure>
-      </div>
+        @endforeach
+      @else
+        <div class="gallery-row gallery-row--lead">
+          <figure class="gallery-card">
+            <div class="gallery-card__media">
+              <img src="{{ asset('assets/images/galeri/galeri-02.jpeg') }}" width="1600" height="1200" alt="Dokumentasi latihan gamelan Sanggar Seni Cakra Aji" loading="eager">
+            </div>
+            <figcaption class="gallery-card__body">
+              <span class="gallery-card__index" aria-hidden="true">01</span>
+              <span class="gallery-card__title">Dokumentasi latihan gamelan</span>
+            </figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-card__media">
+              <img src="{{ asset('assets/images/galeri/galeri-01.jpeg') }}" width="960" height="1280" alt="Peserta latihan karawitan Sanggar Seni Cakra Aji" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="gallery-card__body">
+              <span class="gallery-card__index" aria-hidden="true">02</span>
+              <span class="gallery-card__title">Peserta latihan karawitan</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="gallery-row gallery-row--split">
+          <figure class="gallery-card">
+            <div class="gallery-card__media">
+              <img src="{{ asset('assets/images/galeri/galeri-03.jpeg') }}" width="1600" height="900" alt="Suasana latihan karawitan Cakra Aji" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="gallery-card__body">
+              <span class="gallery-card__index" aria-hidden="true">03</span>
+              <span class="gallery-card__title">Suasana latihan karawitan</span>
+            </figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-card__media">
+              <img src="{{ asset('assets/images/galeri/galeri-04.jpeg') }}" width="1600" height="1200" alt="Anggota Sanggar Seni Cakra Aji saat berlatih" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="gallery-card__body">
+              <span class="gallery-card__index" aria-hidden="true">04</span>
+              <span class="gallery-card__title">Anggota saat berlatih</span>
+            </figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-card__media">
+              <img src="{{ asset('assets/images/galeri/galeri-05.jpeg') }}" width="1280" height="720" alt="Dokumentasi kegiatan Sanggar Seni Cakra Aji" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="gallery-card__body">
+              <span class="gallery-card__index" aria-hidden="true">05</span>
+              <span class="gallery-card__title">Dokumentasi kegiatan</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="gallery-row gallery-row--strip">
+          <figure class="gallery-card">
+            <div class="gallery-card__media">
+              <img src="{{ asset('assets/images/galeri/galeri-06.jpeg') }}" width="1536" height="864" alt="Latihan bersama anggota Cakra Aji" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="gallery-card__body">
+              <span class="gallery-card__index" aria-hidden="true">06</span>
+              <span class="gallery-card__title">Latihan bersama anggota</span>
+            </figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-card__media">
+              <img src="{{ asset('assets/images/galeri/galeri-07.jpeg') }}" width="1600" height="900" alt="Dokumentasi latihan karawitan di sanggar" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="gallery-card__body">
+              <span class="gallery-card__index" aria-hidden="true">07</span>
+              <span class="gallery-card__title">Latihan di sanggar</span>
+            </figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-card__media">
+              <img src="{{ asset('assets/images/galeri/galeri-08.jpeg') }}" width="1152" height="864" alt="Dokumentasi kegiatan Sanggar Seni Cakra Aji" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="gallery-card__body">
+              <span class="gallery-card__index" aria-hidden="true">08</span>
+              <span class="gallery-card__title">Dokumentasi kegiatan sanggar</span>
+            </figcaption>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-card__media">
+              <img src="{{ asset('assets/images/galeri/galeri-09.jpeg') }}" width="1280" height="720" alt="Kegiatan bersama anggota Sanggar Seni Cakra Aji" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="gallery-card__body">
+              <span class="gallery-card__index" aria-hidden="true">09</span>
+              <span class="gallery-card__title">Kegiatan anggota</span>
+            </figcaption>
+          </figure>
+        </div>
+      @endif
       </div>
     </div>
   </section>
@@ -153,54 +177,63 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td data-label="Kelompok">Karawitan Mahir</td>
-              <td data-label="Hari">Rabu</td>
-              <td data-label="Jam">19.30 - 21.00</td>
-              <td data-label="Tempat">Sanggar Plosokandang</td>
-            </tr>
-            <tr>
-              <td data-label="Kelompok">Karawitan Dasar Tingkat I (A)</td>
-              <td data-label="Hari">Minggu</td>
-              <td data-label="Jam">13.00 - 14.30</td>
-              <td data-label="Tempat">Sanggar Plosokandang</td>
-            </tr>
-            <tr>
-              <td data-label="Kelompok">Karawitan Dasar Tingkat I (B)</td>
-              <td data-label="Hari">Minggu</td>
-              <td data-label="Jam">14.30 - 16.00</td>
-              <td data-label="Tempat">Sanggar Plosokandang</td>
-            </tr>
-            <tr>
-              <td data-label="Kelompok">Karawitan Dasar Tingkat II (A)</td>
-              <td data-label="Hari">Minggu</td>
-              <td data-label="Jam">16.00 - 17.30</td>
-              <td data-label="Tempat">Sanggar Plosokandang</td>
-            </tr>
-            <tr>
-              <td data-label="Kelompok">Karawitan Madya II</td>
-              <td data-label="Hari">Rabu</td>
-              <td data-label="Jam">14.30 - 16.00</td>
-              <td data-label="Tempat">Sanggar Plosokandang</td>
-            </tr>
-            <tr>
-              <td data-label="Kelompok">Karawitan Dasar Tingkat II (C)</td>
-              <td data-label="Hari">Minggu</td>
-              <td data-label="Jam">13.00 - 14.30</td>
-              <td data-label="Tempat">Sanggar Beji</td>
-            </tr>
-            <tr>
-              <td data-label="Kelompok">Karawitan Madya I</td>
-              <td data-label="Hari">Minggu</td>
-              <td data-label="Jam">14.30 - 16.00</td>
-              <td data-label="Tempat">Sanggar Beji</td>
-            </tr>
-            <tr>
-              <td data-label="Kelompok">Karawitan Dasar Tingkat II (B)</td>
-              <td data-label="Hari">Minggu</td>
-              <td data-label="Jam">16.00 - 17.30</td>
-              <td data-label="Tempat">Sanggar Beji</td>
-            </tr>
+            @forelse ($schedules as $schedule)
+              <tr>
+                <td data-label="Kelompok">{{ $schedule->program?->name ?? '-' }}</td>
+                <td data-label="Hari">{{ $schedule->day_of_week }}</td>
+                <td data-label="Jam">{{ substr($schedule->start_time, 0, 5) }} - {{ substr($schedule->end_time, 0, 5) }}</td>
+                <td data-label="Tempat">{{ $schedule->location?->name ?? '-' }}</td>
+              </tr>
+            @empty
+              <tr>
+                <td data-label="Kelompok">Karawitan Mahir</td>
+                <td data-label="Hari">Rabu</td>
+                <td data-label="Jam">19.30 - 21.00</td>
+                <td data-label="Tempat">Sanggar Plosokandang</td>
+              </tr>
+              <tr>
+                <td data-label="Kelompok">Karawitan Dasar Tingkat I (A)</td>
+                <td data-label="Hari">Minggu</td>
+                <td data-label="Jam">13.00 - 14.30</td>
+                <td data-label="Tempat">Sanggar Plosokandang</td>
+              </tr>
+              <tr>
+                <td data-label="Kelompok">Karawitan Dasar Tingkat I (B)</td>
+                <td data-label="Hari">Minggu</td>
+                <td data-label="Jam">14.30 - 16.00</td>
+                <td data-label="Tempat">Sanggar Plosokandang</td>
+              </tr>
+              <tr>
+                <td data-label="Kelompok">Karawitan Dasar Tingkat II (A)</td>
+                <td data-label="Hari">Minggu</td>
+                <td data-label="Jam">16.00 - 17.30</td>
+                <td data-label="Tempat">Sanggar Plosokandang</td>
+              </tr>
+              <tr>
+                <td data-label="Kelompok">Karawitan Madya II</td>
+                <td data-label="Hari">Rabu</td>
+                <td data-label="Jam">14.30 - 16.00</td>
+                <td data-label="Tempat">Sanggar Plosokandang</td>
+              </tr>
+              <tr>
+                <td data-label="Kelompok">Karawitan Dasar Tingkat II (C)</td>
+                <td data-label="Hari">Minggu</td>
+                <td data-label="Jam">13.00 - 14.30</td>
+                <td data-label="Tempat">Sanggar Beji</td>
+              </tr>
+              <tr>
+                <td data-label="Kelompok">Karawitan Madya I</td>
+                <td data-label="Hari">Minggu</td>
+                <td data-label="Jam">14.30 - 16.00</td>
+                <td data-label="Tempat">Sanggar Beji</td>
+              </tr>
+              <tr>
+                <td data-label="Kelompok">Karawitan Dasar Tingkat II (B)</td>
+                <td data-label="Hari">Minggu</td>
+                <td data-label="Jam">16.00 - 17.30</td>
+                <td data-label="Tempat">Sanggar Beji</td>
+              </tr>
+            @endforelse
           </tbody>
         </table>
       </div>

@@ -4,12 +4,20 @@ namespace Tests\Feature;
 
 use App\Models\Program;
 use App\Models\Registration;
+use App\Models\User;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\TestCase;
 
 class RegistrationControllerTest extends TestCase
 {
     use LazilyRefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->actingAs(User::factory()->admin()->create());
+    }
 
     public function test_index_returns_registrations_with_their_programs(): void
     {

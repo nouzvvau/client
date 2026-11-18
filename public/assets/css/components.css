@@ -25,6 +25,18 @@
     --body-font: 'DM Sans', sans-serif;
 }
 
+/* Mencegah width + padding menambah overflow */
+.navbar,
+.navbar *,
+.footer,
+.footer * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
 /* Utilitas aksesibilitas bersama */
 .sr-only {
     position: absolute;
@@ -182,8 +194,11 @@
 }
 
 .language-option {
+    display: flex;
     width: 50%;
     height: 100%;
+    align-items: center;
+    justify-content: center;
     border: none;
     border-radius: 50%;
     background: transparent;
@@ -198,7 +213,6 @@
 .language-option.active {
     background: var(--gold);
     color: var(--brown);
-    transform: scale(1.08);
 }
 
 .menu-toggle {
@@ -486,5 +500,66 @@
 
     .footer-team {
         text-align: left;
+    }
+}
+
+/* =================================
+   NAVBAR FIX - DESKTOP OVERFLOW
+==================================== */
+
+@media (min-width: 651px) {
+    .nav-container {
+        gap: 10px;
+        padding: 0 1.5%;
+    }
+
+    .nav-menu {
+        gap: clamp(8px, 1vw, 15px);
+        margin-left: 0;
+        flex: 1;
+        justify-content: flex-end;
+        min-width: 0;
+    }
+
+    .nav-menu > a {
+        font-size: clamp(10px, 0.8vw, 12px);
+    }
+
+    .nav-actions {
+        gap: 8px;
+    }
+
+    .btn-daftar,
+    .btn-booking {
+        padding: 8px 10px;
+        font-size: 10px;
+    }
+}
+
+/* =================================
+   TABLET - NAVBAR LEBIH KOMPAK
+==================================== */
+
+@media (min-width: 651px) and (max-width: 1100px) {
+    .logo img {
+        width: 55px;
+    }
+
+    .nav-menu {
+        gap: 8px;
+    }
+
+    .nav-menu > a {
+        font-size: 10px;
+    }
+
+    .nav-actions {
+        gap: 6px;
+    }
+
+    .btn-daftar,
+    .btn-booking {
+        padding: 7px 8px;
+        font-size: 9px;
     }
 }

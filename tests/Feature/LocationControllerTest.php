@@ -5,12 +5,20 @@ namespace Tests\Feature;
 use App\Models\Location;
 use App\Models\Program;
 use App\Models\Schedule;
+use App\Models\User;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\TestCase;
 
 class LocationControllerTest extends TestCase
 {
     use LazilyRefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->actingAs(User::factory()->admin()->create());
+    }
 
     public function test_index_returns_locations(): void
     {

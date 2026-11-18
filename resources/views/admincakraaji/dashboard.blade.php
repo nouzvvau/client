@@ -34,24 +34,23 @@
 
                 <!-- Navigasi Menu -->
                 <nav class="space-y-1">
-                    <a href="#" class="block px-4 py-2.5 rounded bg-[#F5C767] text-[#2D1500] font-bold shadow">Dashboard</a>
-                    <a href="#" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Pendaftar Siswa</a>
-                    <a href="#" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Booking Acara</a>
-                    <a href="#" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Beranda & Tentang Kami</a>
-                    <a href="#" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Program & Kegiatan</a>
-                    <a href="#" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Galeri & Dokumentasi</a>
-                    <a href="#" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Pengaturan WhatsApp</a>
-                    <a href="#" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Contact Person</a>
-                    <a href="#" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Pengaturan Language Switcher</a>
-                    <a href="#" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Pengaturan Daftar Nama Siswa</a>
-                    <a href="#" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Pengaturan & Akun</a>
+                    <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2.5 rounded bg-[#F5C767] text-[#2D1500] font-bold shadow">Dashboard</a>
+                    <a href="{{ route('admin.pendaftar') }}" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Pendaftar Siswa</a>
+                    <a href="{{ route('admin.booking') }}" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Booking Acara</a>
+                    <a href="{{ route('admin.nama-murid') }}" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Pengaturan Daftar Nama Siswa</a>
+                    <a href="{{ route('admin.galeri') }}" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Galeri & Dokumentasi</a>
                 </nav>
             </div>
 
             <!-- Footer Sidebar -->
             <div class="pt-6 border-t border-amber-900/50 space-y-2 text-sm">
-                <a href="#" class="block hover:underline">Lihat website ↗</a>
-                <a href="#" class="block hover:underline text-red-300">Keluar</a>
+                <a href="{{ url('/') }}" target="_blank" class="block hover:underline">Lihat website ↗</a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="block hover:underline text-red-300">
+                        Keluar
+                    </button>
+                </form>
             </div>
         </aside>
 

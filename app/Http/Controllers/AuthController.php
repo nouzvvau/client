@@ -27,11 +27,24 @@ class AuthController extends Controller
 
         // 3. Proses autentikasi menggunakan Laravel Auth
         if (Auth::attempt($credentials, $remember)) {
+            $user = $request->user();
+
+            // Hanya akun dengan hak akses admin yang boleh masuk ke panel
+            if (! $user->isAdmin()) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return back()->withErrors([
+                    'email' => 'Akun ini tidak memiliki hak akses admin.',
+                ])->onlyInput('email');
+            }
+
             $request->session()->regenerate();
 
-            // Jika berhasil, arahkan ke halaman dashboard (atau halaman galeri admin)
-            return redirect()->intended('/admin/dashboard') // Sesuaikan dengan route tujuanmu
-                             ->with('success', 'Berhasil masuk ke panel admin.');
+            // Jika berhasil, arahkan ke halaman dashboard admin
+            return redirect()->intended(route('admin.dashboard'))
+                ->with('success', 'Berhasil masuk ke panel admin.');
         }
 
         // 4. Jika gagal, kembalikan ke halaman login dengan pesan error
@@ -48,6 +61,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login'); // Mengarahkan kembali ke halaman login setelah keluar
+        return redirect(route('login')); // Mengarahkan kembali ke halaman login setelah keluar
     }
 }

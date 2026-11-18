@@ -15,6 +15,13 @@ class PendaftaranMurid extends Model
         'program',
         'pengalaman',
         'catatan',
-        'status'
+        'status',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'tanggal_lahir' => 'date',
+        ];
+    }
 }

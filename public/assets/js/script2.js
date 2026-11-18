@@ -6,18 +6,11 @@ const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 
 menuToggle.addEventListener("click", function () {
-    navMenu.classList.toggle("show");
+    const isOpen = navMenu.classList.toggle("show");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Tutup menu" : "Buka menu");
 });
 
-
-// Menutup menu setelah memilih navigasi
-document.querySelectorAll(".nav-menu > a").forEach(function (link) {
-
-    link.addEventListener("click", function () {
-        navMenu.classList.remove("show");
-    });
-
-});
 
 // Menutup menu setelah salah satu link diklik
 document.querySelectorAll('.nav-menu a').forEach(function (link) {

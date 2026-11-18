@@ -7,6 +7,7 @@ use App\Models\Program;
 use App\Models\Registration;
 use App\Models\Schedule;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +16,13 @@ use Tests\TestCase;
 class ProgramControllerTest extends TestCase
 {
     use LazilyRefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->actingAs(User::factory()->admin()->create());
+    }
 
     public function test_index_returns_programs_with_relation_counts(): void
     {

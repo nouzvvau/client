@@ -1,23 +1,9 @@
 (() => {
     "use strict";
-    const menuToggle = document.querySelector(".menu-toggle");
-    const navMenu = document.getElementById("nav-menu");
     const form = document.getElementById("booking-form");
     const submitButton = document.getElementById("submit-button");
     const whatsappInput = document.getElementById("whatsapp");
     const eventDate = document.getElementById("event_date");
-
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener("click", () => {
-            const isOpen = navMenu.classList.toggle("open");
-            menuToggle.setAttribute("aria-expanded", String(isOpen));
-            menuToggle.setAttribute("aria-label", isOpen ? "Tutup menu" : "Buka menu");
-        });
-        navMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
-            navMenu.classList.remove("open");
-            menuToggle.setAttribute("aria-expanded", "false");
-        }));
-    }
 
     if (whatsappInput) {
         whatsappInput.addEventListener("input", () => {

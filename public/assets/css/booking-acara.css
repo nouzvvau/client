@@ -1,11 +1,536 @@
-/* Booking Acara - Sanggar Cakra Aji */
-:root{--brown:#401a09;--brown2:#552713;--yellow:#ffffc2;--gold:#ffb83f;--red:#d92727;--white:#fff;--muted:#8e7568;--olive:#9a9b55;--body:"DM Sans",Arial,sans-serif;--heading:"Playfair Display",Georgia,serif}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--yellow);color:var(--brown);font-family:var(--body);font-size:13px}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button,a{ -webkit-tap-highlight-color:transparent}.container{width:min(832px,calc(100% - 48px));margin-inline:auto}
-.site-header{min-height:71px;background:var(--brown);border-bottom:3px solid var(--gold);color:var(--yellow);position:relative;z-index:5}.navbar{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:26px}.brand{width:68px;min-width:68px;height:62px;display:grid;place-items:center}.brand img{display:block;max-width:64px;max-height:58px;object-fit:contain}.brand-fallback{text-align:center;color:var(--gold);line-height:1}.brand-fallback strong{display:block;font:800 25px var(--heading)}.brand-fallback small{font-size:8px;letter-spacing:1px}.nav-menu{display:flex;align-items:center;justify-content:flex-end;gap:22px;flex:1}.nav-menu>a:not(.nav-pill){padding:9px 0;white-space:nowrap;transition:color .2s}.nav-menu>a:not(.nav-pill):hover,.nav-menu>a.active{color:var(--gold)}.nav-menu>a.active{border-bottom:2px solid var(--gold);font-weight:700}.nav-pill{padding:9px 15px;border:1.5px solid var(--yellow);border-radius:25px;white-space:nowrap;font-weight:700;transition:.2s}.nav-pill:hover{background:var(--yellow);color:var(--brown)}.nav-pill-filled{background:var(--gold);border-color:var(--gold);color:var(--brown)}.nav-pill-filled:hover{background:#ffca67;border-color:#ffca67}.menu-toggle{display:none;border:0;background:transparent;padding:8px}.menu-toggle span{display:block;width:24px;height:2px;margin:5px;background:var(--yellow)}
-.page-main{min-height:calc(100vh - 71px);padding:38px 0 34px}.intro{margin-bottom:26px}.intro-labels{display:flex;align-items:center;gap:32px;margin-bottom:7px}.eyebrow{color:var(--red);font-size:10px;font-weight:700}.version-label{min-width:160px;padding:3px 8px;border:1.5px solid var(--brown);background:var(--gold);color:var(--brown);font-size:9px;font-weight:700}.intro h1{margin:0 0 14px;font:800 clamp(38px,4.3vw,42px)/1.04 var(--heading);letter-spacing:-.5px}.intro p{margin:0;font-size:13px;line-height:1.6}.required-star,.field label b{color:var(--red)}
-.content-grid{display:grid;grid-template-columns:minmax(0,524px) minmax(0,276px);gap:33px;align-items:start}.form-card{min-width:0;padding:28px 25px 25px;border:1.5px solid var(--brown);background:var(--white);box-shadow:7px 7px 0 var(--gold)}.form-section+.form-section{margin-top:26px}.section-title{display:flex;align-items:center;gap:9px;margin:0 0 13px;font:700 18px/1.2 var(--heading)}.section-number{width:25px;height:25px;display:inline-grid;place-items:center;border-radius:50%;background:var(--brown);color:var(--gold);font:700 13px var(--heading);flex:0 0 25px}.field{margin-bottom:14px}.field:last-child{margin-bottom:0}.field label{display:block;margin-bottom:6px;font-size:11px;font-weight:700}.field label span{color:var(--muted);font-weight:400}.field input,.field select,.field textarea{display:block;width:100%;min-height:35px;padding:8px 10px;border:1.5px solid var(--brown);border-radius:0;outline:none;color:var(--brown);background:var(--white);font-size:12px;transition:box-shadow .2s,border-color .2s}.field input::placeholder,.field textarea::placeholder{color:#9b8980;opacity:1}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgb(255 184 63 / 25%)}.field select{cursor:pointer}.field textarea{min-height:76px;resize:vertical;line-height:1.5}.field small{display:block;margin-top:5px;color:var(--muted);font-size:9px}
-.submit-area{margin-top:24px;padding-top:19px;border-top:1px solid #6d5145}.submit-button{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:0 20px;border:0;border-radius:28px;background:var(--brown);color:var(--yellow);box-shadow:4px 3px 0 var(--red);font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}.submit-button:hover{transform:translateY(-2px);background:var(--brown2);box-shadow:5px 5px 0 var(--red)}.submit-button:disabled{opacity:.65;cursor:wait;transform:none}.submit-button svg{width:15px;height:15px;fill:currentColor}.submit-area p{margin:12px 0 0;max-width:390px;color:#62483d;font-size:10px;line-height:1.55}
-.sidebar{display:grid;gap:16px}.prepare-card{padding:18px;background:var(--brown);color:var(--yellow);box-shadow:5px 5px 0 var(--olive)}.prepare-card h2,.steps-card h2{margin:0 0 12px;color:var(--gold);font-size:9px;font-weight:700}.prepare-card ul{display:grid;gap:8px;margin:0;padding:0;list-style:none}.prepare-card li{display:flex;gap:9px;align-items:flex-start;color:#f5e8c7;font-size:11px;line-height:1.4}.prepare-card li span{color:var(--gold);font-size:16px;font-weight:700;line-height:12px}.steps-card{padding:18px;border:1.5px solid var(--brown);background:var(--white)}.steps-card h2{color:var(--red)}.steps-card ol{display:grid;gap:11px;margin:0;padding:0;list-style:none}.steps-card li{display:flex;align-items:flex-start;gap:10px}.step-number{width:25px;height:25px;flex:0 0 25px;display:grid;place-items:center;border:1.5px solid var(--brown);border-radius:50%;background:var(--gold);color:var(--brown);font-size:13px;font-weight:700}.steps-card strong{display:block;margin:2px 0 3px;font-size:11px}.steps-card p{margin:0;color:#735d52;font-size:10px;line-height:1.5}.help-card{padding:15px;border:1.5px solid var(--brown);background:#f0f2d9;font-size:10px;line-height:1.55}.help-card p{margin:3px 0 0;color:#684e41}.help-card a{font-weight:700;text-decoration:underline;text-underline-offset:2px}.join-link{display:inline-block;width:fit-content;padding:4px 0 6px;border-bottom:2px solid var(--gold);font-size:11px;font-weight:700;transition:color .2s}.join-link:hover{color:#a85c00}.alert{margin:0 0 20px;padding:12px 15px;border:1px solid var(--brown);font-size:12px}.alert-success{background:#edf4d8}.alert-error{background:#fff0e8}.alert ul{margin:7px 0 0;padding-left:18px}
-@media(max-width:900px){.nav-menu{gap:12px}.content-grid{grid-template-columns:minmax(0,1.7fr) minmax(240px,.9fr);gap:24px}.form-card{padding-inline:20px}}
-@media(max-width:720px){.container{width:min(100% - 34px,560px)}.site-header,.navbar{min-height:68px}.brand{height:60px}.menu-toggle{display:block}.nav-menu{display:none;position:absolute;top:67px;left:0;right:0;padding:16px 22px 20px;background:var(--brown);border-bottom:3px solid var(--gold);flex-direction:column;align-items:stretch;gap:7px}.nav-menu.open{display:flex}.nav-menu>a:not(.nav-pill){padding:9px 0}.nav-menu>a.active{width:fit-content}.nav-pill{text-align:center}.page-main{padding-top:30px}.content-grid{grid-template-columns:1fr;gap:25px}.sidebar{grid-template-columns:1fr}}
-@media(max-width:480px){.container{width:calc(100% - 28px)}.intro-labels{gap:12px;flex-wrap:wrap}.intro h1{font-size:clamp(35px,10vw,42px)}.intro p{font-size:12px}.desktop-break{display:none}.form-card{padding:22px 15px}.section-title{font-size:17px}.field input,.field select,.field textarea{font-size:13px}.submit-button{width:100%;padding-inline:12px;font-size:12px}}
+/* =========================================
+   BOOKING ACARA — SANGGAR CAKRA AJI
+   Diselaraskan dengan halaman Pendaftaran Murid
+========================================= */
+
+.booking-page {
+    --booking-brown: #3C1808;
+    --booking-brown-2: #552713;
+    --booking-cream: #FEFFC4;
+    --booking-gold: #FFBC4C;
+    --booking-red: #C1272D;
+    --booking-white: #FFFFFF;
+    --booking-muted: rgba(60, 24, 8, 0.6);
+    --booking-olive: #91A052;
+
+    box-sizing: border-box;
+    min-height: 60vh;
+    padding: 55px 0 75px;
+    background: var(--booking-cream);
+    color: var(--booking-brown);
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+}
+
+.booking-page *,
+.booking-page *::before,
+.booking-page *::after {
+    box-sizing: border-box;
+}
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.booking-page .container {
+    width: 90%;
+    max-width: 1300px;
+    margin-inline: auto;
+}
+
+/* =========================================
+   CONTENT GRID
+========================================= */
+
+.booking-page .content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(250px, 0.8fr);
+    gap: 30px;
+    align-items: start;
+}
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.booking-page .form-card {
+    min-width: 0;
+    padding: 30px;
+    background: var(--booking-white);
+    border: 1px solid var(--booking-brown);
+    box-shadow: 5px 5px 0 var(--booking-gold);
+}
+
+/* =========================================
+   FORM SECTIONS
+========================================= */
+
+.booking-page .form-section + .form-section {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(60, 24, 8, 0.2);
+}
+
+.booking-page .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 25px;
+    color: var(--booking-brown);
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.booking-page .section-number {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--booking-brown);
+    color: var(--booking-gold);
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* =========================================
+   FORM FIELDS
+========================================= */
+
+.booking-page .field {
+    margin-bottom: 22px;
+}
+
+.booking-page .field:last-child {
+    margin-bottom: 0;
+}
+
+.booking-page .field label {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--booking-brown);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.booking-page .field label b {
+    color: var(--booking-red);
+}
+
+.booking-page .field label span {
+    color: var(--booking-muted);
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.booking-page .field input,
+.booking-page .field select,
+.booking-page .field textarea {
+    display: block;
+    width: 100%;
+    min-height: 45px;
+    padding: 12px 14px;
+    border: 1px solid rgba(60, 24, 8, 0.5);
+    border-radius: 0;
+    outline: none;
+    background: var(--booking-white);
+    color: var(--booking-brown);
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.booking-page .field input::placeholder,
+.booking-page .field textarea::placeholder {
+    color: rgba(60, 24, 8, 0.45);
+    opacity: 1;
+}
+
+.booking-page .field input:focus,
+.booking-page .field select:focus,
+.booking-page .field textarea:focus {
+    border-color: var(--booking-gold);
+    box-shadow: 0 0 0 2px rgba(255, 188, 76, 0.3);
+}
+
+.booking-page .field select {
+    cursor: pointer;
+}
+
+.booking-page .field textarea {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.7;
+}
+
+.booking-page .field small {
+    display: block;
+    margin-top: 9px;
+    color: var(--booking-muted);
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.booking-page .field .booking-form__error {
+    color: var(--booking-red);
+    font-size: 10px;
+    font-weight: 600;
+}
+
+/* =========================================
+   SUCCESS & ERROR ALERT
+========================================= */
+
+.booking-page .booking-form__alert {
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    border: 1px solid var(--booking-brown);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.booking-page .booking-form__alert--success {
+    background: rgba(145, 160, 82, 0.35);
+    color: var(--booking-brown);
+}
+
+.booking-page .booking-form__alert--error {
+    background: rgba(193, 39, 45, 0.22);
+    color: var(--booking-brown);
+}
+
+.booking-page .booking-form__alert ul {
+    margin-top: 8px;
+    padding-left: 20px;
+}
+
+.booking-page .booking-form__alert li {
+    margin-bottom: 4px;
+}
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+.booking-page .submit-area {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(60, 24, 8, 0.2);
+}
+
+.booking-page .submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: fit-content;
+    min-height: 48px;
+    padding: 14px 25px;
+    border: 1px solid var(--booking-brown);
+    border-radius: 30px;
+    background: var(--booking-brown);
+    color: var(--booking-cream);
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.booking-page .submit-button:hover {
+    transform: translateY(-2px);
+    background: var(--booking-gold);
+    color: var(--booking-brown);
+}
+
+.booking-page .submit-button:focus-visible {
+    outline: 3px solid var(--booking-gold);
+    outline-offset: 4px;
+}
+
+.booking-page .submit-button:disabled {
+    opacity: 0.65;
+    cursor: wait;
+    transform: none;
+}
+
+.booking-page .submit-area p {
+    max-width: 450px;
+    margin: 15px 0 0;
+    color: var(--booking-muted);
+    font-size: 10px;
+    line-height: 1.8;
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.booking-page .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* SIDEBAR CARDS */
+
+.booking-page .prepare-card,
+.booking-page .steps-card,
+.booking-page .help-card {
+    padding: 23px;
+}
+
+.booking-page .prepare-card {
+    border: 1px solid var(--booking-brown);
+    background: var(--booking-brown);
+    color: var(--booking-cream);
+    box-shadow: 4px 4px 0 var(--booking-gold);
+}
+
+.booking-page .steps-card {
+    border: 1px solid var(--booking-brown);
+    background: var(--booking-white);
+}
+
+.booking-page .help-card {
+    border: 1px solid var(--booking-brown);
+    background: rgba(255, 255, 255, 0.65);
+}
+
+/* SIDEBAR TITLES */
+
+.booking-page .prepare-card h2,
+.booking-page .steps-card h2 {
+    margin: 0 0 18px;
+    font-family: "Poppins", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.booking-page .prepare-card h2 {
+    color: var(--booking-gold);
+}
+
+.booking-page .steps-card h2 {
+    color: var(--booking-brown);
+}
+
+/* PREPARE LIST */
+
+.booking-page .prepare-card ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.booking-page .prepare-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+    color: var(--booking-cream);
+    font-size: 10px;
+    line-height: 1.8;
+}
+
+.booking-page .prepare-card li:last-child {
+    margin-bottom: 0;
+}
+
+.booking-page .prepare-card li span {
+    color: var(--booking-gold);
+    font-weight: 700;
+}
+
+/* =========================================
+   BOOKING STEPS
+========================================= */
+
+.booking-page .steps-card ol {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.booking-page .steps-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.booking-page .steps-card li:last-child {
+    margin-bottom: 0;
+}
+
+.booking-page .step-number {
+    min-width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--booking-gold);
+    color: var(--booking-brown);
+    font-family: "Poppins", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.booking-page .steps-card strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--booking-brown);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+.booking-page .steps-card p {
+    margin: 0;
+    color: var(--booking-muted);
+    font-size: 10px;
+    line-height: 1.8;
+}
+
+/* =========================================
+   HELP CARD
+========================================= */
+
+.booking-page .help-card strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--booking-brown);
+    font-size: 11px;
+}
+
+.booking-page .help-card p {
+    margin: 0;
+    color: var(--booking-muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.booking-page .help-card a {
+    color: var(--booking-brown);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.booking-page .help-card a:hover {
+    color: var(--booking-red);
+}
+
+/* =========================================
+   STUDENT REGISTRATION LINK
+========================================= */
+
+.booking-page .join-link {
+    display: inline-block;
+    width: fit-content;
+    color: var(--booking-brown);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.8;
+    text-decoration: underline;
+    text-decoration-color: var(--booking-gold);
+    text-underline-offset: 4px;
+    transition: color 0.2s;
+}
+
+.booking-page .join-link:hover {
+    color: #A85C00;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+    .booking-page .content-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .booking-page .sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .booking-page .join-link {
+        grid-column: 1 / -1;
+    }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+    .booking-page {
+        padding: 35px 0 50px;
+    }
+
+    .booking-page .container {
+        width: 90%;
+    }
+
+    .booking-page .content-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .booking-page .form-card {
+        padding: 20px 16px;
+    }
+
+    .booking-page .section-title {
+        gap: 10px;
+        font-size: 17px;
+    }
+
+    .booking-page .form-section + .form-section {
+        margin-top: 25px;
+        padding-top: 25px;
+    }
+
+    .booking-page .field {
+        margin-bottom: 20px;
+    }
+
+    .booking-page .field input,
+    .booking-page .field select,
+    .booking-page .field textarea {
+        font-size: 12px;
+    }
+
+    .booking-page .sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-page .submit-button {
+        width: 100%;
+    }
+
+    .booking-page .prepare-card,
+    .booking-page .steps-card,
+    .booking-page .help-card {
+        padding: 20px;
+    }
+}
