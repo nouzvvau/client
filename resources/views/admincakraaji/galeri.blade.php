@@ -10,7 +10,7 @@
 
     <style>
         body {
-            background-color: #fefce8;
+            background-color: #FEFFC4;
         }
     </style>
 </head>
@@ -18,11 +18,13 @@
 <body class="flex min-h-screen text-stone-900">
 
     <!-- SIDEBAR -->
-    <aside class="w-64 bg-[#3a1d1d] text-[#fefce8] flex flex-col justify-between p-6">
+    <aside class="w-64 bg-[#3C1808] text-[#FEFFC4] flex flex-col justify-between p-6">
         <div>
             <div class="flex flex-col items-center mb-8 text-center">
-                <div class="w-16 h-16 rounded-full bg-[#fefce8] flex items-center justify-center mb-2 overflow-hidden border-2 border-yellow-600">
-                    <span class="text-xs font-bold text-[#3a1d1d]">CAKRA AJI</span>
+                <div class="w-16 h-16 flex items-center justify-center mb-2">
+                    <img src="{{ asset('assets/images/logo-navbar.png') }}"
+                         alt="Logo Sanggar Seni Cakra Aji"
+                         class="w-full h-full object-contain">
                 </div>
 
                 <span class="text-xs uppercase tracking-widest text-yellow-500 font-semibold mt-1">
@@ -31,10 +33,10 @@
             </div>
 
             <nav class="space-y-2 text-sm">
-                <a href="{{ route('admin.dashboard') }}" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Dashboard</a>
-                <a href="{{ route('admin.pendaftar') }}" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Pendaftar Siswa</a>
-                <a href="{{ route('admin.booking') }}" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Booking Acara</a>
-                <a href="{{ route('admin.nama-murid') }}" class="block py-2 px-3 rounded hover:bg-[#4a2727] transition">Pengaturan Daftar Nama Siswa</a>
+                <a href="{{ route('admin.dashboard') }}" class="block py-2 px-3 rounded hover:bg-[#552713] transition">Dashboard</a>
+                <a href="{{ route('admin.pendaftar') }}" class="block py-2 px-3 rounded hover:bg-[#552713] transition">Pendaftar Siswa</a>
+                <a href="{{ route('admin.booking') }}" class="block py-2 px-3 rounded hover:bg-[#552713] transition">Booking Acara</a>
+                <a href="{{ route('admin.nama-murid') }}" class="block py-2 px-3 rounded hover:bg-[#552713] transition">Pengaturan Daftar Nama Siswa</a>
 
                 <a href="{{ route('admin.galeri') }}"
                    class="block py-2 px-3 rounded bg-amber-400 text-stone-900 font-bold shadow">
@@ -43,7 +45,7 @@
             </nav>
         </div>
 
-        <div class="pt-6 border-t border-[#5c3131] text-sm space-y-2">
+        <div class="pt-6 border-t border-[#552713] text-sm space-y-2">
             <a href="{{ url('/') }}" target="_blank"
                class="block hover:text-amber-300 transition">
                 Lihat website ↗
@@ -78,7 +80,7 @@
             </div>
 
             <a href="{{ route('admin.galeri.create') }}"
-               class="bg-[#3a1d1d] text-amber-100 px-5 py-2.5 rounded-md font-semibold text-sm shadow hover:bg-[#4a2727] transition">
+               class="bg-[#3C1808] text-amber-100 px-5 py-2.5 rounded-md font-semibold text-sm shadow hover:bg-[#552713] transition">
                 + Tambah acara
             </a>
         </div>
@@ -101,7 +103,7 @@
                         class="w-full bg-white border border-stone-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-amber-600">
 
                     <button type="submit"
-                            class="bg-[#3a1d1d] hover:bg-[#4a2727] text-amber-100 px-4 py-2 rounded text-sm font-semibold">
+                            class="bg-[#3C1808] hover:bg-[#552713] text-amber-100 px-4 py-2 rounded text-sm font-semibold">
                         Cari
                     </button>
 
@@ -121,7 +123,7 @@
             <table class="w-full text-left border-collapse">
 
                 <thead>
-                    <tr class="bg-[#3a1d1d] text-white text-xs uppercase tracking-wider">
+                    <tr class="bg-[#3C1808] text-white text-xs uppercase tracking-wider">
                         <th class="py-3 px-4 font-semibold">Tahun</th>
                         <th class="py-3 px-4 font-semibold">Nama acara / kolaborasi</th>
                         <th class="py-3 px-4 font-semibold">Foto</th>

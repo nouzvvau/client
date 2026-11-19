@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/kontak.css') }}">
 @endpush
 
-@push('scripts')
-    <script src="{{ asset('assets/js/script2.js') }}" defer></script>
-@endpush
 
 @section('content')
 <div class="contact-page">
@@ -104,7 +101,7 @@
                         halaman tersendiri dengan formulir dan informasi lengkap.
                     </p>
 
-                    <a class="contact-action-card" href="{{ route('pendaftaran.index') }}">
+                    <x-form-link form="registration" class="contact-action-card">
                         <span class="contact-action-label">Untuk calon murid</span>
                         <span class="contact-action-title">Daftar jadi murid baru</span>
                         <span class="contact-action-desc">
@@ -112,9 +109,9 @@
                             Admin akan menghubungi kamu untuk langkah berikutnya.
                         </span>
                         <span class="contact-action-link">Buka halaman pendaftaran</span>
-                    </a>
+                    </x-form-link>
 
-                    <a class="contact-action-card" href="{{ route('booking') }}">
+                    <x-form-link form="booking" class="contact-action-card">
                         <span class="contact-action-label">Untuk penyelenggara acara</span>
                         <span class="contact-action-title">Booking acara</span>
                         <span class="contact-action-desc">
@@ -123,7 +120,7 @@
                             formulir yang tersedia.
                         </span>
                         <span class="contact-action-link">Buka halaman booking</span>
-                    </a>
+                    </x-form-link>
                 </div>
 
                 <div class="contact-meet">

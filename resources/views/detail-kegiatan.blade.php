@@ -10,9 +10,6 @@
   <link rel="stylesheet" href="{{ asset('assets/css/galeri.css') }}">
 @endpush
 
-@push('scripts')
-  <script src="{{ asset('assets/js/script2.js') }}" defer></script>
-@endpush
 
 @section('content')
   @php
@@ -140,9 +137,9 @@
   <section class="cta">
     <div class="container">
       <h2>Punya acara? Cakra Aji siap mengisi.</h2>
-      <a class="btn" href="{{ route('lokasi') }}#kontak">
-        Isi formulir booking →
-      </a>
+      <x-form-link form="booking" class="btn">
+        Isi formulir booking
+      </x-form-link>
     </div>
   </section>
 @endsection

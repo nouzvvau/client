@@ -9,9 +9,6 @@
   <link rel="stylesheet" href="{{ asset('assets/css/program-kegiatan.css') }}">
 @endpush
 
-@push('scripts')
-  <script src="{{ asset('assets/js/script2.js') }}" defer></script>
-@endpush
 
 @section('content')
   <section class="hero" id="tentang">
@@ -57,7 +54,7 @@
               </div>
             </div>
             <div class="card__action">
-              <a class="btn btn--primary" href="{{ route('program.detail', ['slug' => $slug]) }}" aria-label="Lihat dokumentasi {{ $activity->title }}">View</a>
+              <a class="btn btn--primary" href="{{ route('program.detail', ['slug' => $slug]) }}" aria-label="Lihat dokumentasi {{ $activity->title }}">Lihat</a>
             </div>
           </article>
         @endforeach
@@ -70,7 +67,7 @@
             <p>Kelas karawitan terstruktur dari tingkat dasar hingga mahir, mencakup praktik, teori, dan pemahaman konsep seni.</p>
             <div class="card__meta"><span>Jadwal: Rabu &amp; Minggu, sesuai kelompok</span><span>Peserta: umum, anak hingga dewasa</span></div>
           </div>
-          <div class="card__action"><a class="btn btn--primary" href="{{ route('galeri') }}" aria-label="Lihat dokumentasi Ruang Edukasi &amp; Workshop">View</a></div>
+          <div class="card__action"><a class="btn btn--primary" href="{{ route('galeri') }}" aria-label="Lihat dokumentasi Ruang Edukasi &amp; Workshop">Lihat</a></div>
         </article>
         <article class="card card--amber">
           <div class="card__photo"><img src="{{ asset('assets/images/galeri/galeri-02.jpeg') }}" alt="Dokumentasi kegiatan Kreteg Cakra Aji" width="1600" height="1200"></div>
@@ -80,7 +77,7 @@
             <p>Program kidung dan olah vokal untuk anak, mengenalkan lagu tradisi sekaligus melatih kepercayaan diri di atas panggung.</p>
             <div class="card__meta"><span>Jadwal: Minggu, sesuai kelompok</span><span>Peserta: anak-anak</span></div>
           </div>
-          <div class="card__action"><a class="btn btn--primary" href="{{ route('galeri') }}" aria-label="Lihat dokumentasi Kreteg">View</a></div>
+          <div class="card__action"><a class="btn btn--primary" href="{{ route('galeri') }}" aria-label="Lihat dokumentasi Kreteg">Lihat</a></div>
         </article>
         <article class="card card--red">
           <div class="card__photo"><img src="{{ asset('assets/images/galeri/galeri-03.jpeg') }}" alt="Dokumentasi kegiatan Grebek Kampung Cakra Aji" width="1600" height="900"></div>
@@ -90,7 +87,7 @@
             <p>Pentas keliling yang mempertemukan musik, gerak, dan cerita dengan warga di ruang-ruang kampung.</p>
             <div class="card__meta"><span>Jadwal: Agustus 2025</span><span>Lokasi: Boyolangu, Tulungagung</span></div>
           </div>
-          <div class="card__action"><a class="btn btn--primary" href="{{ route('galeri') }}" aria-label="Lihat dokumentasi Grebek Kampung">View</a></div>
+          <div class="card__action"><a class="btn btn--primary" href="{{ route('galeri') }}" aria-label="Lihat dokumentasi Grebek Kampung">Lihat</a></div>
         </article>
       @endif
       </div>
@@ -108,7 +105,7 @@
   <section class="cta">
     <div class="container">
       <h2>Punya acara? Cakra Aji siap mengisi.</h2>
-      <a class="btn" href="{{ route('lokasi') }}#kontak">Isi formulir booking →</a>
+      <x-form-link form="booking" class="btn">Isi formulir booking →</x-form-link>
     </div>
   </section>
 @endsection

@@ -9,9 +9,6 @@
   <link rel="stylesheet" href="{{ asset('assets/css/murid.css') }}">
 @endpush
 
-@push('scripts')
-  <script src="{{ asset('assets/js/script2.js') }}" defer></script>
-@endpush
 
 @section('content')
   <section class="hero hero--murid">
@@ -21,29 +18,28 @@
         <h1 class="hero__title hero__title--murid">Mereka yang belajar dan tumbuh bersama kami.</h1>
         <p class="hero__lead">
           Daftar murid Cakra Aji yang aktif berlatih.
-          Demi kenyamanan, hanya nama panggilan, program,
-          dan tahun bergabung yang ditampilkan.
+          Demi kenyamanan, hanya nama dan program yang ditampilkan.
         </p>
 
-        <div class="search-box">
-          <form method="GET" action="{{ route('murid.index') }}" style="display: contents;">
-            <span aria-hidden="true">⌕</span>
-            <input
-              type="text"
-              name="search"
-              value="{{ request('search') }}"
-              placeholder="Ketik nama panggilan"
-              aria-label="Cari nama panggilan murid"
-            >
-          </form>
-        </div>
+        <form class="search-box" method="GET" action="{{ route('murid.index') }}" role="search">
+          <svg class="search-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+          </svg>
+          <input
+            type="search"
+            name="search"
+            value="{{ request('search') }}"
+            placeholder="Ketik nama panggilan"
+            aria-label="Cari nama panggilan murid"
+          >
+        </form>
       </div>
 
-      <div class="hero-illustration" aria-hidden="true">
-        <p class="illustration-text">
-          Cakra Aji<br>
-          <span class="illustration-text__accent">Seni &amp; Budaya</span>
-        </p>
+      <div class="hero-illustration">
+        <img class="hero-logo" src="{{ asset('assets/images/logo-navbar.png') }}"
+             alt="Logo Sanggar Seni Cakra Aji" width="440" height="362">
       </div>
     </div>
   </section>
@@ -52,7 +48,9 @@
     <div class="container">
 
       <div class="class-heading">
-        <span class="class-badge">Kelas Dasar Tingkat I (A)</span>
+        <span class="class-badge">
+          Daftar murid aktif &middot; {{ $murids->total() }} orang
+        </span>
       </div>
 
       <div class="student-grid" id="studentGrid">
@@ -128,9 +126,9 @@
         <p>Mulai perjalananmu bersama Sanggar Seni Cakra Aji.</p>
       </div>
 
-      <a class="btn" href="{{ route('pendaftaran.index') }}">
-        Daftar jadi murid →
-      </a>
+      <x-form-link form="registration" class="btn">
+        Daftar jadi murid 
+      </x-form-link>
     </div>
   </section>
 @endsection

@@ -9,9 +9,6 @@
   <link rel="stylesheet" href="{{ asset('assets/css/pengurus.css') }}">
 @endpush
 
-@push('scripts')
-  <script src="{{ asset('assets/js/script2.js') }}" defer></script>
-@endpush
 
 @section('content')
 {{-- BAGIAN PENGURUS --}}
@@ -144,9 +141,9 @@
             </p>
         </div>
 
-        <a href="{{ route('pendaftaran.index') }}" class="cta-button">
+        <x-form-link form="registration" class="cta-button">
             Daftar Murid
-        </a>
+        </x-form-link>
 
     </div>
 

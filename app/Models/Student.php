@@ -2,33 +2,52 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Student extends Model
 {
-    protected $fillable = [
-        'full_name',
-        'birth_date',
-        'guardian_name',
-        'contact_phone',
-        'address',
-        'joined_at',
-        'status',
+    public const CLASSES = [
+        'Ruang Edukasi & Workshop',
+        'Karawitan',
+        'Tari',
+        'Seni Tradisional',
     ];
 
-    protected function casts(): array
+    public $timestamps = false;
+
+    protected $fillable = [
+        'name',
+        'class',
+    ];
+
+    public function getFullNameAttribute(): string
     {
-        return [
-            'birth_date' => 'date',
-            'joined_at' => 'date',
-        ];
+        return (string) $this->name;
     }
 
-    public function programs(): BelongsToMany
+    public function getProgramsAttribute(): Collection
     {
-        return $this->belongsToMany(Program::class, 'program_student')
-            ->withPivot('status', 'joined_at')
-            ->withTimestamps();
+        if ($this->class === null || $this->class === '') {
+            return new Collection;
+        }
+
+        return new Collection([
+            (object) [
+                'id' => $this->class,
+                'name' => $this->class,
+            ],
+        ]);
+    }
+
+    public static function classOptions(): Collection
+    {
+        return new Collection(array_map(
+            fn (string $className): object => (object) [
+                'id' => $className,
+                'name' => $className,
+            ],
+            self::CLASSES
+        ));
     }
 }

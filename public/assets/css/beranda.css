@@ -9,10 +9,10 @@
     --gold: var(--color-gold);
     --olive: var(--color-olive);
     --red: var(--color-red);
-    --white: #ffffff;
+    --white: var(--color-white);
 
-    --heading-font: 'Playfair Display', serif;
-    --body-font: 'DM Sans', sans-serif;
+    --heading-font: var(--font-display);
+    --body-font: var(--font-body);
 }
 
 * {
@@ -101,6 +101,71 @@ img {
     margin-top: 20px;
 }
 
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 22px;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    font-family: var(--body-font);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn:focus-visible {
+    outline: 3px solid var(--cream);
+    outline-offset: 3px;
+}
+
+.btn-gold {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--brown);
+}
+
+.btn-gold:hover {
+    background: var(--cream);
+    border-color: var(--cream);
+}
+
+.btn-cream {
+    background: transparent;
+    border-color: rgba(254, 255, 196, 0.6);
+    color: var(--cream);
+}
+
+.btn-cream:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--brown);
+}
+
+.btn-outline {
+    background: transparent;
+    border-color: rgba(254, 255, 196, 0.6);
+    color: var(--cream);
+}
+
+.btn-outline:hover {
+    background: var(--cream);
+    border-color: var(--cream);
+    color: var(--brown);
+}
+
 .hero-image {
     display: flex;
     justify-content: center;
@@ -112,7 +177,6 @@ img {
     max-width: 390px;
     height: 290px;
     object-fit: contain;
-    mix-blend-mode: screen;
 }
 
 

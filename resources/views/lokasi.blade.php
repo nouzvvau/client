@@ -10,9 +10,6 @@
   <link rel="stylesheet" href="{{ asset('assets/css/lokasi.css') }}">
 @endpush
 
-@push('scripts')
-  <script src="{{ asset('assets/js/script2.js') }}" defer></script>
-@endpush
 
 @section('content')
   {{-- HERO --}}

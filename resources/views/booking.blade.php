@@ -13,11 +13,15 @@
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('assets/js/script2.js') }}" defer></script>
     <script src="{{ asset('assets/js/booking-acara.js') }}" defer></script>
 @endpush
 
 @section('content')
+    @php
+        $bookingExternal = \App\Support\GoogleForms::isExternal('booking');
+        $bookingUrl = \App\Support\GoogleForms::url('booking');
+    @endphp
+
     <section class="hero" aria-labelledby="hero-title">
         <div class="container">
             <p class="eyebrow eyebrow--red">Booking acara</p>
@@ -28,9 +32,14 @@
             </h1>
 
             <p class="hero__lead">
-                Isi rencana acaramu melalui formulir berikut.
-                Tim kami akan menghubungi untuk membahas detail acara.
-                Tanda <strong>*</strong> berarti wajib diisi.
+                @if ($bookingExternal)
+                    Isi rencana acaramu melalui formulir resmi Google Forms.
+                    Tim kami akan menghubungi untuk membahas detail acara.
+                @else
+                    Isi rencana acaramu melalui formulir berikut.
+                    Tim kami akan menghubungi untuk membahas detail acara.
+                    Tanda <strong>*</strong> berarti wajib diisi.
+                @endif
             </p>
         </div>
     </section>
@@ -38,13 +47,13 @@
     <section class="booking-page">
         <div class="container">
 
-            @if (session('success'))
+            @if (! $bookingExternal && session('success'))
                 <div class="booking-form__alert booking-form__alert--success" role="status">
                     ✓ {{ session('success') }}
                 </div>
             @endif
 
-            @if ($errors->any())
+            @if (! $bookingExternal && $errors->any())
                 <div class="booking-form__alert booking-form__alert--error" role="alert">
                     <strong>Periksa kembali formulir kamu:</strong>
                     <ul>
@@ -58,7 +67,35 @@
             <div class="content-grid">
 
                 {{-- FORM BOOKING --}}
-                <section class="form-card" aria-labelledby="booking-form-title">
+                <section class="form-card{{ $bookingExternal ? ' form-external' : '' }}" aria-labelledby="booking-form-title">
+
+                    @if ($bookingExternal)
+
+                        <p class="eyebrow">Formulir resmi</p>
+
+                        <h2 class="section-title" id="booking-form-title">
+                            Permintaan booking acara
+                        </h2>
+
+                        <p class="form-external__text">
+                            Isi formulir booking melalui Google Forms.
+                            Formulir akan terbuka di tab baru dan langsung
+                            diterima admin sanggar.
+                        </p>
+
+                        <a href="{{ $bookingUrl }}"
+                           class="submit-button"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <span>Buka formulir booking</span>
+                        </a>
+
+                        <p class="form-note">
+                            Setelah dikirim, admin akan menghubungi kamu
+                            melalui WhatsApp.
+                        </p>
+
+                    @else
 
                     <form id="booking-form"
                           action="{{ route('booking.store') }}"
@@ -278,6 +315,8 @@
                         </div>
 
                     </form>
+
+                    @endif
                 </section>
 
                 {{-- SIDEBAR INFORMASI --}}
@@ -298,14 +337,14 @@
                             <li>
                                 <span class="step-number">1</span>
                                 <div>
-                                    <strong>Isi formulir ini</strong>
+                                    <strong>{{ $bookingExternal ? 'Buka Google Forms' : 'Isi formulir ini' }}</strong>
                                     <p>Lengkapi data pemesan dan rencana acara.</p>
                                 </div>
                             </li>
                             <li>
                                 <span class="step-number">2</span>
                                 <div>
-                                    <strong>Tekan tombol kirim</strong>
+                                    <strong>{{ $bookingExternal ? 'Kirim formulir booking' : 'Tekan tombol kirim' }}</strong>
                                     <p>Permintaan langsung diterima admin sanggar.</p>
                                 </div>
                             </li>
@@ -327,10 +366,10 @@
                         </p>
                     </section>
 
-                    <a class="join-link" href="{{ route('pendaftaran.index') }}">
+                    <x-form-link form="registration" class="join-link">
                         Ingin ikut belajar di sanggar?
                         Daftar menjadi murid <span aria-hidden="true">→</span>
-                    </a>
+                    </x-form-link>
 
                 </aside>
             </div>

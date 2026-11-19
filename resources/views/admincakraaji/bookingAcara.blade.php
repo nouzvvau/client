@@ -7,35 +7,37 @@
     <!-- Menggunakan Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#FFF9CC] min-h-screen font-sans text-zinc-900 flex">
+<body class="bg-[#FEFFC4] min-h-screen font-sans text-zinc-900 flex">
 
     <!-- SIDEBAR KIRI -->
-    <aside class="w-64 bg-[#3B2219] text-white flex flex-col justify-between shrink-0 min-h-screen">
+    <aside class="w-64 bg-[#3C1808] text-white flex flex-col justify-between shrink-0 min-h-screen">
         <div>
             <!-- Logo Sanggar -->
-            <div class="p-6 flex items-center space-x-3 border-b border-[#4d2f23]">
-                <div class="w-10 h-10 border-2 border-[#D4A373] rounded-full flex items-center justify-center shrink-0">
-                    <span class="text-[10px] text-[#D4A373]">Logo</span>
+            <div class="p-6 flex items-center space-x-3 border-b border-[#552713]">
+                <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                    <img src="{{ asset('assets/images/logo-navbar.png') }}"
+                         alt="Logo Sanggar Seni Cakra Aji"
+                         class="w-full h-full object-contain">
                 </div>
                 <div>
                     <h1 class="text-sm font-bold tracking-wide">Sanggar Seni</h1>
-                    <span class="text-xs text-[#D4A373]">Cakra Aji <span class="text-[9px] text-gray-400">Est.2020</span></span>
+                    <span class="text-xs text-[#FFBC4C]">Cakra Aji <span class="text-[9px] text-gray-400">Est.2020</span></span>
                 </div>
             </div>
 
             <!-- Menu Navigasi -->
             <div class="px-4 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Panel Admin</div>
             <nav class="space-y-1 px-3 text-sm">
-                <a href="{{ route('admin.dashboard') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#4d2f23] hover:text-white transition">Dashboard</a>
-                <a href="{{ route('admin.pendaftar') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#4d2f23] hover:text-white transition">Pendaftar Siswa</a>
-                <a href="{{ route('admin.booking') }}" class="flex items-center px-3 py-2.5 rounded bg-[#E9C46A] text-zinc-900 font-medium">Booking Acara</a>
-                <a href="{{ route('admin.nama-murid') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#4d2f23] hover:text-white transition">Pengaturan Daftar Nama Siswa</a>
-                <a href="{{ route('admin.galeri') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#4d2f23] hover:text-white transition">Galeri & Dokumentasi</a>
+                <a href="{{ route('admin.dashboard') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#552713] hover:text-white transition">Dashboard</a>
+                <a href="{{ route('admin.pendaftar') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#552713] hover:text-white transition">Pendaftar Siswa</a>
+                <a href="{{ route('admin.booking') }}" class="flex items-center px-3 py-2.5 rounded bg-[#FFBC4C] text-zinc-900 font-medium">Booking Acara</a>
+                <a href="{{ route('admin.nama-murid') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#552713] hover:text-white transition">Pengaturan Daftar Nama Siswa</a>
+                <a href="{{ route('admin.galeri') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#552713] hover:text-white transition">Galeri & Dokumentasi</a>
             </nav>
         </div>
 
         <!-- Tombol Bawah Sidebar -->
-        <div class="p-4 border-t border-[#4d2f23] space-y-2 text-sm">
+        <div class="p-4 border-t border-[#552713] space-y-2 text-sm">
             <a href="{{ url('/') }}" target="_blank" class="flex items-center space-x-2 text-gray-300 hover:text-white">
                 <span>Lihat website ↗</span>
             </a>
@@ -51,7 +53,7 @@
 
         <!-- Header Halaman -->
         <div class="mb-8">
-            <span class="text-xs font-bold text-[#A34723] uppercase tracking-widest">Booking Acara</span>
+            <span class="text-xs font-bold text-[#C1272D] uppercase tracking-widest">Booking Acara</span>
             <h2 class="text-3xl font-extrabold text-zinc-900 mt-1">Booking acara</h2>
         </div>
 
@@ -59,7 +61,7 @@
 
         <!-- Deskripsi Singkat -->
         <p class="text-sm text-zinc-700 mb-8 max-w-3xl">
-            Daftar permintaan yang masuk lewat formulir "Booking Acara" di website. Hubungi yang berstatus <strong class="text-[#A34723]">BARU</strong> lebih dulu.
+            Daftar permintaan yang masuk lewat formulir "Booking Acara" di website. Hubungi yang berstatus <strong class="text-[#C1272D]">BARU</strong> lebih dulu.
         </p>
 
         @if (session('success'))
@@ -72,7 +74,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
 
             <!-- Kotak 1: Baru -->
-            <div class="bg-white border-2 border-[#3B2219] p-5 rounded-sm shadow-[4px_4px_0px_0px_#3B2219]">
+            <div class="bg-white border-2 border-[#3C1808] p-5 rounded-sm shadow-[4px_4px_0px_0px_#3C1808]">
                 <span class="text-[11px] font-bold tracking-wider text-zinc-600 uppercase">
                     BARU
                 </span>
@@ -85,7 +87,7 @@
             </div>
 
             <!-- Kotak 2: Dikonfirmasi -->
-            <div class="bg-white border-2 border-[#3B2219] p-5 rounded-sm shadow-[4px_4px_0px_0px_#3B2219]">
+            <div class="bg-white border-2 border-[#3C1808] p-5 rounded-sm shadow-[4px_4px_0px_0px_#3C1808]">
                 <span class="text-[11px] font-bold tracking-wider text-zinc-600 uppercase">
                     DIKONFIRMASI
                 </span>
@@ -98,7 +100,7 @@
             </div>
 
             <!-- Kotak 3: Ditolak -->
-            <div class="bg-white border-2 border-[#3B2219] p-5 rounded-sm shadow-[4px_4px_0px_0px_#3B2219]">
+            <div class="bg-white border-2 border-[#3C1808] p-5 rounded-sm shadow-[4px_4px_0px_0px_#3C1808]">
                 <span class="text-[11px] font-bold tracking-wider text-zinc-600 uppercase">
                     DITOLAK
                 </span>
@@ -115,11 +117,11 @@
         <form method="GET" action="{{ route('admin.booking') }}" class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
             <div class="lg:col-span-2">
                 <label class="block text-xs font-bold text-zinc-800 mb-1">Cari nama</label>
-                <input type="text" name="cari" value="{{ request('cari') }}" placeholder="Ketik nama pemesan, instansi, atau nama acara" class="w-full bg-white px-4 py-2.5 border border-zinc-400 rounded-sm text-sm focus:outline-none focus:border-[#3B2219]">
+                <input type="text" name="cari" value="{{ request('cari') }}" placeholder="Ketik nama pemesan, instansi, atau nama acara" class="w-full bg-white px-4 py-2.5 border border-zinc-400 rounded-sm text-sm focus:outline-none focus:border-[#3C1808]">
             </div>
             <div>
                 <label class="block text-xs font-bold text-zinc-800 mb-1">Tampilkan status</label>
-                <select name="status" class="w-full bg-white px-4 py-2.5 border border-zinc-400 rounded-sm text-sm focus:outline-none focus:border-[#3B2219]">
+                <select name="status" class="w-full bg-white px-4 py-2.5 border border-zinc-400 rounded-sm text-sm focus:outline-none focus:border-[#3C1808]">
                     <option value="">Semua</option>
                     <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Baru</option>
                     <option value="accepted" {{ request('status') == 'accepted' ? 'selected' : '' }}>Dikonfirmasi</option>
@@ -127,18 +129,18 @@
                 </select>
             </div>
             <div class="lg:col-span-3">
-                <button type="submit" class="bg-[#3B2219] hover:bg-[#2b1812] text-white text-xs font-bold py-2.5 px-6 rounded-sm transition">
+                <button type="submit" class="bg-[#3C1808] hover:bg-[#552713] text-white text-xs font-bold py-2.5 px-6 rounded-sm transition">
                     Terapkan filter
                 </button>
             </div>
         </form>
 
         <!-- Tabel Booking Acara -->
-        <div class="border-2 border-[#3B2219] bg-white rounded-sm shadow-[6px_6px_0px_0px_#3B2219] overflow-hidden">
+        <div class="border-2 border-[#3C1808] bg-white rounded-sm shadow-[6px_6px_0px_0px_#3C1808] overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="bg-[#3B2219] text-white text-xs uppercase tracking-wider">
+                        <tr class="bg-[#3C1808] text-white text-xs uppercase tracking-wider">
                             <th class="py-3 px-4 font-semibold">Masuk</th>
                             <th class="py-3 px-4 font-semibold">Pemesan</th>
                             <th class="py-3 px-4 font-semibold">Acara</th>
@@ -168,8 +170,8 @@
                                 <td class="py-4 px-4">
                                     @php
                                         $badge = match ($booking->status) {
-                                            'pending' => ['bg-[#A34723]', 'BARU'],
-                                            'accepted' => ['bg-[#4A7C59]', 'DIKONFIRMASI'],
+                                            'pending' => ['bg-[#C1272D]', 'BARU'],
+                                            'accepted' => ['bg-[#91A052]', 'DIKONFIRMASI'],
                                             'rejected' => ['bg-zinc-500', 'DITOLAK'],
                                             default => ['bg-zinc-500', strtoupper($booking->status)],
                                         };
@@ -182,7 +184,7 @@
                                     </a>
                                     <form action="{{ route('admin.booking.status', $booking) }}" method="POST" class="flex gap-2">
                                         @csrf
-                                        <select name="status" class="flex-1 bg-white border border-zinc-400 rounded text-xs px-2 py-1.5 focus:outline-none focus:border-[#3B2219]">
+                                        <select name="status" class="flex-1 bg-white border border-zinc-400 rounded text-xs px-2 py-1.5 focus:outline-none focus:border-[#3C1808]">
                                             <option value="pending" {{ $booking->status == 'pending' ? 'selected' : '' }}>Baru</option>
                                             <option value="accepted" {{ $booking->status == 'accepted' ? 'selected' : '' }}>Dikonfirmasi</option>
                                             <option value="rejected" {{ $booking->status == 'rejected' ? 'selected' : '' }}>Ditolak</option>

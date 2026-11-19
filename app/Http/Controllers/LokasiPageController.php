@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Location;
+use Illuminate\View\View;
 
 class LokasiPageController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        $locations = Location::query()
-            ->where('is_active', true)
-            ->with(['schedules' => fn ($query) => $query->with('program')->orderBy('start_time')])
-            ->orderBy('id')
-            ->get();
-
-        return view('lokasi', compact('locations'));
+        return view('lokasi', [
+            'locations' => collect(),
+        ]);
     }
 }

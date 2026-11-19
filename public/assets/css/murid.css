@@ -20,6 +20,7 @@
 
 .hero-content .hero__lead {
   max-width: 570px;
+  margin: 12px;
 }
 
 /* Pencarian murid */
@@ -32,10 +33,19 @@
   border-radius: 999px;
   padding: 5px 18px;
   gap: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.search-box span {
-  font-size: 20px;
+.search-box:focus-within {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(255, 188, 76, 0.28);
+}
+
+.search-box__icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: rgba(60, 24, 8, 0.55);
 }
 
 .search-box input {
@@ -51,6 +61,7 @@
 /* Panel ilustrasi hero */
 .hero-illustration {
   min-height: 290px;
+  padding: 44px;
   background: var(--color-brown);
   border-radius: 45% 45% 20px 20px;
   display: flex;
@@ -60,34 +71,11 @@
   position: relative;
 }
 
-.hero-illustration::before,
-.hero-illustration::after {
-  content: "";
-  position: absolute;
-  border: 2px solid var(--color-gold);
-  border-radius: 50%;
-  width: 210px;
-  height: 210px;
-}
-
-.hero-illustration::after {
-  width: 150px;
-  height: 150px;
-  border-color: var(--color-cream);
-}
-
-.illustration-text {
-  margin: 0;
-  color: var(--color-cream);
-  font-family: var(--serif);
-  font-size: 28px;
-  text-align: center;
-  z-index: 1;
-  padding: 25px;
-}
-
-.illustration-text__accent {
-  color: var(--color-gold);
+.hero-logo {
+  display: block;
+  width: min(78%, 250px);
+  height: auto;
+  object-fit: contain;
 }
 
 /* Daftar murid */
@@ -127,17 +115,20 @@
 }
 
 .student-card {
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border: 1px solid var(--color-brown);
   border-radius: 12px;
-  padding: 25px 20px;
-  min-height: 180px;
+  padding: 24px 20px;
+  min-height: 165px;
   box-shadow: 5px 5px 0 var(--color-olive);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .student-card:hover {
   transform: translateY(-4px);
+  box-shadow: 5px 8px 0 var(--color-olive);
 }
 
 .student-avatar {
@@ -160,12 +151,14 @@
   font-family: var(--serif);
   font-size: 17px;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 
 .student-class {
-  margin: 0;
-  font-size: 11px;
-  color: rgba(60, 24, 8, 0.6);
+  margin: auto 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(60, 24, 8, 0.68);
 }
 
 .empty-state {
@@ -221,7 +214,12 @@
   }
 
   .hero-illustration {
-    min-height: 220px;
+    min-height: 200px;
+    padding: 32px;
+  }
+
+  .hero-logo {
+    width: min(72%, 220px);
   }
 
   .student-grid {
@@ -246,7 +244,7 @@
   }
 
   .student-card {
-    min-height: 165px;
+    min-height: 150px;
     padding: 17px 12px;
   }
 
@@ -255,7 +253,7 @@
   }
 
   .student-class {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .class-badge {

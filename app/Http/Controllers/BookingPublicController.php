@@ -2,21 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Booking;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class BookingPublicController extends Controller
 {
-    /**
-     * Menyimpan permintaan booking acara dari pengunjung website (tanpa login).
-     *
-     * Field `status` tidak pernah diterima dari input pengunjung dan selalu
-     * dipaksa menjadi 'pending' oleh server.
-     */
     public function store(Request $request): RedirectResponse
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],
             'institution_name' => ['nullable', 'string', 'max:255'],
@@ -45,22 +38,10 @@ class BookingPublicController extends Controller
             'estimated_audience.min' => 'Estimasi jumlah peserta tidak boleh negatif.',
         ]);
 
-        Booking::create([
-            'name' => $validated['name'],
-            'phone' => $validated['phone'],
-            'institution_name' => $validated['institution_name'] ?? null,
-            'service_type' => $validated['service_type'],
-            'event_name' => $validated['event_name'],
-            'event_date' => $validated['event_date'],
-            'start_time' => $validated['start_time'] ?? null,
-            'event_location' => $validated['event_location'],
-            'estimated_audience' => $validated['estimated_audience'] ?? null,
-            'additional_notes' => $validated['additional_notes'] ?? null,
-            'status' => 'pending',
-        ]);
-
         return redirect()
             ->route('booking')
-            ->with('success', 'Permintaan booking berhasil dikirim! Tim kami akan menghubungi Anda melalui WhatsApp.');
+            ->withErrors([
+                'booking' => 'Formulir booking belum dapat disimpan karena penyimpanan data booking tidak lagi tersedia.',
+            ]);
     }
 }

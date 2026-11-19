@@ -7,35 +7,37 @@
     <!-- Menggunakan Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#FFF9CC] min-h-screen font-sans text-zinc-900">
+<body class="bg-[#FEFFC4] min-h-screen font-sans text-zinc-900">
 
     <!-- SIDEBAR -->
-    <aside class="w-64 bg-[#3B2219] text-white flex flex-col justify-between fixed inset-y-0 left-0">
+    <aside class="w-64 bg-[#3C1808] text-white flex flex-col justify-between fixed inset-y-0 left-0">
         <div>
             <!-- Logo Sanggar -->
-            <div class="p-6 flex items-center space-x-3 border-b border-[#4d2f23]">
-                <div class="w-10 h-10 border-2 border-[#D4A373] rounded-full flex items-center justify-center shrink-0">
-                    <span class="text-[10px] text-[#D4A373]">Logo</span>
+            <div class="p-6 flex items-center space-x-3 border-b border-[#552713]">
+                <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                    <img src="{{ asset('assets/images/logo-navbar.png') }}"
+                         alt="Logo Sanggar Seni Cakra Aji"
+                         class="w-full h-full object-contain">
                 </div>
                 <div>
                     <h1 class="text-sm font-bold tracking-wide">Sanggar Seni</h1>
-                    <span class="text-xs text-[#D4A373]">Cakra Aji <span class="text-[9px] text-gray-400">Est.2020</span></span>
+                    <span class="text-xs text-[#FFBC4C]">Cakra Aji <span class="text-[9px] text-gray-400">Est.2020</span></span>
                 </div>
             </div>
 
             <!-- Menu Navigasi -->
             <div class="px-4 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Panel Admin</div>
             <nav class="space-y-1 px-3 text-sm">
-                <a href="{{ route('admin.dashboard') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#4d2f23] hover:text-white transition">Dashboard</a>
-                <a href="{{ route('admin.pendaftar') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#4d2f23] hover:text-white transition">Pendaftar Siswa</a>
-                <a href="{{ route('admin.booking') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#4d2f23] hover:text-white transition">Booking Acara</a>
-                <a href="{{ route('admin.nama-murid') }}" class="flex items-center px-3 py-2.5 rounded bg-[#E9C46A] text-zinc-900 font-medium">Pengaturan Daftar Nama Siswa</a>
-                <a href="{{ route('admin.galeri') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#4d2f23] hover:text-white transition">Galeri & Dokumentasi</a>
+                <a href="{{ route('admin.dashboard') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#552713] hover:text-white transition">Dashboard</a>
+                <a href="{{ route('admin.pendaftar') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#552713] hover:text-white transition">Pendaftar Siswa</a>
+                <a href="{{ route('admin.booking') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#552713] hover:text-white transition">Booking Acara</a>
+                <a href="{{ route('admin.nama-murid') }}" class="flex items-center px-3 py-2.5 rounded bg-[#FFBC4C] text-zinc-900 font-medium">Pengaturan Daftar Nama Siswa</a>
+                <a href="{{ route('admin.galeri') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#552713] hover:text-white transition">Galeri & Dokumentasi</a>
             </nav>
         </div>
 
         <!-- Tombol Bawah Sidebar -->
-        <div class="p-4 border-t border-[#4d2f23] space-y-2 text-sm">
+        <div class="p-4 border-t border-[#552713] space-y-2 text-sm">
             <a href="{{ url('/') }}" target="_blank" class="flex items-center space-x-2 text-gray-300 hover:text-white">
                 <span>Lihat website ↗</span>
             </a>
@@ -51,7 +53,7 @@
 
         <!-- Header Halaman -->
         <div class="mb-8">
-            <span class="text-xs font-bold text-[#A34723] uppercase tracking-widest">Pengaturan Daftar Nama Siswa</span>
+            <span class="text-xs font-bold text-[#C1272D] uppercase tracking-widest">Pengaturan Daftar Nama Siswa</span>
             <h2 class="text-2xl lg:text-3xl font-extrabold text-zinc-900 mt-1">DAFTAR NAMA SISWA</h2>
         </div>
 
@@ -75,7 +77,7 @@
         @endif
 
         <!-- Kotak Form Tambah Murid Baru -->
-        <div class="bg-white border-2 border-[#3B2219] p-6 rounded-sm shadow-[6px_6px_0px_0px_#3B2219] mb-8">
+        <div class="bg-white border-2 border-[#3C1808] p-6 rounded-sm shadow-[6px_6px_0px_0px_#3C1808] mb-8">
             <h3 class="text-base font-bold text-zinc-900 mb-4">Tambah Murid Baru</h3>
 
             <form action="{{ route('admin.nama-murid.store') }}" method="POST" class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-end">
@@ -83,13 +85,13 @@
                 <!-- Input Nama Murid -->
                 <div class="lg:col-span-6">
                     <label class="block text-xs font-bold text-zinc-800 mb-1">Nama murid</label>
-                    <input type="text" name="nama_murid" value="{{ old('nama_murid') }}" placeholder="Contoh: Aulia Eky Ridha Aprilia" required class="w-full bg-[#FFF9CC]/50 px-4 py-2.5 border border-zinc-400 rounded-sm text-sm focus:outline-none focus:border-[#3B2219]">
+                    <input type="text" name="nama_murid" value="{{ old('nama_murid') }}" placeholder="Contoh: Aulia Eky Ridha Aprilia" required class="w-full bg-[#FEFFC4]/50 px-4 py-2.5 border border-zinc-400 rounded-sm text-sm focus:outline-none focus:border-[#3C1808]">
                 </div>
 
                 <!-- Pilih Kelas / Program -->
                 <div class="lg:col-span-4">
                     <label class="block text-xs font-bold text-zinc-800 mb-1">Kelas</label>
-                    <select name="program_id" class="w-full bg-[#FFF9CC]/50 px-4 py-2.5 border border-zinc-400 rounded-sm text-sm focus:outline-none focus:border-[#3B2219]">
+                    <select name="program_id" class="w-full bg-[#FEFFC4]/50 px-4 py-2.5 border border-zinc-400 rounded-sm text-sm focus:outline-none focus:border-[#3C1808]">
                         <option value="">Belum mengikuti program</option>
                         @foreach ($programs as $program)
                             <option value="{{ $program->id }}" {{ old('program_id') == $program->id ? 'selected' : '' }}>{{ $program->name }}</option>
@@ -99,7 +101,7 @@
 
                 <!-- Tombol Submit -->
                 <div class="lg:col-span-2">
-                    <button type="submit" class="w-full bg-[#3B2219] hover:bg-[#2b1812] text-white text-xs font-bold py-3 px-4 rounded-sm transition shadow-sm">
+                    <button type="submit" class="w-full bg-[#3C1808] hover:bg-[#552713] text-white text-xs font-bold py-3 px-4 rounded-sm transition shadow-sm">
                         Tambah Murid
                     </button>
                 </div>
@@ -111,8 +113,8 @@
             <div>
                 <label class="block text-xs font-bold text-zinc-800 mb-1">Cari nama murid</label>
                 <div class="flex gap-2">
-                    <input type="text" name="cari" value="{{ request('cari') }}" placeholder="Ketik nama murid" class="w-full max-w-md bg-white px-4 py-2.5 border border-zinc-400 rounded-sm text-sm focus:outline-none focus:border-[#3B2219]">
-                    <button type="submit" class="bg-[#3B2219] hover:bg-[#2b1812] text-white text-xs font-bold py-2.5 px-6 rounded-sm transition">Cari</button>
+                    <input type="text" name="cari" value="{{ request('cari') }}" placeholder="Ketik nama murid" class="w-full max-w-md bg-white px-4 py-2.5 border border-zinc-400 rounded-sm text-sm focus:outline-none focus:border-[#3C1808]">
+                    <button type="submit" class="bg-[#3C1808] hover:bg-[#552713] text-white text-xs font-bold py-2.5 px-6 rounded-sm transition">Cari</button>
                 </div>
             </div>
         </form>
@@ -120,9 +122,9 @@
         <!-- Daftar List Murid (Card Style) -->
         <div class="space-y-4">
             @forelse ($murids as $murid)
-                <div class="bg-white border-2 border-[#3B2219] p-4 rounded-sm shadow-[4px_4px_0px_0px_#3B2219] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="bg-white border-2 border-[#3C1808] p-4 rounded-sm shadow-[4px_4px_0px_0px_#3C1808] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 bg-[#E9C46A] border border-[#3B2219] rounded-full flex items-center justify-center font-bold text-zinc-900 shrink-0">
+                        <div class="w-10 h-10 bg-[#FFBC4C] border border-[#3C1808] rounded-full flex items-center justify-center font-bold text-zinc-900 shrink-0">
                             {{ strtoupper(mb_substr($murid->full_name, 0, 1)) }}
                         </div>
                         <div>
@@ -141,8 +143,8 @@
                         <form action="{{ route('admin.nama-murid.update', $murid) }}" method="POST" class="flex items-center gap-2">
                             @csrf
                             @method('PUT')
-                            <input type="text" name="nama_murid" value="{{ $murid->full_name }}" class="bg-white border border-zinc-400 rounded-sm text-xs px-2 py-1.5 w-40 sm:w-48 focus:outline-none focus:border-[#3B2219]">
-                            <button type="submit" class="border border-[#3B2219] bg-[#E9C46A] hover:bg-[#d8b359] text-zinc-900 text-xs font-bold py-1.5 px-4 rounded-sm transition whitespace-nowrap">
+                            <input type="text" name="nama_murid" value="{{ $murid->full_name }}" class="bg-white border border-zinc-400 rounded-sm text-xs px-2 py-1.5 w-40 sm:w-48 focus:outline-none focus:border-[#3C1808]">
+                            <button type="submit" class="border border-[#3C1808] bg-[#FFBC4C] hover:bg-[#FFBC4C] text-zinc-900 text-xs font-bold py-1.5 px-4 rounded-sm transition whitespace-nowrap">
                                 Ubah
                             </button>
                         </form>
@@ -150,14 +152,14 @@
                         <form action="{{ route('admin.nama-murid.destroy', $murid) }}" method="POST" onsubmit="return confirm('Hapus murid {{ $murid->full_name }}?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="border border-[#A34723] bg-white hover:bg-red-50 text-[#A34723] text-xs font-bold py-1.5 px-4 rounded-sm transition">
+                            <button type="submit" class="border border-[#C1272D] bg-white hover:bg-red-50 text-[#C1272D] text-xs font-bold py-1.5 px-4 rounded-sm transition">
                                 Hapus
                             </button>
                         </form>
                     </div>
                 </div>
             @empty
-                <div class="bg-white border-2 border-[#3B2219] p-12 rounded-sm shadow-[4px_4px_0px_0px_#3B2219] text-center">
+                <div class="bg-white border-2 border-[#3C1808] p-12 rounded-sm shadow-[4px_4px_0px_0px_#3C1808] text-center">
                     <div class="text-zinc-500 font-semibold">
                         @if (request('cari'))
                             Murid "{{ request('cari') }}" tidak ditemukan.

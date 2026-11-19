@@ -9,9 +9,6 @@
   <link rel="stylesheet" href="{{ asset('assets/css/beranda.css') }}">
 @endpush
 
-@push('scripts')
-  <script src="{{ asset('assets/js/script2.js') }}" defer></script>
-@endpush
 
 @section('content')
 
@@ -34,8 +31,8 @@
               </p>
 
               <div class="hero-buttons">
-                  <a href="{{ route('pendaftaran.index') }}" class="btn btn-gold">Daftar Jadi Murid</a>
-                  <a href="{{ route('lokasi') }}#kontak" class="btn btn-cream">Booking Acara</a>
+                  <x-form-link form="registration" class="btn btn-gold">Daftar Jadi Murid</x-form-link>
+                  <x-form-link form="booking" class="btn btn-cream">Booking Acara</x-form-link>
                   <a href="{{ url('/tentang-kami') }}" class="btn btn-outline">Kenali Sanggar</a>
               </div>
 
@@ -200,15 +197,15 @@
                   Isi formulir booking dan tim kami akan menghubungi kembali.
               </p>
 
-              <a href="{{ route('pendaftaran.index') }}" class="booking-link">
+              <x-form-link form="registration" class="booking-link">
                   Ingin ikut belajar? Daftar jadi murid →
-              </a>
+              </x-form-link>
 
           </div>
 
-          <a href="{{ route('lokasi') }}#kontak" class="btn booking-button">
-              Isi formulir booking →
-          </a>
+          <x-form-link form="booking" class="btn booking-button">
+              Isi formulir booking
+          </x-form-link>
 
       </div>
 

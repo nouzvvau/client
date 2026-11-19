@@ -2,47 +2,39 @@
 // MOBILE NAVIGATION
 // =====================================
 
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.getElementById("navMenu");
+(() => {
+    "use strict";
 
-menuToggle.addEventListener("click", function () {
-    const isOpen = navMenu.classList.toggle("show");
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.setAttribute("aria-label", isOpen ? "Tutup menu" : "Buka menu");
-});
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
 
+    if (!menuToggle || !navMenu) return;
 
-// Menutup menu setelah salah satu link diklik
-document.querySelectorAll('.nav-menu a').forEach(function (link) {
+    const setMenuOpen = (isOpen) => {
+        navMenu.classList.toggle("show", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Tutup menu" : "Buka menu");
+    };
 
-    link.addEventListener('click', function () {
-
-        navMenu.classList.remove('show');
-
-        menuToggle.setAttribute('aria-expanded', 'false');
-
+    menuToggle.addEventListener("click", () => {
+        setMenuOpen(! navMenu.classList.contains("show"));
     });
 
-});
-
-// =====================================
-// LANGUAGE SWITCH
-// =====================================
-
-const languageOptions = document.querySelectorAll('.language-option');
-
-languageOptions.forEach(option => {
-
-    option.addEventListener('click', function () {
-
-        // Menghapus status aktif dari semua tombol
-        languageOptions.forEach(item => {
-            item.classList.remove('active');
-        });
-
-        // Mengaktifkan tombol yang diklik
-        this.classList.add('active');
-
+    navMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setMenuOpen(false));
     });
 
-});
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && navMenu.classList.contains("show")) {
+            setMenuOpen(false);
+            menuToggle.focus();
+        }
+    });
+
+    document.addEventListener("click", (event) => {
+        if (! navMenu.classList.contains("show")) return;
+        if (navMenu.contains(event.target) || menuToggle.contains(event.target)) return;
+
+        setMenuOpen(false);
+    });
+})();

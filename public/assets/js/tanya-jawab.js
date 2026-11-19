@@ -11,11 +11,11 @@
     const answers = [
         {
             keywords: ["daftar", "pendaftaran", "murid", "siswa", "gabung"],
-            answer: "Untuk mendaftar sebagai murid, silakan buka halaman Daftar Murid dan isi formulir yang tersedia. Admin akan menghubungi Anda untuk informasi selanjutnya."
+            answer: "Untuk mendaftar sebagai murid, tekan tombol Daftar Murid pada navbar atau halaman Pendaftaran. Kamu akan diarahkan ke formulir pendaftaran resmi, lalu admin akan menghubungi melalui WhatsApp."
         },
         {
             keywords: ["booking", "acara", "tampil", "undang", "pertunjukan"],
-            answer: "Untuk booking acara, silakan buka halaman Booking Acara dan lengkapi formulir yang tersedia. Tim Sanggar Cakra Aji akan menghubungi Anda untuk konfirmasi lebih lanjut."
+            answer: "Untuk booking acara, tekan tombol Booking Acara pada navbar atau halaman Booking Acara. Isi formulir resmi yang tersedia, lalu tim Sanggar Cakra Aji akan menghubungi kamu untuk konfirmasi."
         },
         {
             keywords: ["jadwal", "latihan"],

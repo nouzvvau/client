@@ -10,7 +10,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-body);
     background: var(--color-cream);
     color: var(--color-brown);
 }
@@ -38,7 +38,7 @@ body {
 }
 
 .heading h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-display);
     font-size: clamp(32px, 4vw, 50px);
     line-height: 1.2;
     margin: 15px 0;
@@ -77,7 +77,7 @@ body {
 .form-card {
     min-width: 0;
     padding: 30px;
-    background: #ffffff;
+    background: var(--color-white);
     border: 1px solid var(--color-brown);
     box-shadow: 5px 5px 0 var(--color-gold);
 }
@@ -90,7 +90,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-display);
     font-size: 20px;
     margin-bottom: 25px;
 }
@@ -105,7 +105,7 @@ body {
     background: var(--color-brown);
     color: var(--color-gold);
     border-radius: 50%;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
 }
 
@@ -150,9 +150,9 @@ body {
     min-height: 45px;
     padding: 12px 14px;
     border: 1px solid rgba(60, 24, 8, 0.5);
-    background: #ffffff;
+    background: var(--color-white);
     color: var(--color-brown);
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
     outline: none;
     border-radius: 0;
@@ -203,7 +203,7 @@ textarea.form-control {
     border: 1px solid var(--color-brown);
     border-radius: 30px;
     padding: 14px 25px;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
@@ -249,7 +249,7 @@ textarea.form-control {
 ========================================= */
 
 .side-card {
-    background: #ffffff;
+    background: var(--color-white);
     border: 1px solid var(--color-brown);
     padding: 23px;
 }

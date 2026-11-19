@@ -141,7 +141,7 @@
                         </a>
 
                         <a class="faq-button-link faq-button-outline"
-                           href="{{ url('/kritik-saran') }}">
+                           href="{{ route('kontak') }}">
                             Kritik &amp; Saran
                         </a>
                     </div>
@@ -154,5 +154,5 @@
 @endsection
 
 @push('scripts')
-    @vite('resources/js/tanya-jawab.js')
+    <script src="{{ asset('assets/js/tanya-jawab.js') }}" defer></script>
 @endpush

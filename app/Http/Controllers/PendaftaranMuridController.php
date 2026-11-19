@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PendaftaranMurid;
+use App\Models\Student;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class PendaftaranMuridController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         return view('pendaftaran');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $validated = $request->validate([
             'nama_murid' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date|before_or_equal:today',
             'nama_wali' => 'required|string|max:255',
@@ -38,16 +40,9 @@ class PendaftaranMuridController extends Controller
             'pengalaman.required' => 'Pengalaman bermusik wajib diisi.',
         ]);
 
-        PendaftaranMurid::create([
-            'nama_murid' => $request->nama_murid,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'nama_wali' => $request->nama_wali,
-            'whatsapp' => $request->whatsapp,
-            'alamat' => $request->alamat,
-            'program' => $request->program,
-            'pengalaman' => $request->pengalaman,
-            'catatan' => $request->catatan,
-            'status' => 'Menunggu',
+        Student::create([
+            'name' => $validated['nama_murid'],
+            'class' => $validated['program'],
         ]);
 
         return redirect()

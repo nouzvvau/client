@@ -8,11 +8,12 @@
   <link rel="stylesheet" href="{{ asset('assets/css/pendaftaran.css') }}">
 @endpush
 
-@push('scripts')
-  <script src="{{ asset('assets/js/script2.js') }}" defer></script>
-@endpush
 
 @section('content')
+@php
+  $registrationExternal = \App\Support\GoogleForms::isExternal('registration');
+  $registrationUrl = \App\Support\GoogleForms::url('registration');
+@endphp
 <!-- MAIN -->
 
 <div class="main">
@@ -26,7 +27,7 @@
         </div>
 
         <span class="version">
-            Versi A - Data masuk ke admin
+            {{ $registrationExternal ? 'Pendaftaran via Google Forms' : 'Pendaftaran langsung lewat website' }}
         </span>
 
         <h1>
@@ -35,10 +36,15 @@
         </h1>
 
         <p>
-            Isi data calon murid di bawah ini.
-            Cuma sekitar 3 menit.
-            Tanda <span class="required">*</span>
-            berarti wajib diisi.
+            @if ($registrationExternal)
+                Isi formulir pendaftaran resmi melalui Google Forms.
+                Cuma sekitar 3 menit.
+            @else
+                Isi data calon murid di bawah ini.
+                Cuma sekitar 3 menit.
+                Tanda <span class="required">*</span>
+                berarti wajib diisi.
+            @endif
         </p>
 
     </section>
@@ -46,7 +52,7 @@
 
     <!-- SUCCESS -->
 
-    @if(session('success'))
+    @if(! $registrationExternal && session('success'))
 
         <div class="alert alert-success">
 
@@ -64,7 +70,7 @@
 
     <!-- ERROR -->
 
-    @if($errors->any())
+    @if(! $registrationExternal && $errors->any())
 
         <div class="alert alert-error">
 
@@ -83,7 +89,33 @@
 
         <!-- FORM -->
 
-        <section class="form-card">
+        <section class="form-card{{ $registrationExternal ? ' form-external' : '' }}">
+
+            @if ($registrationExternal)
+
+                <p class="heading-label">Formulir resmi</p>
+
+                <h2 class="section-title">Pendaftaran murid baru</h2>
+
+                <p class="form-external__text">
+                    Pendaftaran dilakukan melalui Google Forms agar data
+                    langsung diterima admin. Formulir akan terbuka di tab baru.
+                </p>
+
+                <a href="{{ $registrationUrl }}"
+                   class="submit-btn"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    ↗
+                    Buka formulir pendaftaran
+                </a>
+
+                <p class="form-note">
+                    Setelah formulir dikirim, admin akan menghubungi
+                    melalui WhatsApp.
+                </p>
+
+            @else
 
             <form action="{{ route('pendaftaran.store') }}"
                   method="POST">
@@ -367,6 +399,8 @@
 
             </form>
 
+            @endif
+
         </section>
 
 
@@ -421,7 +455,7 @@
 
                         <div>
 
-                            <strong>Isi formulir ini</strong>
+                            <strong>{{ $registrationExternal ? 'Buka Google Forms' : 'Isi formulir ini' }}</strong>
 
                             <span class="description">
                                 Lengkapi data calon murid dan wali.
@@ -437,7 +471,7 @@
 
                         <div>
 
-                            <strong>Tekan tombol kirim</strong>
+                            <strong>{{ $registrationExternal ? 'Kirim formulir pendaftaran' : 'Tekan tombol kirim' }}</strong>
 
                             <span class="description">
                                 Datanya langsung diterima admin sanggar.
@@ -501,9 +535,9 @@
 
                     <br><br>
 
-                    <a href="{{ route('lokasi') }}#kontak" class="contact-link">
+                    <x-form-link form="booking" class="contact-link">
                         Formulir booking acara →
-                    </a>
+                    </x-form-link>
 
                 </p>
 

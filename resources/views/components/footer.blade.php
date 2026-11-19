@@ -11,7 +11,7 @@
                  alt="Logo Sanggar Cakra Aji">
 
             <p>
-                Ruang pelestarian musik tradisi dan kontemporer.
+                {{ __('ui.footer.tagline') }}
             </p>
 
         </div>
@@ -20,13 +20,13 @@
         <!-- MENU -->
         <div class="footer-menu">
 
-            <h4>MENU</h4>
+            <h4>{{ __('ui.footer.menu') }}</h4>
 
-            <a href="{{ url('/') }}">Beranda</a>
-            <a href="{{ url('/tentang-kami') }}">Tentang Kami</a>
-            <a href="{{ route('program') }}">Program &amp; Kegiatan</a>
-            <a href="{{ route('galeri') }}">Galeri</a>
-            <a href="{{ route('lokasi') }}">Kontak</a>
+            <a href="{{ url('/') }}">{{ __('ui.nav.home') }}</a>
+            <a href="{{ url('/tentang-kami') }}">{{ __('ui.nav.about') }}</a>
+            <a href="{{ route('program') }}">{{ __('ui.nav.programs') }}</a>
+            <a href="{{ route('galeri') }}">{{ __('ui.nav.gallery') }}</a>
+            <a href="{{ route('kontak') }}">{{ __('ui.nav.contact') }}</a>
 
         </div>
 
@@ -34,10 +34,9 @@
         <!-- TEAM -->
         <div class="footer-team">
 
-            <h4>WEBSITE BUILDER</h4>
+            <h4>{{ __('ui.footer.builder') }}</h4>
 
-            <p>From students of SMKN 1 Boyolangu<br>
-               majoring in Software Engineering</p>
+            <p>{{ __('ui.footer.builder_school') }}</p>
 
             <ul>
                 <li>BYAN</li>
@@ -53,7 +52,7 @@
 
 
     <div class="footer-bottom">
-        <p>© 2026 Sanggar Seni Cakra Aji. Hak cipta dilindungi.</p>
+        <p>{{ __('ui.footer.copyright') }}</p>
     </div>
 
 </footer>

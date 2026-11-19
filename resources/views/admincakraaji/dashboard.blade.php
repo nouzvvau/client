@@ -12,33 +12,34 @@
             box-shadow: 4px 4px 0px #000000;
         }
         .box-shadow-red {
-            box-shadow: 4px 4px 0px #8B0000;
+            box-shadow: 4px 4px 0px #C1272D;
         }
     </style>
 </head>
-<body class="bg-[#FAF8D4] text-[#2C1810] font-sans antialiased">
+<body class="bg-[#FEFFC4] text-[#3C1808] font-sans antialiased">
 
     <div class="flex min-h-screen">
         
         <!-- SIDEBAR -->
-        <aside class="w-64 bg-[#2D1500] text-[#F3E5AB] flex flex-col justify-between p-6 shrink-0">
+        <aside class="w-64 bg-[#3C1808] text-[#FEFFC4] flex flex-col justify-between p-6 shrink-0">
             <div>
                 <!-- Logo Sanggar -->
                 <div class="flex flex-col items-center mb-8 text-center">
-                    <div class="w-20 h-20 border-2 border-[#F3E5AB] rounded-full flex items-center justify-center p-2 mb-2">
-                        <!-- Ganti dengan <img src="..." /> logo asli -->
-                        <span class="text-xs text-center leading-tight">Sanggar Seni<br><strong class="text-sm">Cakra Aji</strong><br><small>Est 2020</small></span>
+                    <div class="w-20 h-20 flex items-center justify-center mb-2">
+                        <img src="{{ asset('assets/images/logo-navbar.png') }}"
+                             alt="Logo Sanggar Seni Cakra Aji"
+                             class="w-full h-full object-contain">
                     </div>
                     <span class="text-xs uppercase tracking-widest text-amber-200 mt-2 font-bold">Panel Admin</span>
                 </div>
 
                 <!-- Navigasi Menu -->
                 <nav class="space-y-1">
-                    <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2.5 rounded bg-[#F5C767] text-[#2D1500] font-bold shadow">Dashboard</a>
-                    <a href="{{ route('admin.pendaftar') }}" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Pendaftar Siswa</a>
-                    <a href="{{ route('admin.booking') }}" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Booking Acara</a>
-                    <a href="{{ route('admin.nama-murid') }}" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Pengaturan Daftar Nama Siswa</a>
-                    <a href="{{ route('admin.galeri') }}" class="block px-4 py-2.5 rounded hover:bg-[#3D1E00] transition">Galeri & Dokumentasi</a>
+                    <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2.5 rounded bg-[#FFBC4C] text-[#3C1808] font-bold shadow">Dashboard</a>
+                    <a href="{{ route('admin.pendaftar') }}" class="block px-4 py-2.5 rounded hover:bg-[#552713] transition">Pendaftar Siswa</a>
+                    <a href="{{ route('admin.booking') }}" class="block px-4 py-2.5 rounded hover:bg-[#552713] transition">Booking Acara</a>
+                    <a href="{{ route('admin.nama-murid') }}" class="block px-4 py-2.5 rounded hover:bg-[#552713] transition">Pengaturan Daftar Nama Siswa</a>
+                    <a href="{{ route('admin.galeri') }}" class="block px-4 py-2.5 rounded hover:bg-[#552713] transition">Galeri & Dokumentasi</a>
                 </nav>
             </div>
 
@@ -58,14 +59,14 @@
         <main class="flex-1 p-8 lg:p-12 overflow-y-auto">
             
             <!-- Header Top Bar -->
-            <div class="flex justify-between items-start pb-4 border-b-2 border-[#2C1810]">
+            <div class="flex justify-between items-start pb-4 border-b-2 border-[#3C1808]">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-wider text-red-700">Dashboard</span>
-                    <h1 class="text-4xl font-serif font-bold text-[#2C1810] mt-1">Halo, [Nama admin]</h1>
+                    <h1 class="text-4xl font-serif font-bold text-[#3C1808] mt-1">Halo, [Nama admin]</h1>
                 </div>
                 <!-- Profile Badge -->
-                <div class="flex items-center space-x-2 border-2 border-[#2C1810] rounded-full px-4 py-1.5 bg-white box-shadow-custom">
-                    <div class="w-7 h-7 bg-[#2C1810] text-white rounded-full flex items-center justify-center font-bold text-xs">A</div>
+                <div class="flex items-center space-x-2 border-2 border-[#3C1808] rounded-full px-4 py-1.5 bg-white box-shadow-custom">
+                    <div class="w-7 h-7 bg-[#3C1808] text-white rounded-full flex items-center justify-center font-bold text-xs">A</div>
                     <span class="font-bold text-sm">[Nama admin]</span>
                 </div>
             </div>
@@ -78,23 +79,23 @@
             <!-- STATISTIK KOTAK (CARDS) -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                 <!-- Card 1 -->
-                <div class="bg-white border-2 border-[#2C1810] p-5 box-shadow-red relative">
+                <div class="bg-white border-2 border-[#3C1808] p-5 box-shadow-red relative">
                     <div class="h-1 bg-red-700 absolute bottom-0 left-0 right-0"></div>
-                    <span class="text-xs font-bold uppercase tracking-wider text-[#2C1810]">Program Aktif</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#3C1808]">Program Aktif</span>
                     <h2 class="text-4xl font-serif font-bold my-1">[00]</h2>
                     <p class="text-xs text-gray-600">tampil di halaman Program</p>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="bg-white border-2 border-[#2C1810] p-5 box-shadow-custom">
-                    <span class="text-xs font-bold uppercase tracking-wider text-[#2C1810]">Foto Dokumentasi</span>
+                <div class="bg-white border-2 border-[#3C1808] p-5 box-shadow-custom">
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#3C1808]">Foto Dokumentasi</span>
                     <h2 class="text-4xl font-serif font-bold my-1">[000]</h2>
                     <p class="text-xs text-gray-600">terunggah</p>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="bg-white border-2 border-[#2C1810] p-5 box-shadow-custom">
-                    <span class="text-xs font-bold uppercase tracking-wider text-[#2C1810]">Draf</span>
+                <div class="bg-white border-2 border-[#3C1808] p-5 box-shadow-custom">
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#3C1808]">Draf</span>
                     <h2 class="text-4xl font-serif font-bold my-1">[00]</h2>
                     <p class="text-xs text-gray-600">belum diterbitkan</p>
                 </div>
@@ -103,27 +104,27 @@
             <!-- SEKSI AKSI CEPAT -->
             <h2 class="text-2xl font-serif font-bold mt-10 mb-4">Aksi cepat</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <a href="#" class="block bg-[#FAF3B0] border-2 border-[#2C1810] p-4 hover:bg-[#F5EB96] transition box-shadow-custom">
+                <a href="#" class="block bg-[#FEFFC4] border-2 border-[#3C1808] p-4 hover:bg-[#FFBC4C] transition box-shadow-custom">
                     <h3 class="font-bold text-sm">Lihat pendaftar siswa baru</h3>
                     <p class="text-xs text-gray-700 mt-1">Cek siapa yang baru mendaftar jadi murid</p>
                 </a>
-                <a href="#" class="block bg-[#FAF3B0] border-2 border-[#2C1810] p-4 hover:bg-[#F5EB96] transition box-shadow-custom">
+                <a href="#" class="block bg-[#FEFFC4] border-2 border-[#3C1808] p-4 hover:bg-[#FFBC4C] transition box-shadow-custom">
                     <h3 class="font-bold text-sm">Lihat booking acara baru</h3>
                     <p class="text-xs text-gray-700 mt-1">Cek permintaan pentas atau pengisian acara</p>
                 </a>
-                <a href="#" class="block bg-[#FAF3B0] border-2 border-[#2C1810] p-4 hover:bg-[#F5EB96] transition box-shadow-custom">
+                <a href="#" class="block bg-[#FEFFC4] border-2 border-[#3C1808] p-4 hover:bg-[#FFBC4C] transition box-shadow-custom">
                     <h3 class="font-bold text-sm">+ Tambah dokumentasi acara</h3>
                     <p class="text-xs text-gray-700 mt-1">Tulis cerita dan unggah foto acara baru</p>
                 </a>
-                <a href="#" class="block bg-[#FAF3B0] border-2 border-[#2C1810] p-4 hover:bg-[#F5EB96] transition box-shadow-custom">
+                <a href="#" class="block bg-[#FEFFC4] border-2 border-[#3C1808] p-4 hover:bg-[#FFBC4C] transition box-shadow-custom">
                     <h3 class="font-bold text-sm">Unggah foto galeri</h3>
                     <p class="text-xs text-gray-700 mt-1">Tambah foto ke halaman Galeri</p>
                 </a>
-                <a href="#" class="block bg-[#FAF3B0] border-2 border-[#2C1810] p-4 hover:bg-[#F5EB96] transition box-shadow-custom">
+                <a href="#" class="block bg-[#FEFFC4] border-2 border-[#3C1808] p-4 hover:bg-[#FFBC4C] transition box-shadow-custom">
                     <h3 class="font-bold text-sm">Ubah teks Beranda</h3>
                     <p class="text-xs text-gray-700 mt-1">Edit tulisan di halaman depan website</p>
                 </a>
-                <a href="#" class="block bg-[#FAF3B0] border-2 border-[#2C1810] p-4 hover:bg-[#F5EB96] transition box-shadow-custom">
+                <a href="#" class="block bg-[#FEFFC4] border-2 border-[#3C1808] p-4 hover:bg-[#FFBC4C] transition box-shadow-custom">
                     <h3 class="font-bold text-sm">Perbarui jadwal latihan</h3>
                     <p class="text-xs text-gray-700 mt-1">Ubah hari dan jam latihan</p>
                 </a>
@@ -139,7 +140,7 @@
                         <a href="#" class="text-sm font-bold underline hover:text-red-700">Atur pesan WhatsApp →</a>
                     </div>
                     
-                    <div class="bg-white border-2 border-[#2C1810] p-6 box-shadow-custom">
+                    <div class="bg-white border-2 border-[#3C1808] p-6 box-shadow-custom">
                         <ol class="list-decimal list-inside space-y-2 text-sm text-gray-800 mb-6">
                             <li>Pengunjung mengisi formulir <strong class="font-bold">Daftar Murid Baru</strong> atau <strong class="font-bold">Booking Acara</strong> di website.</li>
                             <li>Datanya muncul di menu <strong class="font-bold">Pendaftar Siswa</strong> atau <strong class="font-bold">Booking Acara</strong> di panel ini. Pada versi “langsung ke WhatsApp”, pesannya masuk ke WhatsApp admin.</li>
@@ -147,11 +148,11 @@
                         </ol>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <a href="#" class="block bg-[#FAF3B0] border-2 border-[#2C1810] p-4 hover:bg-[#F5EB96] transition box-shadow-custom">
+                            <a href="#" class="block bg-[#FEFFC4] border-2 border-[#3C1808] p-4 hover:bg-[#FFBC4C] transition box-shadow-custom">
                                 <span class="text-[10px] font-bold tracking-wider text-red-700 uppercase">Pendaftar Siswa Baru</span>
                                 <h4 class="font-bold text-base mt-1">[00] belum dihubungi →</h4>
                             </a>
-                            <a href="#" class="block bg-[#FAF3B0] border-2 border-[#2C1810] p-4 hover:bg-[#F5EB96] transition box-shadow-custom">
+                            <a href="#" class="block bg-[#FEFFC4] border-2 border-[#3C1808] p-4 hover:bg-[#FFBC4C] transition box-shadow-custom">
                                 <span class="text-[10px] font-bold tracking-wider text-red-700 uppercase">Booking Acara Baru</span>
                                 <h4 class="font-bold text-base mt-1">[00] belum dihubungi →</h4>
                             </a>
@@ -162,7 +163,7 @@
                 <!-- Aktivitas Terakhir (1 Kolom) -->
                 <div>
                     <h2 class="text-2xl font-serif font-bold mb-4">Aktivitas terakhir</h2>
-                    <div class="bg-white border-2 border-[#2C1810] divide-y-2 divide-[#2C1810] box-shadow-custom">
+                    <div class="bg-white border-2 border-[#3C1808] divide-y-2 divide-[#3C1808] box-shadow-custom">
                         <div class="p-4">
                             <p class="text-sm"><strong class="font-bold">[Admin]</strong> menerbitkan dokumentasi <strong class="font-bold">[Nama acara]</strong></p>
                             <span class="text-xs text-gray-500">[Waktu]</span>

@@ -1,4 +1,3 @@
-
 <?php
 
 use App\Http\Controllers\Admin\AdminPageController;
@@ -12,11 +11,20 @@ use App\Http\Controllers\LokasiPageController;
 use App\Http\Controllers\PendaftaranMuridController;
 use App\Http\Controllers\PengurusController;
 use App\Http\Controllers\ProgramPageController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('beranda');
 });
+
+Route::get('/bahasa/{locale}', function (Request $request, string $locale) {
+    abort_unless(in_array($locale, ['id', 'en'], true), 404);
+
+    $request->session()->put('locale', $locale);
+
+    return redirect()->back();
+})->name('language.switch');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])
@@ -33,9 +41,6 @@ Route::middleware(['auth', 'admin'])->group(function (): void {
     Route::get('/admin/pendaftar', [AdminPageController::class, 'pendaftar'])
         ->name('admin.pendaftar');
 
-    Route::post('/admin/pendaftar/{pendaftar}/status', [AdminPageController::class, 'updatePendaftarStatus'])
-        ->name('admin.pendaftar.status');
-
     Route::get('/admin/booking', [AdminPageController::class, 'booking'])
         ->name('admin.booking');
 
@@ -51,12 +56,6 @@ Route::middleware(['auth', 'admin'])->group(function (): void {
     Route::delete('/admin/nama-murid/{student}', [AdminPageController::class, 'destroyMurid'])
         ->name('admin.nama-murid.destroy');
 
-    Route::post('/admin/booking/{booking}/status', [AdminPageController::class, 'updateBookingStatus'])
-        ->name('admin.booking.status');
-
-    Route::delete('/admin/booking/{booking}', [AdminPageController::class, 'destroyBooking'])
-        ->name('admin.booking.destroy');
-
     Route::get('/admin/galeri', [GaleriController::class, 'index'])
         ->name('admin.galeri');
 
@@ -65,21 +64,6 @@ Route::middleware(['auth', 'admin'])->group(function (): void {
 
     Route::post('/admin/galeri', [GaleriController::class, 'store'])
         ->name('admin.galeri.store');
-
-    Route::get('/admin/galeri/{activity}/edit', [GaleriController::class, 'edit'])
-        ->name('admin.galeri.edit');
-
-    Route::put('/admin/galeri/{activity}', [GaleriController::class, 'update'])
-        ->name('admin.galeri.update');
-
-    Route::delete('/admin/galeri/{activity}', [GaleriController::class, 'destroy'])
-        ->name('admin.galeri.destroy');
-
-    Route::post('/admin/galeri/{activity}/photos', [GaleriController::class, 'storePhoto'])
-        ->name('admin.galeri.photos.store');
-
-    Route::delete('/admin/galeri/photos/{photo}', [GaleriController::class, 'destroyPhoto'])
-        ->name('admin.galeri.photos.destroy');
 });
 
 Route::get('/pendaftaran', [PendaftaranMuridController::class, 'index'])

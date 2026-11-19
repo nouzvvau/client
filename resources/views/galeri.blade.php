@@ -11,9 +11,6 @@
   <link rel="stylesheet" href="{{ asset('assets/css/galeri.css') }}">
 @endpush
 
-@push('scripts')
-  <script src="{{ asset('assets/js/script2.js') }}" defer></script>
-@endpush
 
 @section('content')
   <section class="hero" aria-labelledby="hero-title">

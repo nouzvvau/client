@@ -2,46 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Activity;
-use Illuminate\Support\Str;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class ProgramPageController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        $activities = Activity::query()
-            ->with('photos')
-            ->orderByDesc('date')
-            ->get();
-
         return view('program', [
-            'activities' => $activities,
+            'activities' => collect(),
         ]);
     }
 
-    public function detail(string $slug)
+    public function detail(string $slug): RedirectResponse
     {
-        $activity = Activity::query()
-            ->with('photos')
-            ->orderByDesc('date')
-            ->get()
-            ->first(fn (Activity $activity): bool => Str::slug($activity->title) === $slug);
-
-        abort_unless($activity !== null, 404);
-
-        $others = Activity::query()
-            ->where('id', '!=', $activity->id)
-            ->orderByDesc('date')
-            ->limit(4)
-            ->get()
-            ->map(fn (Activity $activity): array => [
-                'title' => $activity->title,
-                'slug' => Str::slug($activity->title),
-            ]);
-
-        return view('detail-kegiatan', [
-            'activity' => $activity,
-            'others' => $others,
-        ]);
+        return redirect()->route('program');
     }
 }

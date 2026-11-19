@@ -2,8 +2,8 @@
     "use strict";
     const form = document.getElementById("booking-form");
     const submitButton = document.getElementById("submit-button");
-    const whatsappInput = document.getElementById("whatsapp");
-    const eventDate = document.getElementById("event_date");
+    const whatsappInput = document.getElementById("booking-phone");
+    const eventDate = document.getElementById("booking-date");
 
     if (whatsappInput) {
         whatsappInput.addEventListener("input", () => {

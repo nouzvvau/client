@@ -3,20 +3,20 @@ SANGGAR CAKRA AJI - HALAMAN TANYA JAWAB
 ========================================= */
 
 .faq-page {
-    --faq-brown: #3C1808;
-    --faq-brown-soft: #3C1808;
-    --faq-cream: #FEFFC4;
-    --faq-yellow: #FEFFC4;
-    --faq-gold: #FFBC4C;
-    --faq-red: #C1272D;
-    --faq-olive: #91A052;
-    --faq-white: #FFFFFF;
+    --faq-brown: var(--color-brown);
+    --faq-brown-soft: var(--color-brown);
+    --faq-cream: var(--color-cream);
+    --faq-yellow: var(--color-cream);
+    --faq-gold: var(--color-gold);
+    --faq-red: var(--color-red);
+    --faq-olive: var(--color-olive);
+    --faq-white: var(--color-white);
     box-sizing: border-box;
     min-height: 100vh;
     padding: 48px 0 48px;
     color: var(--faq-brown);
     background: var(--faq-cream);
-    font-family: "DM Sans", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 15px;
 }
 
@@ -73,7 +73,7 @@ SANGGAR CAKRA AJI - HALAMAN TANYA JAWAB
     max-width: 570px;
     margin: 0 0 18px;
     color: var(--faq-brown);
-    font-family: "Playfair Display", Georgia, serif;
+    font-family: var(--font-display);
     font-size: clamp(40px, 4.2vw, 50px);
     font-weight: 800;
     line-height: 1.08;
@@ -133,7 +133,7 @@ SANGGAR CAKRA AJI - HALAMAN TANYA JAWAB
     border-radius: 50%;
     background: var(--faq-gold);
     color: var(--faq-brown);
-    font-family: "Playfair Display", Georgia, serif;
+    font-family: var(--font-display);
     font-weight: 800;
 }
 
@@ -218,7 +218,7 @@ SANGGAR CAKRA AJI - HALAMAN TANYA JAWAB
 }
 
 .faq-page .faq-chat-form input::placeholder {
-    color: #76685E;
+    color: rgba(60, 24, 8, 0.55);
 }
 
 .faq-page .faq-chat-form input:focus {

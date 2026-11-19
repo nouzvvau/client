@@ -7,22 +7,22 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-[#F5F1EB] text-[#3D2B1F]">
+<body class="bg-[#FEFFC4] text-[#3D2B1F]">
 
     <div class="flex min-h-screen">
 
         <!-- Sidebar -->
-        <aside class="w-64 bg-[#5A3825] text-white p-6">
+        <aside class="w-64 bg-[#3C1808] text-white p-6">
             <h1 class="text-xl font-bold mb-8">CAKRA AJI ADMIN</h1>
 
             <nav class="space-y-3">
                 <a href="{{ route('admin.galeri') }}"
-                   class="block px-4 py-3 rounded-lg bg-[#79543C]">
+                   class="block px-4 py-3 rounded-lg bg-[#552713]">
                     Galeri
                 </a>
 
                 <a href="{{ url('/') }}"
-                   class="block px-4 py-3 rounded-lg hover:bg-[#79543C]">
+                   class="block px-4 py-3 rounded-lg hover:bg-[#552713]">
                     Website
                 </a>
             </nav>
@@ -33,7 +33,7 @@
 
             <div class="mb-8">
                 <a href="{{ route('admin.galeri') }}"
-                   class="text-sm text-[#8B684C] hover:underline">
+                   class="text-sm text-[#552713] hover:underline">
                     ← Kembali ke Galeri
                 </a>
 
@@ -86,7 +86,7 @@
                         value="{{ old('title') }}"
                         placeholder="Contoh: Grebek Kampung"
                         required
-                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#79543C]"
+                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#552713]"
                     >
                 </div>
 
@@ -101,7 +101,7 @@
                         id="date"
                         name="date"
                         value="{{ old('date') }}"
-                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#79543C]"
+                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#552713]"
                     >
                 </div>
 
@@ -116,7 +116,7 @@
                         name="description"
                         rows="5"
                         placeholder="Ceritakan kegiatan yang dilaksanakan..."
-                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#79543C]"
+                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#552713]"
                     >{{ old('description') }}</textarea>
                 </div>
 
@@ -144,7 +144,7 @@
                 <div class="flex gap-3">
                     <button
                         type="submit"
-                        class="bg-[#79543C] text-white px-6 py-3 rounded-lg hover:bg-[#5A3825] transition"
+                        class="bg-[#552713] text-white px-6 py-3 rounded-lg hover:bg-[#3C1808] transition"
                     >
                         Simpan Acara
                     </button>

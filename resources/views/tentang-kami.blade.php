@@ -9,9 +9,6 @@
   <link rel="stylesheet" href="{{ asset('assets/css/tentang-kami.css') }}">
 @endpush
 
-@push('scripts')
-  <script src="{{ asset('assets/js/script2.js') }}" defer></script>
-@endpush
 
 @section('content')
   <div class="main-content" id="tentang">
@@ -184,7 +181,7 @@
             </div>
 
             <a href="{{ route('murid.index') }}" class="student-button">
-                Daftar Nama Murid →
+                Daftar Nama Murid
             </a>
 
         </div>
@@ -219,7 +216,7 @@
             </div>
 
             <a href="{{ route('lokasi') }}" class="location-button">
-                Info alamat sanggar →
+                Info alamat sanggar
             </a>
 
         </div>
