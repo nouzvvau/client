@@ -1,133 +1,153 @@
 @extends('layouts.main')
 
-@section('title', __('Murid Sanggar — Sanggar Seni Cakra Aji'))
-@section('description', __('Daftar murid Sanggar Seni Cakra Aji yang aktif berlatih.'))
+@section('title', __('ui.meta.murid.title'))
+@section('description', __('ui.meta.murid.description'))
 @section('page', 'murid')
 
 @push('styles')
-  <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/murid.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/murid.css') }}">
 @endpush
 
-
 @section('content')
-  <section class="hero hero--murid">
-    <div class="container hero-inner">
-      <div class="hero-content">
-        <p class="eyebrow">{{ __('Murid Sanggar') }}</p>
-        <h1 class="hero__title hero__title--murid">{{ __('Mereka yang belajar dan tumbuh bersama kami.') }}</h1>
-        <p class="hero__lead">
-          {{ __('Daftar murid Cakra Aji yang aktif berlatih. Demi kenyamanan, hanya nama dan program yang ditampilkan.') }}
-        </p>
+    <section class="hero hero--murid">
+        <div class="container hero-inner">
+            <div class="hero-content">
+                <p class="eyebrow">{{ __('ui.murid.eyebrow') }}</p>
 
-        <form class="search-box" method="GET" action="{{ route('murid.index') }}" role="search">
-          <svg class="search-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="7"></circle>
-            <path d="m20 20-3.5-3.5"></path>
-          </svg>
-          <input
-            type="search"
-            name="search"
-            value="{{ request('search') }}"
-            placeholder="{{ __('Ketik nama panggilan') }}"
-            aria-label="{{ __('Cari nama panggilan murid') }}"
-          >
-        </form>
-      </div>
+                <h1 class="hero__title hero__title--murid">
+                    {{ __('ui.murid.title') }}
+                </h1>
 
-      <div class="hero-illustration">
-        <img class="hero-logo" src="{{ asset('assets/images/logo-navbar.png') }}"
-             alt="{{ __('Logo Sanggar Seni Cakra Aji') }}" width="440" height="362">
-      </div>
-    </div>
-  </section>
+                <p class="hero__lead">
+                    {{ __('ui.murid.lead') }}
+                </p>
 
-  <section class="students">
-    <div class="container">
+                <form class="search-box" method="GET" action="{{ route('murid.index') }}" role="search">
+                    <svg class="search-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="m20 20-3.5-3.5"></path>
+                    </svg>
 
-      <div class="class-heading">
-        <span class="class-badge">
-          {{ __('Daftar murid aktif · :count orang', ['count' => $murids->total()]) }}
-        </span>
-      </div>
-
-      <div class="student-grid" id="studentGrid">
-
-        @foreach ($murids as $data)
-          <article class="student-card" data-name="{{ strtolower($data->full_name) }}">
-            <div class="student-avatar">
-              {{ strtoupper(substr($data->full_name, 0, 1)) }}
+                    <input
+                        type="search"
+                        name="search"
+                        value="{{ request('search') }}"
+                        placeholder="{{ __('ui.murid.search_placeholder') }}"
+                        aria-label="{{ __('ui.murid.search_aria') }}"
+                    >
+                </form>
             </div>
 
-            <h3 class="student-name">
-              {{ $data->full_name }}
-            </h3>
+            <div class="hero-illustration">
+                <img
+                    class="hero-logo"
+                    src="{{ asset('assets/images/logo-navbar.png') }}"
+                    alt="{{ __('ui.common.logo_alt') }}"
+                    width="440"
+                    height="362"
+                >
+            </div>
+        </div>
+    </section>
 
-            <p class="student-class">
-                @forelse ($data->programs as $program)
-                    {{ __($program->name) }}{{ !$loop->last ? ' · ' : '' }}
-                @empty
-                    {{ __('Belum mengikuti program') }}
-                @endforelse
-            </p>
-          </article>
-        @endforeach
+    <section class="students">
+        <div class="container">
 
-      </div>
+            <div class="class-heading">
+                <span class="class-badge">
+                    {{ __('ui.murid.badge', ['count' => $murids->total()]) }}
+                </span>
+            </div>
 
-      <div class="empty-state" id="emptyState" @if ($murids->isNotEmpty()) hidden @endif>
-        @if (request('search'))
-          {{ __('Murid ":search" tidak ditemukan.', ['search' => request('search')]) }}
-        @else
-          {{ __('Belum ada murid yang aktif berlatih.') }}
-        @endif
-      </div>
+            <div class="student-grid" id="studentGrid">
+                @foreach ($murids as $data)
+                    <article class="student-card" data-name="{{ strtolower($data->full_name) }}">
+                        <div class="student-avatar">
+                            {{ strtoupper(substr($data->full_name, 0, 1)) }}
+                        </div>
 
-      <div class="load-more-wrapper">
-        @if ($murids->hasPages())
-          <nav aria-label="{{ __('Navigasi halaman murid') }}" class="murid-pagination">
-            <span class="murid-pagination__info">
-              {{ __('Halaman :current dari :last', ['current' => $murids->currentPage(), 'last' => $murids->lastPage()]) }}
-            </span>
-            <div class="murid-pagination__links">
-              @if ($murids->onFirstPage())
-                <span class="load-more load-more--disabled" aria-disabled="true">{{ __('‹ Sebelumnya') }}</span>
-              @else
-                <a class="load-more" href="{{ $murids->previousPageUrl() }}" rel="prev">{{ __('‹ Sebelumnya') }}</a>
-              @endif
+                        <h3 class="student-name">
+                            {{ $data->full_name }}
+                        </h3>
 
-              @foreach ($murids->getUrlRange(1, $murids->lastPage()) as $page => $url)
-                @if ($page == $murids->currentPage())
-                  <span class="load-more load-more--current" aria-current="page">{{ $page }}</span>
+                        <p class="student-class">
+                            @forelse ($data->programs as $program)
+                                {{ __($program->name) }}{{ !$loop->last ? ' · ' : '' }}
+                            @empty
+                                {{ __('ui.murid.not_enrolled') }}
+                            @endforelse
+                        </p>
+                    </article>
+                @endforeach
+            </div>
+
+            <div class="empty-state" id="emptyState" @if ($murids->isNotEmpty()) hidden @endif>
+                @if (request('search'))
+                    {{ __('ui.murid.empty_search', ['name' => request('search')]) }}
                 @else
-                  <a class="load-more" href="{{ $url }}">{{ $page }}</a>
+                    {{ __('ui.murid.empty') }}
                 @endif
-              @endforeach
-
-              @if ($murids->hasMorePages())
-                <a class="load-more" href="{{ $murids->nextPageUrl() }}" rel="next">{{ __('Selanjutnya ›') }}</a>
-              @else
-                <span class="load-more load-more--disabled" aria-disabled="true">{{ __('Selanjutnya ›') }}</span>
-              @endif
             </div>
-          </nav>
-        @endif
-      </div>
 
-    </div>
-  </section>
+            <div class="load-more-wrapper">
+                @if ($murids->hasPages())
+                    <nav aria-label="{{ __('ui.murid.pagination_aria') }}" class="murid-pagination">
+                        <span class="murid-pagination__info">
+                            {{ __('ui.common.page_info', ['current' => $murids->currentPage(), 'last' => $murids->lastPage()]) }}
+                        </span>
 
-  <section class="cta">
-    <div class="container">
-      <div>
-        <h2>{{ __('Ingin jadi bagian dari mereka?') }}</h2>
-        <p>{{ __('Mulai perjalananmu bersama Sanggar Seni Cakra Aji.') }}</p>
-      </div>
+                        <div class="murid-pagination__links">
+                            @if ($murids->onFirstPage())
+                                <span class="load-more load-more--disabled" aria-disabled="true">
+                                    {{ __('ui.common.previous') }}
+                                </span>
+                            @else
+                                <a class="load-more" href="{{ $murids->previousPageUrl() }}" rel="prev">
+                                    {{ __('ui.common.previous') }}
+                                </a>
+                            @endif
 
-      <x-form-link form="registration" class="btn">
-        {{ __('Daftar jadi murid') }}
-      </x-form-link>
-    </div>
-  </section>
+                            @foreach ($murids->getUrlRange(1, $murids->lastPage()) as $page => $url)
+                                @if ($page == $murids->currentPage())
+                                    <span class="load-more load-more--current" aria-current="page">
+                                        {{ $page }}
+                                    </span>
+                                @else
+                                    <a class="load-more" href="{{ $url }}">
+                                        {{ $page }}
+                                    </a>
+                                @endif
+                            @endforeach
+
+                            @if ($murids->hasMorePages())
+                                <a class="load-more" href="{{ $murids->nextPageUrl() }}" rel="next">
+                                    {{ __('ui.common.next') }}
+                                </a>
+                            @else
+                                <span class="load-more load-more--disabled" aria-disabled="true">
+                                    {{ __('ui.common.next') }}
+                                </span>
+                            @endif
+                        </div>
+                    </nav>
+                @endif
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <div>
+                <h2>{{ __('ui.murid.cta_title') }}</h2>
+                <p>{{ __('ui.murid.cta_text') }}</p>
+            </div>
+
+            <x-form-link form="registration" class="btn">
+                {{ __('ui.murid.cta_button') }}
+            </x-form-link>
+        </div>
+    </section>
 @endsection

@@ -7,7 +7,7 @@
     <div class="nav-container">
 
         <a href="{{ url('/') }}" class="logo">
-            <img src="{{ asset('assets/images/logo-navbar.png') }}" alt="Logo Cakra Aji">
+            <img src="{{ asset('assets/images/logo-navbar.png') }}" alt="{{ __('ui.beranda.logo_alt') }}">
         </a>
 
         <div class="mobile-actions">
@@ -24,7 +24,11 @@
                    @if ($locale === 'en') aria-current="true" @endif>ENG</a>
             </div>
 
-            <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">
+            <button class="menu-toggle" id="menuToggle"
+                    aria-label="{{ __('ui.common.menu_open') }}"
+                    data-label-open="{{ __('ui.common.menu_open') }}"
+                    data-label-close="{{ __('ui.common.menu_close') }}"
+                    aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>

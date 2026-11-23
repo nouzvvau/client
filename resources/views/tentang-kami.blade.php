@@ -1,86 +1,82 @@
 @extends('layouts.main')
 
-@section('title', __('Tentang Kami | Sanggar Seni Cakra Aji'))
-@section('description', __('Profil, sejarah, visi, dan misi Sanggar Seni Cakra Aji, ruang pelestarian musik tradisi dan kontemporer di Tulungagung.'))
+@section('title', __('ui.meta.tentang.title'))
+@section('description', __('ui.meta.tentang.description'))
 @section('page', 'tentang')
 @section('activeNav', 'tentang')
 
 @push('styles')
-  <link rel="stylesheet" href="{{ asset('assets/css/tentang-kami.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/tentang-kami.css') }}">
 @endpush
 
-
 @section('content')
-  <div class="main-content" id="tentang">
-        <!-- JUDUL HALAMAN -->
+    <div class="main-content" id="tentang">
 
+        {{-- JUDUL HALAMAN --}}
         <section class="page-heading">
 
             <span class="section-label">
-                {{ __('TENTANG KAMI') }}
+                {{ __('ui.tentang.label') }}
             </span>
 
             <h1>
-                {!! __('Dari satu bunyi,<br>tumbuh satu ruang.') !!}
+                {{ __('ui.tentang.title_1') }}<br>
+                {{ __('ui.tentang.title_2') }}
             </h1>
 
         </section>
 
 
-        <!-- ================= PROFIL & SEJARAH ================= -->
-
+        {{-- PROFIL & SEJARAH --}}
         <section class="profile-card">
 
-            <!-- LOGO SEBELAH KIRI -->
-
+            {{-- LOGO SEBELAH KIRI --}}
             <div class="profile-image">
-
-                <img src="{{ asset('assets/images/logo-footer.png') }}"
-                     alt="{{ __('Logo Cakra Aji') }}">
-
+                <img
+                    src="{{ asset('assets/images/logo-footer.png') }}"
+                    alt="{{ __('ui.tentang.logo_alt') }}"
+                >
             </div>
 
-
-            <!-- TEKS SEBELAH KANAN -->
-
+            {{-- TEKS SEBELAH KANAN --}}
             <div class="profile-content">
 
                 <span class="profile-label">
-                    {{ __('PROFIL & SEJARAH') }}
+                    {{ __('ui.tentang.profile_label') }}
                 </span>
 
                 <h2>
-                    {{ __('Perjalanan Cakra Aji') }}
+                    {{ __('ui.tentang.profile_title') }}
                 </h2>
 
                 <p>
-                    {{ __('Pada tahun 2020, saat saya semester 5 di ISI Surakarta, terlintas sebuah pemikiran dalam diri saya:') }}
+                    {{ __('ui.tentang.p1') }}
                 </p>
 
                 <blockquote>
                     <p>
-                        {{ __('"Kabupaten Tulungagung memiliki potensi kesenian yang sangat kaya serta Sumber Daya Manusia (SDM) yang luar biasa lintas generasi, mulai dari generasi muda hingga para senior. Setiap tahunnya, Tulungagung juga rutin menyelenggarakan berbagai perlombaan, khususnya seni karawitan."') }}
+                        {{ __('ui.tentang.quote') }}
                     </p>
                 </blockquote>
 
                 <p>
-                    {{ __('Namun, di balik besarnya potensi tersebut, timbul sebuah keprihatinan. Banyak penabuh kendang yang berbakat, tetapi ingatan ketukan kendang mereka hanya sebatas per lagu.') }}
+                    {{ __('ui.tentang.p2') }}
                 </p>
 
                 <p>
-                    {{ __('Begitu pula dengan para pesinden yang belum sepenuhnya siap ketika disajikan beragam jenis gendhing secara spontan, karena cenderung harus menghafal terlebih dahulu sebelum membawakannya.') }}
+                    {{ __('ui.tentang.p3') }}
                 </p>
 
                 <p>
-                    {{ __('Setelah dicermati, kendala utamanya terletak pada metode pembelajaran. Saat itu, belum ada sanggar maupun forum kesenian di Tulungagung yang menerapkan metode pembelajaran secara terstruktur dan sistematis. Mulai dari tingkat dasar hingga mahir, yang mencakup praktik, teori, serta pemahaman konsep seni secara menyeluruh.') }}
+                    {{ __('ui.tentang.p4') }}
                 </p>
 
                 <p>
-                    {{ __('Berangkat dari keprihatinan tersebut, saya bersama rekan-rekan berinisiatif mendirikan Sanggar Cakra Aji.') }}
+                    {{ __('ui.tentang.p5') }}
                 </p>
 
                 <p>
-                    {{ __('Tujuan awal kami sederhana namun mendasar yaitu menyediakan forum dan sarana pembelajaran kesenian yang terstruktur serta sistematis, sehingga para peserta dapat menjadi seniman karawitan yang mahir, kompeten, dan memiliki pemahaman mendalam secara teoritis maupun praktis.') }}
+                    {{ __('ui.tentang.p6') }}
                 </p>
 
             </div>
@@ -88,43 +84,41 @@
         </section>
 
 
-        <!-- ================= VISI DAN MISI ================= -->
-
+        {{-- VISI DAN MISI --}}
         <section class="vision-mission">
 
-            <!-- KOTAK VISI -->
-
+            {{-- KOTAK VISI --}}
             <div class="vision-card">
 
-                <h2>{{ __('VISI') }}</h2>
+                <h2>
+                    {{ __('ui.tentang.vision_title') }}
+                </h2>
 
                 <p>
-                    {{ __('Menciptakan ruang edukasi dan pembinaan bakat di bidang kesenian khususnya karawitan, guna membentuk generasi seniman muda masa depan yang kompeten secara teoritis, praktis, dan konseptual, serta mampu mengimplementasikan nilai-nilai esensial karawitan seperti adab, etika, dan tata krama dalam kehidupan sehari-hari.') }}
+                    {{ __('ui.tentang.vision_text') }}
                 </p>
 
             </div>
 
-
-            <!-- KOTAK MISI -->
-
+            {{-- KOTAK MISI --}}
             <div class="mission-card">
 
-                <h2>{{ __('MISI') }}</h2>
+                <h2>
+                    {{ __('ui.tentang.mission_title') }}
+                </h2>
 
                 <ol>
-
                     <li>
-                        {{ __('Melestarikan Budaya: Menanamkan rasa cinta dan kepedulian siswa terhadap seni tradisional Indonesia, khususnya karawitan.') }}
+                        {{ __('ui.tentang.mission_1') }}
                     </li>
 
                     <li>
-                        {{ __('Mengembangkan Bakat & Potensi: Menumbuhkan minat, bakat, serta kecerdasan siswa di bidang seni karawitan.') }}
+                        {{ __('ui.tentang.mission_2') }}
                     </li>
 
                     <li>
-                        {{ __('Membentuk Karakter & Kedisiplinan: Melatih ketepatan waktu, etika, sopan santun, rasa tanggung jawab, dan solidaritas antar sesama.') }}
+                        {{ __('ui.tentang.mission_3') }}
                     </li>
-
                 </ol>
 
             </div>
@@ -132,60 +126,57 @@
         </section>
 
 
-     <!-- =====================================
-         AJAKAN DAFTAR NAMA MURID
-    ====================================== -->
+        {{-- AJAKAN MELIHAT DAFTAR MURID --}}
+        <section class="student-section">
 
-    <section class="student-section">
+            <div class="student-card">
 
-        <div class="student-card">
+                <div class="student-text">
+                    <h2>
+                        {{ __('ui.tentang.student_title') }}
+                    </h2>
 
-            <div class="student-text">
-                <h2>{{ __('Mengenal para penerus seni tradisi') }}</h2>
+                    <p>
+                        {{ __('ui.tentang.student_desc') }}
+                    </p>
+                </div>
 
-                <p>
-                    {{ __('Daftar resmi seluruh murid aktif Sanggar Karawitan Cakra Aji') }}
-                </p>
-            </div>
-
-            <a href="{{ route('murid.index') }}" class="student-button">
-                {{ __('Daftar Nama Murid') }}
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================
-         LOKASI SANGGAR
-    ====================================== -->
-
-    <section class="location-section">
-
-        <div class="location-container">
-
-            <div class="location-text">
-
-                <span class="location-label">
-                    {{ __('LOKASI SANGGAR') }}
-                </span>
-
-                <h2>
-                    {!! __('Ingin datang ke Sanggar Cakra Aji?<br>Yukk.. segera cek lokasinya.') !!}
-                </h2>
-
-                <p>
-                    {!! __('Sanggar Karawitan Cakra Aji hadir di dua lokasi tempat latihan<br>untuk memudahkan Anda mempelajari dan melestarikan seni karawitan.') !!}
-                </p>
+                <a href="{{ route('murid.index') }}" class="student-button">
+                    {{ __('ui.tentang.student_cta') }}
+                </a>
 
             </div>
 
-            <a href="{{ route('lokasi') }}" class="location-button">
-                {{ __('Info alamat sanggar') }}
-            </a>
+        </section>
 
-        </div>
+
+        {{-- LOKASI SANGGAR --}}
+        <section class="location-section">
+
+            <div class="location-container">
+
+                <div class="location-text">
+
+                    <span class="location-label">
+                        {{ __('ui.tentang.location_label') }}
+                    </span>
+
+                    <h2>
+                        {{ __('ui.tentang.location_title_1') }}<br>
+                        {{ __('ui.tentang.location_title_2') }}
+                    </h2>
+
+                    <p>
+                        {{ __('ui.tentang.location_desc') }}
+                    </p>
+
+                </div>
+
+                <a href="{{ route('lokasi') }}" class="location-button">
+                    {{ __('ui.tentang.location_cta') }}
+                </a>
+
+            </div>
 
         </section>
 

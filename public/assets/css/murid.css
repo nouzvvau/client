@@ -60,13 +60,14 @@
 
 /* Panel ilustrasi hero */
 .hero-illustration {
-  min-height: 290px;
-  padding: 44px;
-  background: var(--color-brown);
-  border-radius: 45% 45% 20px 20px;
+  width: min(100%, 290px);
+  aspect-ratio: 1;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-inline: auto;  
+  background: var(--color-brown);
   overflow: hidden;
   position: relative;
 }
@@ -259,6 +260,16 @@
   .class-badge {
     font-size: 10px;
     padding: 10px 15px;
+  }
+}
+
+@media (max-width: 380px) {
+  .student-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .student-card {
+    min-height: 0;
   }
 }
 

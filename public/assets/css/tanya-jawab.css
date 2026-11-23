@@ -418,7 +418,7 @@ SANGGAR CAKRA AJI - HALAMAN TANYA JAWAB
     }
 
     .faq-page .faq-container {
-        width: min(calc(100% - 36px), 680px);
+        width: min(calc(100% - 48px), 680px);
     }
 
     .faq-page .faq-content-grid {
@@ -441,7 +441,7 @@ SANGGAR CAKRA AJI - HALAMAN TANYA JAWAB
     }
 
     .faq-page .faq-container {
-        width: calc(100% - 30px);
+        width: calc(100% - 48px);
     }
 
     .faq-page .faq-intro-labels {

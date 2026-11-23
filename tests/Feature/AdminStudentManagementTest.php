@@ -35,12 +35,12 @@ class AdminStudentManagementTest extends TestCase
     {
         $this->post(route('admin.nama-murid.store'), [
             'nama_murid' => 'Murid Baru',
-            'program_id' => 'Karawitan',
+            'program_id' => 'Karawitan Mahir',
         ])->assertRedirect();
 
         $this->assertDatabaseHas('students', [
             'name' => 'Murid Baru',
-            'class' => 'Karawitan',
+            'class' => 'Karawitan Mahir',
         ]);
 
         $student = Student::query()->where('name', 'Murid Baru')->firstOrFail();
@@ -52,7 +52,7 @@ class AdminStudentManagementTest extends TestCase
         $this->assertDatabaseHas('students', [
             'id' => $student->id,
             'name' => 'Nama Baru',
-            'class' => 'Karawitan',
+            'class' => 'Karawitan Mahir',
         ]);
 
         $this->delete(route('admin.nama-murid.destroy', $student))->assertRedirect();
@@ -82,31 +82,25 @@ class AdminStudentManagementTest extends TestCase
 
         $this->put(route('admin.nama-murid.update', $student), [
             'nama_murid' => 'Murid Kelas',
-            'program_id' => 'Seni Tradisional',
+            'program_id' => 'Karawitan Madya I',
         ])->assertRedirect();
 
         $this->assertDatabaseHas('students', [
             'id' => $student->id,
-            'class' => 'Seni Tradisional',
+            'class' => 'Karawitan Madya I',
         ]);
     }
 
-    public function test_pendaftar_page_redirects_to_student_management(): void
+    public function test_dashboard_renders_real_student_and_program_counts(): void
     {
-        $this->get(route('admin.pendaftar'))
-            ->assertRedirect(route('admin.nama-murid'));
-    }
+        Student::create([
+            'name' => 'Murid Dashboard',
+            'class' => 'Tari',
+        ]);
 
-    public function test_booking_and_gallery_admin_pages_render_empty_state(): void
-    {
-        $this->get(route('admin.booking'))
+        $this->get(route('admin.dashboard'))
             ->assertOk()
-            ->assertSee('Belum ada booking acara.');
-
-        $this->get(route('admin.galeri'))
-            ->assertOk()
-            ->assertSee('Belum ada kegiatan di database.');
-
-        $this->get(route('admin.galeri.create'))->assertOk();
+            ->assertSee('Total Murid')
+            ->assertSee('Program Aktif');
     }
 }

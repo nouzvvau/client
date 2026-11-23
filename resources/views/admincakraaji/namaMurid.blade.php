@@ -1,187 +1,193 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengaturan Daftar Nama Siswa - Panel Admin Sanggar Seni Cakra Aji</title>
-    <!-- Menggunakan Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-[#FEFFC4] min-h-screen font-sans text-zinc-900">
+@extends('layouts.admin')
 
-    <!-- SIDEBAR -->
-    <aside class="w-64 bg-[#3C1808] text-white flex flex-col justify-between fixed inset-y-0 left-0">
+@section('title', 'Daftar Murid')
+@section('admin_eyebrow', 'Daftar Murid')
+@section('admin_title', 'Daftar Murid')
+
+@section('content')
+    <div class="admin-page-head">
         <div>
-            <!-- Logo Sanggar -->
-            <div class="p-6 flex items-center space-x-3 border-b border-[#552713]">
-                <div class="w-12 h-12 flex items-center justify-center shrink-0">
-                    <img src="{{ asset('assets/images/logo-navbar.png') }}"
-                         alt="Logo Sanggar Seni Cakra Aji"
-                         class="w-full h-full object-contain">
-                </div>
-                <div>
-                    <h1 class="text-sm font-bold tracking-wide">Sanggar Seni</h1>
-                    <span class="text-xs text-[#FFBC4C]">Cakra Aji <span class="text-[9px] text-gray-400">Est.2020</span></span>
-                </div>
-            </div>
+            <h2 class="admin-page-head__title">Data murid sanggar</h2>
+            <p class="admin-page-head__desc">
+                Kelola nama murid, kelas, status, dan tanggal bergabung. Data murid
+                dapat ditambahkan langsung atau melalui konversi dari pendaftar.
+            </p>
+        </div>
+    </div>
 
-            <!-- Menu Navigasi -->
-            <div class="px-4 py-4 text-xs font-semibold text-gray-400 uppercase tracking-wider">Panel Admin</div>
-            <nav class="space-y-1 px-3 text-sm">
-                <a href="{{ route('admin.dashboard') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#552713] hover:text-white transition">Dashboard</a>
-                <a href="{{ route('admin.pendaftar') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#552713] hover:text-white transition">Pendaftar Siswa</a>
-                <a href="{{ route('admin.booking') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#552713] hover:text-white transition">Booking Acara</a>
-                <a href="{{ route('admin.nama-murid') }}" class="flex items-center px-3 py-2.5 rounded bg-[#FFBC4C] text-zinc-900 font-medium">Pengaturan Daftar Nama Siswa</a>
-                <a href="{{ route('admin.galeri') }}" class="flex items-center px-3 py-2.5 rounded text-gray-300 hover:bg-[#552713] hover:text-white transition">Galeri & Dokumentasi</a>
-            </nav>
+    <div class="admin-stat-grid">
+        <div class="admin-stat">
+            <span class="admin-stat__label">Total Murid</span>
+            <strong class="admin-stat__value">{{ $stats['total'] }}</strong>
+            <span class="admin-stat__hint">Seluruh data murid</span>
+        </div>
+        <div class="admin-stat admin-stat--olive">
+            <span class="admin-stat__label">Murid Aktif</span>
+            <strong class="admin-stat__value">{{ $stats['active'] }}</strong>
+            <span class="admin-stat__hint">Status aktif</span>
+        </div>
+        <div class="admin-stat admin-stat--red">
+            <span class="admin-stat__label">Nonaktif</span>
+            <strong class="admin-stat__value">{{ $stats['inactive'] }}</strong>
+            <span class="admin-stat__hint">Tidak aktif saat ini</span>
+        </div>
+        <div class="admin-stat admin-stat--brown">
+            <span class="admin-stat__label">Punya Kelas</span>
+            <strong class="admin-stat__value">{{ $stats['with_class'] }}</strong>
+            <span class="admin-stat__hint">Murid dengan kelas terisi</span>
+        </div>
+    </div>
+
+    <section class="admin-card">
+        <div class="admin-card__head">
+            <div>
+                <h3 class="admin-card__title">Tambah murid</h3>
+                <p class="admin-card__desc">Tambahkan murid baru ke daftar sanggar.</p>
+            </div>
         </div>
 
-        <!-- Tombol Bawah Sidebar -->
-        <div class="p-4 border-t border-[#552713] space-y-2 text-sm">
-            <a href="{{ url('/') }}" target="_blank" class="flex items-center space-x-2 text-gray-300 hover:text-white">
-                <span>Lihat website ↗</span>
-            </a>
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="w-full text-left text-red-400 hover:text-red-300">Keluar</button>
-            </form>
-        </div>
-    </aside>
+        <form action="{{ route('admin.nama-murid.store') }}" method="POST" class="admin-form">
+            @csrf
 
-    <!-- KONTEN UTAMA -->
-    <main class="flex-1 p-6 lg:p-12 overflow-y-auto lg:ml-64">
-
-        <!-- Header Halaman -->
-        <div class="mb-8">
-            <span class="text-xs font-bold text-[#C1272D] uppercase tracking-widest">Pengaturan Daftar Nama Siswa</span>
-            <h2 class="text-2xl lg:text-3xl font-extrabold text-zinc-900 mt-1">DAFTAR NAMA SISWA</h2>
-        </div>
-
-        <div class="w-full h-px bg-zinc-300 mb-8"></div>
-
-        <!-- Deskripsi Singkat -->
-        <p class="text-sm text-zinc-700 mb-8 max-w-3xl leading-relaxed">
-            Kelola nama murid yang tampil di halaman <strong>Murid Sanggar</strong> pada website. Tambah murid baru, ubah nama atau kelas, atau hapus murid yang sudah tidak aktif.
-        </p>
-
-        @if (session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-sm mb-8 text-sm">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if ($errors->any())
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-sm mb-8 text-sm">
-                {{ $errors->first() }}
-            </div>
-        @endif
-
-        <!-- Kotak Form Tambah Murid Baru -->
-        <div class="bg-white border-2 border-[#3C1808] p-6 rounded-sm shadow-[6px_6px_0px_0px_#3C1808] mb-8">
-            <h3 class="text-base font-bold text-zinc-900 mb-4">Tambah Murid Baru</h3>
-
-            <form action="{{ route('admin.nama-murid.store') }}" method="POST" class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-end">
-                @csrf
-                <!-- Input Nama Murid -->
-                <div class="lg:col-span-6">
-                    <label class="block text-xs font-bold text-zinc-800 mb-1">Nama murid</label>
-                    <input type="text" name="nama_murid" value="{{ old('nama_murid') }}" placeholder="Contoh: Aulia Eky Ridha Aprilia" required class="w-full bg-[#FEFFC4]/50 px-4 py-2.5 border border-zinc-400 rounded-sm text-sm focus:outline-none focus:border-[#3C1808]">
+            <div class="admin-form-grid">
+                <div class="admin-field">
+                    <label for="nama_murid">Nama murid</label>
+                    <input id="nama_murid" type="text" name="nama_murid" value="{{ old('nama_murid') }}" required class="admin-input">
                 </div>
 
-                <!-- Pilih Kelas / Program -->
-                <div class="lg:col-span-4">
-                    <label class="block text-xs font-bold text-zinc-800 mb-1">Kelas</label>
-                    <select name="program_id" class="w-full bg-[#FEFFC4]/50 px-4 py-2.5 border border-zinc-400 rounded-sm text-sm focus:outline-none focus:border-[#3C1808]">
-                        <option value="">Belum mengikuti program</option>
-                        @foreach ($programs as $program)
-                            <option value="{{ $program->id }}" {{ old('program_id') == $program->id ? 'selected' : '' }}>{{ $program->name }}</option>
+                <div class="admin-field">
+                    <label for="program_id">Kelas / program</label>
+                    <select id="program_id" name="program_id" class="admin-select">
+                        <option value="">Belum ditentukan</option>
+                        @foreach ($classes as $class)
+                            <option value="{{ $class }}" @selected(old('program_id') === $class)>{{ $class }}</option>
                         @endforeach
                     </select>
                 </div>
 
-                <!-- Tombol Submit -->
-                <div class="lg:col-span-2">
-                    <button type="submit" class="w-full bg-[#3C1808] hover:bg-[#552713] text-white text-xs font-bold py-3 px-4 rounded-sm transition shadow-sm">
-                        Tambah Murid
-                    </button>
+                <div class="admin-field">
+                    <label for="status">Status</label>
+                    <select id="status" name="status" class="admin-select">
+                        @foreach ($statuses as $value => $label)
+                            <option value="{{ $value }}" @selected(old('status', \App\Models\Student::STATUS_ACTIVE) === $value)>{{ $label }}</option>
+                        @endforeach
+                    </select>
                 </div>
-            </form>
-        </div>
 
-        <!-- Filter Pencarian -->
-        <form method="GET" action="{{ route('admin.nama-murid') }}" class="grid grid-cols-1 gap-6 mb-8">
-            <div>
-                <label class="block text-xs font-bold text-zinc-800 mb-1">Cari nama murid</label>
-                <div class="flex gap-2">
-                    <input type="text" name="cari" value="{{ request('cari') }}" placeholder="Ketik nama murid" class="w-full max-w-md bg-white px-4 py-2.5 border border-zinc-400 rounded-sm text-sm focus:outline-none focus:border-[#3C1808]">
-                    <button type="submit" class="bg-[#3C1808] hover:bg-[#552713] text-white text-xs font-bold py-2.5 px-6 rounded-sm transition">Cari</button>
+                <div class="admin-field">
+                    <label for="joined_at">Tanggal bergabung</label>
+                    <input id="joined_at" type="date" name="joined_at" value="{{ old('joined_at') }}" class="admin-input">
                 </div>
+            </div>
+
+            <div class="admin-form-actions">
+                <button type="submit" class="admin-btn admin-btn--primary">
+                    <x-admin.icon name="plus" />
+                    Tambah murid
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <section class="admin-card" style="margin-top: 20px;">
+        <form method="GET" action="{{ route('admin.nama-murid') }}" class="admin-filter">
+            <div class="admin-field">
+                <label for="cari">Cari murid</label>
+                <input id="cari" type="search" name="cari" value="{{ request('cari') }}" placeholder="Nama murid" class="admin-input">
+            </div>
+
+            <div class="admin-field">
+                <label for="kelas">Kelas</label>
+                <select id="kelas" name="kelas" class="admin-select">
+                    <option value="">Semua kelas</option>
+                    @foreach ($classes as $class)
+                        <option value="{{ $class }}" @selected(request('kelas') === $class)>{{ $class }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="admin-field">
+                <label for="status-filter">Status</label>
+                <select id="status-filter" name="status" class="admin-select">
+                    <option value="">Semua status</option>
+                    @foreach ($statuses as $value => $label)
+                        <option value="{{ $value }}" @selected(request('status') === $value)>{{ $label }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="admin-filter__actions">
+                <button type="submit" class="admin-btn admin-btn--primary">
+                    <x-admin.icon name="search" />
+                    Cari
+                </button>
+                @if (request()->filled('cari') || request()->filled('kelas') || request()->filled('status'))
+                    <a href="{{ route('admin.nama-murid') }}" class="admin-btn">Reset</a>
+                @endif
             </div>
         </form>
 
-        <!-- Daftar List Murid (Card Style) -->
-        <div class="space-y-4">
-            @forelse ($murids as $murid)
-                <div class="bg-white border-2 border-[#3C1808] p-4 rounded-sm shadow-[4px_4px_0px_0px_#3C1808] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 bg-[#FFBC4C] border border-[#3C1808] rounded-full flex items-center justify-center font-bold text-zinc-900 shrink-0">
-                            {{ strtoupper(mb_substr($murid->full_name, 0, 1)) }}
-                        </div>
-                        <div>
-                            <div class="font-bold text-zinc-900">{{ $murid->full_name }}</div>
-                            <div class="text-xs text-zinc-500">
-                                @forelse ($murid->programs as $program)
-                                    {{ $program->name }}{{ ! $loop->last ? ' · ' : '' }}
-                                @empty
-                                    Belum mengikuti program
-                                @endforelse
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
-                        <!-- Ubah Nama -->
-                        <form action="{{ route('admin.nama-murid.update', $murid) }}" method="POST" class="flex items-center gap-2">
-                            @csrf
-                            @method('PUT')
-                            <input type="text" name="nama_murid" value="{{ $murid->full_name }}" class="bg-white border border-zinc-400 rounded-sm text-xs px-2 py-1.5 w-40 sm:w-48 focus:outline-none focus:border-[#3C1808]">
-                            <button type="submit" class="border border-[#3C1808] bg-[#FFBC4C] hover:bg-[#FFBC4C] text-zinc-900 text-xs font-bold py-1.5 px-4 rounded-sm transition whitespace-nowrap">
-                                Ubah
-                            </button>
-                        </form>
-                        <!-- Hapus -->
-                        <form action="{{ route('admin.nama-murid.destroy', $murid) }}" method="POST" onsubmit="return confirm('Hapus murid {{ $murid->full_name }}?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="border border-[#C1272D] bg-white hover:bg-red-50 text-[#C1272D] text-xs font-bold py-1.5 px-4 rounded-sm transition">
-                                Hapus
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            @empty
-                <div class="bg-white border-2 border-[#3C1808] p-12 rounded-sm shadow-[4px_4px_0px_0px_#3C1808] text-center">
-                    <div class="text-zinc-500 font-semibold">
-                        @if (request('cari'))
-                            Murid "{{ request('cari') }}" tidak ditemukan.
-                        @else
-                            Belum ada murid terdaftar.
-                        @endif
-                    </div>
-                    <p class="text-xs text-zinc-400 mt-2">
-                        Tambahkan murid lewat formulir "Tambah Murid Baru" di atas.
-                    </p>
-                </div>
-            @endforelse
-        </div>
+        @if ($murids->isNotEmpty())
+            <div class="admin-table-wrap" style="margin-top: 18px;">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Kelas</th>
+                            <th>Status</th>
+                            <th>Tanggal Bergabung</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($murids as $murid)
+                            <tr>
+                                <td class="admin-table__primary">{{ $murid->name }}</td>
+                                <td>{{ $murid->class ?: '—' }}</td>
+                                <td>
+                                    <span class="admin-badge admin-badge--{{ $murid->statusBadgeClass() }}">
+                                        {{ $murid->statusLabel() }}
+                                    </span>
+                                </td>
+                                <td class="admin-table__nowrap">{{ $murid->joined_at?->format('d/m/Y') ?? '—' }}</td>
+                                <td>
+                                    <div class="admin-table__actions">
+                                        <a href="{{ route('admin.nama-murid.edit', $murid) }}" class="admin-btn admin-btn--sm">
+                                            <x-admin.icon name="pencil" />
+                                            Ubah
+                                        </a>
+                                        <form action="{{ route('admin.nama-murid.destroy', $murid) }}" method="POST" data-confirm="Hapus murid {{ $murid->name }}?">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="admin-btn admin-btn--danger admin-btn--sm">
+                                                <x-admin.icon name="trash" />
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
-        <!-- Paginasi -->
-        @if ($murids->hasPages())
-            <div class="mt-8">
-                {{ $murids->links() }}
+            <x-admin.pagination :paginator="$murids" />
+        @else
+            <div class="admin-empty">
+                <span class="admin-empty__title">
+                    @if (request()->filled('cari') || request()->filled('kelas') || request()->filled('status'))
+                        Murid tidak ditemukan
+                    @else
+                        Belum ada data murid
+                    @endif
+                </span>
+                @if (request()->filled('cari') || request()->filled('kelas') || request()->filled('status'))
+                    Coba ubah kata kunci atau filter pencarian.
+                @else
+                    Tambahkan murid pertama melalui formulir di atas.
+                @endif
             </div>
         @endif
-
-    </main>
-
-</body>
-</html>
+    </section>
+@endsection

@@ -2,20 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
+use App\Models\Program;
 use Illuminate\View\View;
 
 class ProgramPageController extends Controller
 {
     public function index(): View
     {
-        return view('program', [
-            'activities' => collect(),
-        ]);
+        $programs = Program::query()
+            ->active()
+            ->orderBy('name')
+            ->get();
+
+        return view('program', compact('programs'));
     }
 
-    public function detail(string $slug): RedirectResponse
+    public function detail(string $slug): View
     {
-        return redirect()->route('program');
+        $program = Program::query()
+            ->active()
+            ->get()
+            ->first(fn (Program $program): bool => $program->slug === $slug);
+
+        abort_if($program === null, 404);
+
+        $others = Program::query()
+            ->active()
+            ->whereKeyNot($program->getKey())
+            ->orderBy('name')
+            ->get();
+
+        return view('detail-kegiatan', compact('program', 'others'));
     }
 }

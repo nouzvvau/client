@@ -1,118 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masuk Admin - Sanggar Seni Cakra Aji</title>
-    <!-- Menggunakan Tailwind CSS CDN untuk kemudahan styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Masuk Admin — Sanggar Seni Cakra Aji</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
 </head>
-<body class="bg-[#3C1808] min-h-screen flex items-center justify-center relative overflow-hidden font-sans text-white">
-
-    <!-- Efek Lingkaran/Aksen Abstrak di Background -->
-    <div class="absolute -top-16 -right-16 w-64 h-64 bg-[#FFBC4C] rounded-full opacity-35 blur-2xl"></div>
-    <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-[#FFBC4C] rounded-full opacity-30 blur-2xl"></div>
-    <div class="absolute bottom-10 left-12 w-28 h-28 bg-[#FFBC4C] rounded-full"></div>
-
-    <div class="container mx-auto px-6 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
-
-        <!-- Kolom Kiri: Informasi Sanggar -->
-        <div class="space-y-6">
-            <!-- Logo / Ilustrasi Sanggar -->
-            <div class="flex items-center space-x-4">
-                <div class="w-16 h-16 flex items-center justify-center">
-                    <img src="{{ asset('assets/images/logo-navbar.png') }}"
-                         alt="Logo Sanggar Seni Cakra Aji"
-                         class="w-full h-full object-contain">
-                </div>
+<body class="admin-login-body">
+    <main class="admin-login">
+        <section class="admin-login__intro">
+            <div class="admin-login__brand">
+                <img src="{{ asset('assets/images/logo-navbar.png') }}" alt="Logo Sanggar Seni Cakra Aji">
                 <div>
-                    <h2 class="text-xs uppercase tracking-widest text-[#FFBC4C]">Sanggar seni</h2>
-                    <h1 class="text-2xl font-bold tracking-wide">Cakra Aji</h1>
-                    <span class="text-xs text-gray-300">Est 2020</span>
+                    <strong>Sanggar Seni</strong>
+                    <span>Cakra Aji</span>
+                    <small>Est. 2020</small>
                 </div>
             </div>
 
-            <!-- Teks Deskripsi -->
-            <div class="space-y-3">
-                <h2 class="text-3xl lg:text-4xl font-bold leading-snug">
-                    Ruang kelola<br>website sanggar.
-                </h2>
-                <p class="text-sm text-gray-300 max-w-md leading-relaxed">
-                    Ubah isi halaman, tambah dokumentasi acara, dan baca booking yang masuk, semua dari satu tempat.
-                </p>
-            </div>
-        </div>
+            <h1 class="admin-login__heading">Ruang kelola<br>website sanggar.</h1>
 
-        <!-- Kolom Kanan: Kotak Form Login -->
-        <div class="flex justify-center lg:justify-end">
-            <!-- Efek bayangan kotak kuning di belakang form -->
-            <div class="relative w-full max-w-md">
-                <div class="absolute inset-0 bg-[#FFBC4C] translate-x-3 translate-y-3 rounded-sm"></div>
+            <p class="admin-login__lead">
+                Kelola pendaftar siswa, booking acara, dokumentasi kegiatan, program, dan
+                pengaturan WhatsApp dari satu panel admin.
+            </p>
+        </section>
 
-                <!-- Kotak Form Utama -->
-                <div class="relative bg-[#FEFFC4] text-zinc-900 p-8 rounded-sm shadow-xl space-y-6">
+        <section class="admin-login__panel">
+            <div class="admin-login__card">
+                <div class="admin-login__card-head">
+                    <span>Masuk Admin</span>
+                    <h2>Selamat datang kembali</h2>
+                </div>
 
-                    <div>
-                        <span class="text-[10px] font-bold tracking-widest text-[#552713] uppercase">Masuk Admin</span>
-                        <h2 class="text-2xl font-bold text-zinc-900 mt-1">Selamat datang kembali</h2>
+                @if ($errors->any())
+                    <div class="admin-alert admin-alert--error" role="alert">
+                        <x-admin.icon name="x" />
+                        <div>
+                            <strong>Login gagal.</strong>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                @endif
+
+                @if (session('success'))
+                    <div class="admin-alert admin-alert--success" role="status">
+                        <x-admin.icon name="check" />
+                        <span>{{ session('success') }}</span>
+                    </div>
+                @endif
+
+                <form action="{{ route('login.proses') }}" method="POST" class="admin-login__form">
+                    @csrf
+
+                    <div class="admin-field">
+                        <label for="email">Email admin</label>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            placeholder="admin@email.com"
+                            autocomplete="username"
+                            required
+                            autofocus
+                            class="admin-input"
+                        >
                     </div>
 
-                    <!-- Menampilkan Error Jika Login Gagal -->
-                    @if($errors->any())
-                        <div class="bg-red-100 border border-red-400 text-red-700 px-3 py-2 rounded text-xs">
-                            {{ $errors->first() }}
-                        </div>
-                    @endif
+                    <div class="admin-field">
+                        <label for="password">Kata sandi</label>
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            placeholder="Kata sandi"
+                            autocomplete="current-password"
+                            required
+                            class="admin-input"
+                        >
+                    </div>
 
-                    <!-- Menampilkan Pesan Sukses (misalnya setelah logout) -->
-                    @if(session('success'))
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-3 py-2 rounded text-xs">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                    <div class="admin-login__row">
+                        <label>
+                            <input type="checkbox" name="remember" value="1">
+                            <span>Ingat saya</span>
+                        </label>
+                    </div>
 
-                    <form action="{{ route('login.proses') }}" method="POST" class="space-y-4">
-                        @csrf
-                        <!-- Input Email -->
-                        <div>
-                            <label class="block text-xs font-semibold text-zinc-700 mb-1">Email admin</label>
-                            <input type="email" name="email" value="{{ old('email') }}" placeholder="admin@email.com" required class="w-full px-3 py-2 border border-zinc-300 rounded-sm text-sm focus:outline-none focus:border-[#552713] bg-white">
-                        </div>
+                    <button type="submit" class="admin-btn admin-btn--primary admin-btn--block">
+                        Masuk ke panel
+                    </button>
+                </form>
 
-                        <!-- Input Password -->
-                        <div>
-                            <label class="block text-xs font-semibold text-zinc-700 mb-1">Kata sandi</label>
-                            <input type="password" name="password" placeholder="Kata sandi" required class="w-full px-3 py-2 border border-zinc-300 rounded-sm text-sm focus:outline-none focus:border-[#552713] bg-white">
-                        </div>
-
-                        <!-- Checkbox & Link Lupa Sandi -->
-                        <div class="flex items-center justify-between text-xs">
-                            <label class="flex items-center space-x-2 cursor-pointer">
-                                <input type="checkbox" name="remember" class="rounded border-zinc-300 text-[#3C1808] focus:ring-0">
-                                <span class="text-zinc-700">Ingat saya</span>
-                            </label>
-                            <a href="#" class="text-zinc-700 hover:underline">Lupa kata sandi?</a>
-                        </div>
-
-                        <!-- Tombol Submit -->
-                        <button type="submit" class="w-full py-2.5 bg-[#3C1808] text-white rounded-sm text-sm font-medium hover:bg-[#552713] transition">
-                            Masuk ke panel
-                        </button>
-
-                        <!-- Kembali ke Website -->
-                        <div class="text-center pt-2">
-                            <a href="{{ url('/') }}" class="text-xs text-zinc-700 hover:underline inline-flex items-center space-x-1">
-                                <span>←</span>
-                                <span>Kembali ke website</span>
-                            </a>
-                        </div>
-                    </form>
-
-                </div>
+                <a href="{{ url('/') }}" class="admin-login__back">← Kembali ke website</a>
             </div>
-        </div>
-
-    </div>
-
+        </section>
+    </main>
 </body>
 </html>

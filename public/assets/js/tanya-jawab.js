@@ -8,36 +8,28 @@
 
     if (!chatMessages || !chatForm || !chatInput) return;
 
-    const answers = [
-        {
-            keywords: ["daftar", "pendaftaran", "murid", "siswa", "gabung"],
-            answer: "Untuk mendaftar sebagai murid, tekan tombol Daftar Murid pada navbar atau halaman Pendaftaran. Kamu akan diarahkan ke formulir pendaftaran resmi, lalu admin akan menghubungi melalui WhatsApp."
-        },
-        {
-            keywords: ["booking", "acara", "tampil", "undang", "pertunjukan"],
-            answer: "Untuk booking acara, tekan tombol Booking Acara pada navbar atau halaman Booking Acara. Isi formulir resmi yang tersedia, lalu tim Sanggar Cakra Aji akan menghubungi kamu untuk konfirmasi."
-        },
-        {
-            keywords: ["jadwal", "latihan"],
-            answer: "Informasi jadwal latihan tersedia di halaman Program & Kegiatan. Silakan periksa jadwal sesuai kelompok yang ingin diikuti."
-        },
-        {
-            keywords: ["biaya", "harga", "bayar", "tarif", "iuran"],
-            answer: "Informasi biaya belum tersedia di sistem ini. Silakan hubungi admin melalui halaman Kontak untuk mendapatkan informasi resmi."
-        },
-        {
-            keywords: ["lokasi", "alamat", "tempat", "sanggar"],
-            answer: "Untuk mengetahui lokasi Sanggar Cakra Aji, silakan kunjungi halaman Lokasi pada website."
-        },
-        {
-            keywords: ["umur", "usia", "persyaratan", "anak", "dewasa"],
-            answer: "Persyaratan usia dan peserta dapat berbeda pada setiap program. Silakan hubungi admin melalui halaman Kontak untuk informasi lebih lanjut."
-        },
-        {
-            keywords: ["kontak", "hubungi", "admin", "whatsapp", "nomor"],
-            answer: "Untuk menghubungi admin, silakan buka halaman Kontak yang tersedia pada website."
+    const defaultFallback = "Maaf, pertanyaan tersebut belum tersedia dalam informasi FAQ. Silakan hubungi admin melalui halaman Kontak untuk mendapatkan jawaban yang lebih tepat.";
+
+    function readChatData() {
+        const dataElement = document.getElementById("faq-chat-data");
+
+        if (!dataElement) return { answers: [], fallback: defaultFallback };
+
+        try {
+            const data = JSON.parse(dataElement.textContent);
+
+            return {
+                answers: Array.isArray(data.answers) ? data.answers : [],
+                fallback: typeof data.fallback === "string" && data.fallback !== ""
+                    ? data.fallback
+                    : defaultFallback
+            };
+        } catch (error) {
+            return { answers: [], fallback: defaultFallback };
         }
-    ];
+    }
+
+    const chatData = readChatData();
 
     function addMessage(text, type) {
         const row = document.createElement("div");
@@ -56,13 +48,14 @@
     function getAnswer(question) {
         const normalized = question.toLowerCase();
 
-        const match = answers.find(item =>
-            item.keywords.some(keyword => normalized.includes(keyword))
+        const match = chatData.answers.find(item =>
+            Array.isArray(item.keywords)
+            && item.keywords.some(keyword => normalized.includes(String(keyword).toLowerCase()))
         );
 
-        return match
+        return match && typeof match.answer === "string"
             ? match.answer
-            : "Maaf, pertanyaan tersebut belum tersedia dalam informasi FAQ. Silakan hubungi admin melalui halaman Kontak untuk mendapatkan jawaban yang lebih tepat.";
+            : chatData.fallback;
     }
 
     function sendQuestion(question) {

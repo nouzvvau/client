@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Program;
 use App\Models\Student;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
@@ -15,10 +16,10 @@ class PublicPagesTest extends TestCase
     {
         $this->assertFalse(Schema::hasTable('activities'));
         $this->assertFalse(Schema::hasTable('bookings'));
-        $this->assertFalse(Schema::hasTable('programs'));
         $this->assertFalse(Schema::hasTable('locations'));
         $this->assertFalse(Schema::hasTable('staff'));
         $this->assertFalse(Schema::hasTable('pendaftaran_murids'));
+        $this->assertTrue(Schema::hasTable('programs'));
 
         $this->get('/')->assertOk();
         $this->get(route('program'))->assertOk()->assertSee('Ruang Edukasi');
@@ -33,28 +34,39 @@ class PublicPagesTest extends TestCase
         $this->get('/tentang-kami')->assertOk();
     }
 
-    public function test_program_detail_redirects_to_program_page(): void
+    public function test_program_page_uses_database_programs_when_available(): void
     {
-        $this->get(route('program.detail', ['slug' => 'kegiatan-lama']))
-            ->assertRedirect(route('program'));
+        Program::create([
+            'name' => 'Kreteg',
+            'schedule' => 'Minggu',
+            'description' => 'Program kidung dan olah vokal untuk anak.',
+            'is_active' => true,
+        ]);
+
+        $this->get(route('program'))
+            ->assertOk()
+            ->assertSee('Kreteg')
+            ->assertSee('Program kidung dan olah vokal untuk anak.');
     }
 
-    public function test_booking_submission_is_validated_but_not_persisted(): void
+    public function test_booking_and_registration_post_routes_are_not_available(): void
     {
-        $response = $this->from(route('booking'))->post(route('booking.store'), [
+        $this->post('/booking', [
             'name' => 'Budi Pemesan',
             'phone' => '081234567890',
             'service_type' => 'Pentas Seni',
             'event_name' => 'Pentas Sekolah',
             'event_date' => '2026-12-11',
             'event_location' => 'Tulungagung',
-        ]);
+        ])->assertStatus(405);
 
-        $response
-            ->assertRedirect(route('booking'))
-            ->assertSessionHasErrors('booking');
+        $this->post('/pendaftaran', [
+            'nama_murid' => 'Rina Putri',
+        ])->assertStatus(405);
 
         $this->assertFalse(Schema::hasTable('bookings'));
+        $this->assertFalse(Schema::hasTable('pendaftaran_murids'));
+        $this->assertDatabaseCount('students', 0);
     }
 
     public function test_murid_page_paginates_public_students(): void

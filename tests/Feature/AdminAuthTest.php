@@ -14,9 +14,7 @@ class AdminAuthTest extends TestCase
     {
         $this->get(route('admin.dashboard'))->assertRedirect(route('login'));
         $this->get(route('admin.nama-murid'))->assertRedirect(route('login'));
-        $this->get(route('admin.booking'))->assertRedirect(route('login'));
-        $this->get(route('admin.galeri'))->assertRedirect(route('login'));
-        $this->get(route('admin.galeri.create'))->assertRedirect(route('login'));
+        $this->get(route('admin.program.index'))->assertRedirect(route('login'));
     }
 
     public function test_login_page_is_accessible(): void
@@ -63,9 +61,7 @@ class AdminAuthTest extends TestCase
 
         $this->get(route('admin.dashboard'))->assertOk();
         $this->get(route('admin.nama-murid'))->assertOk();
-        $this->get(route('admin.booking'))->assertOk();
-        $this->get(route('admin.galeri'))->assertOk();
-        $this->get(route('admin.galeri.create'))->assertOk();
+        $this->get(route('admin.program.index'))->assertOk();
     }
 
     public function test_authenticated_admin_can_logout(): void

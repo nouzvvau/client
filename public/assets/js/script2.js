@@ -10,10 +10,13 @@
 
     if (!menuToggle || !navMenu) return;
 
+    const labelOpen = menuToggle.dataset.labelOpen || "Buka menu";
+    const labelClose = menuToggle.dataset.labelClose || "Tutup menu";
+
     const setMenuOpen = (isOpen) => {
         navMenu.classList.toggle("show", isOpen);
         menuToggle.setAttribute("aria-expanded", String(isOpen));
-        menuToggle.setAttribute("aria-label", isOpen ? "Tutup menu" : "Buka menu");
+        menuToggle.setAttribute("aria-label", isOpen ? labelClose : labelOpen);
     };
 
     menuToggle.addEventListener("click", () => {

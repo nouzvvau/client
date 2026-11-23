@@ -12,35 +12,39 @@ class PengurusController extends Controller
     }
 
     /**
-     * @return array{pengurus: array<int, array{nama: string, jabatan: string, inisial: string, warna: string, foto: null}>, asisten: array<int, array{nama: string, inisial: string, warna: string, foto: null}>}
+     * @return array{pengurus: array<int, array{nama: string, jabatan: string, tipe: string, inisial: string, warna: string, foto: null}>, asisten: array<int, array{nama: string, inisial: string, warna: string, foto: null}>}
      */
     private function staticTeam(): array
     {
         $pengurus = [
             [
                 'nama' => 'Yuli Wildan Santoso, S.Sn.',
-                'jabatan' => 'Pelatih',
+                'jabatan' => __('ui.pengurus.role_coach'),
+                'tipe' => 'coach',
                 'inisial' => 'YW',
                 'warna' => 'hijau',
                 'foto' => null,
             ],
             [
                 'nama' => 'Anwar Fajar Sidiq, S.Sn.',
-                'jabatan' => 'Pelatih',
+                'jabatan' => __('ui.pengurus.role_coach'),
+                'tipe' => 'coach',
                 'inisial' => 'AF',
                 'warna' => 'kuning',
                 'foto' => null,
             ],
             [
                 'nama' => 'Imas Ayu Kharisma Putri',
-                'jabatan' => 'Pelatih',
+                'jabatan' => __('ui.pengurus.role_coach'),
+                'tipe' => 'coach',
                 'inisial' => 'IA',
                 'warna' => 'krem',
                 'foto' => null,
             ],
             [
                 'nama' => 'Mayla Nazwa Putri Aisyah',
-                'jabatan' => 'Admin & Sosmed Spesialis',
+                'jabatan' => __('ui.pengurus.role_admin'),
+                'tipe' => 'admin',
                 'inisial' => 'MN',
                 'warna' => 'merah',
                 'foto' => null,

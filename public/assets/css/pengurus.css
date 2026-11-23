@@ -10,7 +10,7 @@
             background: var(--color-cream);
             color: var(--color-brown);
             font-family: var(--font-body);
-            overflow-x: hidden;
+            overflow-x: clip;
         }
 
         /* HERO / PENGURUS */
@@ -236,11 +236,11 @@
             }
 
             .about-section {
-                padding: 35px 6%;
+                padding: 35px 32px;
             }
 
             .assistant-section {
-                padding: 40px 6% 75px;
+                padding: 40px 32px 75px;
             }
 
             .team-photo,
@@ -253,7 +253,7 @@
 
         @media (max-width: 600px) {
             .about-section {
-                padding: 30px 20px 40px;
+                padding: 30px 24px 40px;
             }
 
             .main-title {
@@ -299,7 +299,7 @@
             }
 
             .assistant-section {
-                padding: 35px 20px 65px;
+                padding: 35px 24px 65px;
             }
 
             .assistant-title {
@@ -308,7 +308,7 @@
             }
 
             .cta-section {
-                padding: 25px 20px 30px;
+                padding: 25px 24px 30px;
             }
 
             .cta-box {

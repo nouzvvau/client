@@ -1,0 +1,363 @@
+/* =========================================
+   KRITIK & SARAN — SANGGAR SENI CAKRA AJI
+   Diselaraskan dengan halaman Pendaftaran
+   & Booking (tanpa reset global)
+========================================= */
+
+.feedback-page {
+    box-sizing: border-box;
+    min-height: 60vh;
+    padding: 55px 0 75px;
+    background: var(--color-cream);
+    color: var(--color-brown);
+    font-family: var(--font-body);
+    font-size: 13px;
+}
+
+.feedback-page *,
+.feedback-page *::before,
+.feedback-page *::after {
+    box-sizing: border-box;
+}
+
+/* =========================================
+   HEADING
+========================================= */
+
+.feedback-heading {
+    max-width: 720px;
+    margin-bottom: 35px;
+}
+
+.feedback-eyebrow {
+    color: var(--color-olive);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.feedback-heading h1 {
+    margin: 15px 0;
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 50px);
+    line-height: 1.2;
+}
+
+.feedback-lead {
+    max-width: 650px;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* =========================================
+   CONTENT GRID
+========================================= */
+
+.feedback-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(250px, 0.8fr);
+    gap: 30px;
+    align-items: start;
+}
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.feedback-card {
+    min-width: 0;
+    padding: 30px;
+    background: var(--color-white);
+    border: 1px solid var(--color-brown);
+    box-shadow: 5px 5px 0 var(--color-gold);
+}
+
+.feedback-section-title {
+    margin: 0 0 25px;
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* =========================================
+   ALERT
+========================================= */
+
+.feedback-alert {
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    border: 1px solid var(--color-brown);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.feedback-alert ul {
+    margin: 8px 0 0;
+    padding-left: 20px;
+}
+
+.feedback-alert li {
+    margin-bottom: 4px;
+}
+
+.feedback-alert--success {
+    background: rgba(145, 160, 82, 0.35);
+}
+
+.feedback-alert--error {
+    background: rgba(193, 39, 45, 0.22);
+}
+
+/* =========================================
+   FIELDS
+========================================= */
+
+.feedback-field {
+    margin-bottom: 22px;
+}
+
+.feedback-field label {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--color-brown);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.feedback-field label b {
+    color: var(--color-red);
+}
+
+.feedback-field label span {
+    display: block;
+    margin-top: 3px;
+    color: rgba(60, 24, 8, 0.6);
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.feedback-field input,
+.feedback-field select,
+.feedback-field textarea {
+    display: block;
+    width: 100%;
+    min-height: 45px;
+    padding: 12px 14px;
+    border: 1px solid rgba(60, 24, 8, 0.5);
+    border-radius: 0;
+    outline: none;
+    background: var(--color-white);
+    color: var(--color-brown);
+    font-family: var(--font-body);
+    font-size: 12px;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.feedback-field input::placeholder,
+.feedback-field textarea::placeholder {
+    color: rgba(60, 24, 8, 0.45);
+    opacity: 1;
+}
+
+.feedback-field select {
+    cursor: pointer;
+}
+
+.feedback-field textarea {
+    min-height: 150px;
+    resize: vertical;
+    line-height: 1.7;
+}
+
+.feedback-field input:focus,
+.feedback-field select:focus,
+.feedback-field textarea:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 2px rgba(255, 188, 76, 0.3);
+}
+
+.feedback-error {
+    display: block;
+    margin-top: 6px;
+    color: var(--color-red);
+    font-size: 10px;
+    font-weight: 600;
+}
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+.feedback-submit {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(60, 24, 8, 0.2);
+}
+
+.feedback-page .submit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    min-height: 48px;
+    padding: 14px 25px;
+    border: 1px solid var(--color-brown);
+    border-radius: 30px;
+    background: var(--color-brown);
+    color: var(--color-cream);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.feedback-page .submit-btn:hover {
+    background: var(--color-gold);
+    color: var(--color-brown);
+    transform: translateY(-2px);
+}
+
+.feedback-page .submit-btn:focus-visible {
+    outline: 3px solid var(--color-gold);
+    outline-offset: 4px;
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.feedback-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feedback-side-card {
+    padding: 23px;
+    border: 1px solid var(--color-brown);
+    background: var(--color-white);
+}
+
+.feedback-side-card--dark {
+    background: var(--color-brown);
+    color: var(--color-cream);
+    box-shadow: 4px 4px 0 var(--color-gold);
+}
+
+.feedback-side-card--light {
+    background: rgba(255, 255, 255, 0.65);
+}
+
+.feedback-side-card h2 {
+    margin: 0 0 18px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.feedback-side-card--dark h2 {
+    color: var(--color-gold);
+}
+
+.feedback-side-card p {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.feedback-side-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 14px !important;
+}
+
+.feedback-side-links a {
+    width: fit-content;
+    color: var(--color-brown);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.feedback-side-card--dark .feedback-side-links a {
+    color: var(--color-gold);
+}
+
+.feedback-side-links a:hover {
+    color: var(--color-red);
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+    .feedback-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .feedback-sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .feedback-side-card--light {
+        grid-column: 1 / -1;
+    }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+    .feedback-page {
+        padding: 35px 0 50px;
+    }
+
+    .feedback-heading h1 {
+        font-size: 32px;
+    }
+
+    .feedback-lead {
+        font-size: 12px;
+    }
+
+    .feedback-card {
+        padding: 20px 16px;
+    }
+
+    .feedback-section-title {
+        font-size: 17px;
+    }
+
+    .feedback-field {
+        margin-bottom: 20px;
+    }
+
+    .feedback-sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .feedback-side-card--light {
+        grid-column: auto;
+    }
+
+    .feedback-page .submit-btn {
+        width: 100%;
+    }
+
+    .feedback-side-card {
+        padding: 20px;
+    }
+}

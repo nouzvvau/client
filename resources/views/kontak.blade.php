@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
-@section('title', 'Kontak | Sanggar Seni Cakra Aji')
-@section('description', 'Hubungi Sanggar Seni Cakra Aji: contact person, alamat sanggar, jadwal latihan, dan cara mendaftar atau booking acara.')
+@section('title', __('ui.meta.kontak.title'))
+@section('description', __('ui.meta.kontak.description'))
 @section('page', 'kontak')
 @section('activeNav', 'kontak')
 
@@ -16,24 +16,22 @@
 
         {{-- HERO --}}
         <section class="contact-hero">
-            <p class="contact-eyebrow">Kontak</p>
+            <p class="contact-eyebrow">{{ __('ui.kontak.hero_eyebrow') }}</p>
 
             <h1 class="contact-hero-title">
-                Mari bicara,<br>
-                mari bermain bunyi.
+                {{ __('ui.kontak.hero_title_1') }}<br>
+                {{ __('ui.kontak.hero_title_2') }}
             </h1>
 
             <p class="contact-hero-lead">
-                Ada pertanyaan tentang pendaftaran, jadwal latihan, atau ingin
-                mengundang Sanggar Cakra Aji ke acaramu? Hubungi kami melalui
-                kanal yang tersedia di halaman ini.
+                {{ __('ui.kontak.hero_lead') }}
             </p>
         </section>
 
         {{-- CONTACT PERSON --}}
         <section class="contact-persons" aria-labelledby="contact-persons-title">
             <h2 class="contact-section-title" id="contact-persons-title">
-                Contact person
+                {{ __('ui.kontak.contact_person_title') }}
             </h2>
 
             <div class="contact-person-grid">
@@ -73,12 +71,10 @@
                         </div>
 
                         <div class="contact-person-info">
-                            <h3 class="contact-person-name">Pengurus Sanggar</h3>
-                            <span class="contact-person-role">Admin</span>
+                            <h3 class="contact-person-name">{{ __('ui.kontak.fallback_name') }}</h3>
+                            <span class="contact-person-role">{{ __('ui.kontak.fallback_role') }}</span>
                             <p class="contact-person-desc">
-                                Informasi contact person akan ditambahkan setelah
-                                data tersedia. Sementara ini silakan datang langsung
-                                ke sanggar pada jadwal latihan.
+                                {{ __('ui.kontak.fallback_desc') }}
                             </p>
                         </div>
                     </article>
@@ -90,50 +86,46 @@
     {{-- SECTION GOLD --}}
     <section class="contact-actions" aria-labelledby="contact-actions-title">
         <div class="contact-container">
-            <h2 class="sr-only" id="contact-actions-title">Informasi kontak dan arahan layanan</h2>
+            <h2 class="sr-only" id="contact-actions-title">{{ __('ui.kontak.actions_sr_title') }}</h2>
 
             <div class="contact-actions-grid">
 
                 <div class="contact-actions-intro">
-                    <h3 class="contact-actions-heading">Mau melakukan apa?</h3>
+                    <h3 class="contact-actions-heading">{{ __('ui.kontak.actions_heading') }}</h3>
                     <p class="contact-actions-text">
-                        Pilih kebutuhanmu di bawah ini. Setiap layanan punya
-                        halaman tersendiri dengan formulir dan informasi lengkap.
+                        {{ __('ui.kontak.actions_text') }}
                     </p>
 
                     <x-form-link form="registration" class="contact-action-card">
-                        <span class="contact-action-label">Untuk calon murid</span>
-                        <span class="contact-action-title">Daftar jadi murid baru</span>
+                        <span class="contact-action-label">{{ __('ui.kontak.registration_label') }}</span>
+                        <span class="contact-action-title">{{ __('ui.kontak.registration_title') }}</span>
                         <span class="contact-action-desc">
-                            Isi formulir pendaftaran murid Sanggar Cakra Aji.
-                            Admin akan menghubungi kamu untuk langkah berikutnya.
+                            {{ __('ui.kontak.registration_desc') }}
                         </span>
-                        <span class="contact-action-link">Buka halaman pendaftaran</span>
+                        <span class="contact-action-link">{{ __('ui.kontak.registration_link') }}</span>
                     </x-form-link>
 
                     <x-form-link form="booking" class="contact-action-card">
-                        <span class="contact-action-label">Untuk penyelenggara acara</span>
-                        <span class="contact-action-title">Booking acara</span>
+                        <span class="contact-action-label">{{ __('ui.kontak.booking_label') }}</span>
+                        <span class="contact-action-title">{{ __('ui.kontak.booking_title') }}</span>
                         <span class="contact-action-desc">
-                            Ingin mengundang Sanggar Cakra Aji tampil atau
-                            mengisi acara? Kirim permintaan booking melalui
-                            formulir yang tersedia.
+                            {{ __('ui.kontak.booking_desc') }}
                         </span>
-                        <span class="contact-action-link">Buka halaman booking</span>
+                        <span class="contact-action-link">{{ __('ui.kontak.booking_link') }}</span>
                     </x-form-link>
                 </div>
 
                 <div class="contact-meet">
-                    <h3 class="contact-actions-heading">Temui kami</h3>
+                    <h3 class="contact-actions-heading">{{ __('ui.kontak.meet_heading') }}</h3>
 
                     <article class="contact-info-card">
                         <dl class="contact-info-list">
                             @forelse ($locations as $location)
                                 <div class="contact-info-item">
-                                    <dt>{{ $loop->first ? 'Alamat' : 'Alamat lain' }}</dt>
+                                    <dt>{{ $loop->first ? __('ui.kontak.address_first') : __('ui.kontak.address_other') }}</dt>
                                     <dd>
                                         {{ $location->name }} —
-                                        {{ $location->address ?? 'Alamat lengkap belum tersedia.' }}
+                                        {{ $location->address ?? __('ui.kontak.address_unavailable') }}
                                     </dd>
                                 </div>
 
@@ -149,28 +141,26 @@
                                 @endphp
 
                                 <div class="contact-info-item">
-                                    <dt>Jam latihan</dt>
+                                    <dt>{{ __('ui.kontak.practice_hours') }}</dt>
                                     <dd>
                                         @if ($jamLatihan->isNotEmpty())
-                                            {{ $jamLatihan->implode('; ') }} (sesuai jadwal kelompok)
+                                            {{ $jamLatihan->implode('; ') }} {{ __('ui.kontak.practice_hours_suffix') }}
                                         @else
-                                            Belum tersedia. Ikuti jadwal terbaru di
-                                            halaman Program &amp; Kegiatan.
+                                            {{ __('ui.kontak.practice_hours_fallback') }}
                                         @endif
                                     </dd>
                                 </div>
                             @empty
                                 <div class="contact-info-item">
-                                    <dt>Alamat</dt>
-                                    <dd>Alamat sanggar belum tersedia.</dd>
+                                    <dt>{{ __('ui.kontak.address_first') }}</dt>
+                                    <dd>{{ __('ui.kontak.address_sanggar_unavailable') }}</dd>
                                 </div>
                             @endforelse
 
                             <div class="contact-info-item">
-                                <dt>Email &amp; media sosial</dt>
+                                <dt>{{ __('ui.common.email_social') }}</dt>
                                 <dd>
-                                    Belum tersedia. Kanal resmi akan ditambahkan
-                                    setelah data pengelola lengkap.
+                                    {{ __('ui.kontak.email_social_unavailable') }}
                                 </dd>
                             </div>
                         </dl>
@@ -185,15 +175,15 @@
                                     @endphp
                                     <iframe
                                         src="https://www.google.com/maps?q={{ $mapsQuery }}&amp;output=embed"
-                                        title="Peta {{ $location->name }}"
+                                        title="{{ __('ui.lokasi.map_title', ['name' => $location->name]) }}"
                                         loading="lazy"
                                         referrerpolicy="no-referrer-when-downgrade"
                                         allowfullscreen></iframe>
                                 @else
                                     <div class="contact-map contact-map--pending" role="img"
-                                         aria-label="Peta {{ $location->name }} belum tersedia">
-                                        <strong>Peta menyusul</strong>
-                                        <span>Alamat lengkap dan koordinat belum tersedia.</span>
+                                         aria-label="{{ __('ui.kontak.map_pending_aria', ['name' => $location->name]) }}">
+                                        <strong>{{ __('ui.common.map_coming_soon') }}</strong>
+                                        <span>{{ __('ui.kontak.map_pending_desc') }}</span>
                                     </div>
                                 @endif
                             </div>
@@ -203,14 +193,14 @@
                                     <a class="contact-btn contact-btn--brown"
                                        href="{{ $mapsLink }}"
                                        target="_blank"
-                                       rel="noopener">Buka di Google Maps</a>
+                                       rel="noopener">{{ __('ui.common.open_maps') }}</a>
                                 @endif
                             </div>
                         @empty
                             <div class="contact-map contact-map--pending" role="img"
-                                 aria-label="Peta sanggar belum tersedia">
-                                <strong>Peta menyusul</strong>
-                                <span>Alamat lengkap dan koordinat belum tersedia.</span>
+                                 aria-label="{{ __('ui.kontak.map_sanggar_aria') }}">
+                                <strong>{{ __('ui.common.map_coming_soon') }}</strong>
+                                <span>{{ __('ui.kontak.map_pending_desc') }}</span>
                             </div>
                         @endforelse
                     </article>

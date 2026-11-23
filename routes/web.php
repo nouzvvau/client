@@ -1,122 +1,137 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminPageController;
-use App\Http\Controllers\Admin\GaleriController;
+use App\Http\Controllers\Admin\EventBookingController;
+use App\Http\Controllers\Admin\EventDocumentationController;
+use App\Http\Controllers\Admin\ProgramController as AdminProgramController;
+use App\Http\Controllers\Admin\StudentRegistrationController;
+use App\Http\Controllers\Admin\WhatsAppSettingController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BookingPublicController;
 use App\Http\Controllers\DaftarMuridController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GaleriPageController;
 use App\Http\Controllers\InformasiPageController;
 use App\Http\Controllers\LokasiPageController;
 use App\Http\Controllers\PendaftaranMuridController;
 use App\Http\Controllers\PengurusController;
 use App\Http\Controllers\ProgramPageController;
+use App\Models\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+// ==================== PUBLIC ====================
+
 Route::get('/', function () {
-    return view('beranda');
+    $programs = Program::latest()->take(3)->get();
+    return view('beranda', compact('programs'));
 });
 
-// Route untuk Ganti Bahasa (IDN / ENG)
 Route::get('/bahasa/{locale}', function (Request $request, string $locale) {
     abort_unless(in_array($locale, ['id', 'en'], true), 404);
 
     $request->session()->put('locale', $locale);
-    // Menyimpan session secara permanen sebelum redirect
     $request->session()->save();
 
     return redirect()->back();
 })->name('language.switch');
 
-// SEMENTARA: halaman tes bahasa. Hapus blok ini setelah selesai dites.
-Route::get('/cek-bahasa', function () {
-    return [
-        'locale'    => app()->getLocale(),
-        'session'   => session('locale'),
-        'tes'       => __('Daftar Jadi Murid'),
-        'lang_path' => lang_path(),
-        'en_json'   => file_exists(lang_path('en.json')),
-    ];
-});
+// Temporary language test
+Route::get('/cek-bahasa', fn () => [
+    'locale'    => app()->getLocale(),
+    'session'   => session('locale'),
+    'tes'       => __('Daftar Jadi Murid'),
+    'lang_path' => lang_path(),
+    'en_json'   => file_exists(lang_path('en.json')),
+]);
 
+// Authentication
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])
-    ->name('login.proses')
-    ->middleware('throttle:6,1');
+Route::post('/login', [AuthController::class, 'login'])->name('login.proses')->middleware('throttle:6,1');
 
-Route::middleware(['auth', 'admin'])->group(function (): void {
+// ==================== ADMIN ====================
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    // Dashboard
+    Route::get('/admin/dashboard', [AdminPageController::class, 'dashboard'])->name('admin.dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/admin/dashboard', function () {
-        return view('admincakraaji.dashboard');
-    })->name('admin.dashboard');
+    // Registrations
+    Route::prefix('admin/pendaftar')->name('admin.registrations.')->controller(StudentRegistrationController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{registration}', 'show')->name('show');
+        Route::get('/{registration}/ubah', 'edit')->name('edit');
+        Route::put('/{registration}', 'update')->name('update');
+        Route::patch('/{registration}/status', 'updateStatus')->name('status');
+        Route::post('/{registration}/jadikan-murid', 'convert')->name('convert');
+        Route::delete('/{registration}', 'destroy')->name('destroy');
+    });
 
-    Route::get('/admin/pendaftar', [AdminPageController::class, 'pendaftar'])
-        ->name('admin.pendaftar');
+    // Event bookings
+    Route::prefix('admin/booking')->name('admin.bookings.')->controller(EventBookingController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{booking}', 'show')->name('show');
+        Route::get('/{booking}/ubah', 'edit')->name('edit');
+        Route::put('/{booking}', 'update')->name('update');
+        Route::patch('/{booking}/status', 'updateStatus')->name('status');
+        Route::delete('/{booking}', 'destroy')->name('destroy');
+    });
 
-    Route::get('/admin/booking', [AdminPageController::class, 'booking'])
-        ->name('admin.booking');
+    // Gallery documentation
+    Route::prefix('admin/galeri')->name('admin.gallery.')->controller(EventDocumentationController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{documentation}', 'show')->name('show');
+        Route::get('/{documentation}/ubah', 'edit')->name('edit');
+        Route::put('/{documentation}', 'update')->name('update');
+        Route::delete('/{documentation}', 'destroy')->name('destroy');
+        Route::delete('/foto/{photo}', 'destroyPhoto')->name('photo.destroy');
+    });
 
-    Route::get('/admin/nama-murid', [AdminPageController::class, 'namaMurid'])
-        ->name('admin.nama-murid');
+    // WhatsApp settings
+    Route::get('/admin/pengaturan/whatsapp', [WhatsAppSettingController::class, 'edit'])->name('admin.whatsapp.edit');
+    Route::put('/admin/pengaturan/whatsapp', [WhatsAppSettingController::class, 'update'])->name('admin.whatsapp.update');
 
-    Route::post('/admin/nama-murid', [AdminPageController::class, 'storeMurid'])
-        ->name('admin.nama-murid.store');
+    // Student names
+    Route::get('/admin/nama-murid', [AdminPageController::class, 'namaMurid'])->name('admin.nama-murid');
 
-    Route::put('/admin/nama-murid/{student}', [AdminPageController::class, 'updateMurid'])
-        ->name('admin.nama-murid.update');
+    Route::prefix('admin/nama-murid')->name('admin.nama-murid.')->controller(AdminPageController::class)->group(function () {
+        Route::post('/', 'storeMurid')->name('store');
+        Route::get('/{student}/ubah', 'editMurid')->name('edit');
+        Route::put('/{student}', 'updateMurid')->name('update');
+        Route::delete('/{student}', 'destroyMurid')->name('destroy');
+    });
 
-    Route::delete('/admin/nama-murid/{student}', [AdminPageController::class, 'destroyMurid'])
-        ->name('admin.nama-murid.destroy');
-
-    Route::get('/admin/galeri', [GaleriController::class, 'index'])
-        ->name('admin.galeri');
-
-    Route::get('/admin/galeri/create', [GaleriController::class, 'create'])
-        ->name('admin.galeri.create');
-
-    Route::post('/admin/galeri', [GaleriController::class, 'store'])
-        ->name('admin.galeri.store');
+    // Programs
+    Route::prefix('admin/program')->name('admin.program.')->controller(AdminProgramController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{program}/edit', 'edit')->name('edit');
+        Route::put('/{program}', 'update')->name('update');
+        Route::delete('/{program}', 'destroy')->name('destroy');
+    });
 });
 
-Route::get('/pendaftaran', [PendaftaranMuridController::class, 'index'])
-    ->name('pendaftaran.index');
+// ==================== WEBSITE PAGES ====================
 
-Route::post('/pendaftaran', [PendaftaranMuridController::class, 'store'])
-    ->name('pendaftaran.store');
+Route::get('/pendaftaran', [PendaftaranMuridController::class, 'index'])->name('pendaftaran.index');
+Route::get('/booking', [InformasiPageController::class, 'booking'])->name('booking');
+Route::get('/murid', [DaftarMuridController::class, 'index'])->name('murid.index');
 
-Route::post('/booking', [BookingPublicController::class, 'store'])
-    ->name('booking.store')
-    ->middleware('throttle:6,1');
+Route::get('/program', [ProgramPageController::class, 'index'])->name('program');
+Route::get('/program/kegiatan/{slug}', [ProgramPageController::class, 'detail'])->name('program.detail');
 
-Route::get('/booking', [InformasiPageController::class, 'booking'])
-    ->name('booking');
+Route::get('/galeri', [GaleriPageController::class, 'index'])->name('galeri');
+Route::get('/galeri/acara/{eventDocumentation}', [GaleriPageController::class, 'show'])->name('galeri.acara');
 
-Route::get('/murid', [DaftarMuridController::class, 'index'])
-    ->name('murid.index');
-
-Route::get('/program', [ProgramPageController::class, 'index'])
-    ->name('program');
-
-Route::get('/program/kegiatan/{slug}', [ProgramPageController::class, 'detail'])
-    ->name('program.detail');
-
-Route::get('/galeri', [GaleriPageController::class, 'index'])
-    ->name('galeri');
-
-Route::get('/lokasi', [LokasiPageController::class, 'index'])
-    ->name('lokasi');
-
-Route::get('/kontak', [InformasiPageController::class, 'kontak'])
-    ->name('kontak');
-
-Route::get('/faq', [InformasiPageController::class, 'faq'])
-    ->name('faq');
-
-Route::get('/pengurus', [PengurusController::class, 'index'])
-    ->name('pengurus');
-
-Route::get('/tentang-kami', function () {
-    return view('tentang-kami');
-});
+Route::get('/lokasi', [LokasiPageController::class, 'index'])->name('lokasi');
+Route::get('/kontak', [InformasiPageController::class, 'kontak'])->name('kontak');
+Route::get('/faq', [InformasiPageController::class, 'faq'])->name('faq');
+Route::get('/kritik-saran', [FeedbackController::class, 'create'])->name('kritik-saran');
+Route::post('/kritik-saran', [FeedbackController::class, 'store'])->name('kritik-saran.store');
+Route::get('/pengurus', [PengurusController::class, 'index'])->name('pengurus');
+Route::view('/tentang-kami', 'tentang-kami');

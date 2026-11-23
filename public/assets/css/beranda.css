@@ -1,7 +1,8 @@
+@import url('');
 
-/* =================================
-   1. COLOR & GLOBAL
-================================= */
+/* =========================================
+   1. GLOBAL & DESIGN TOKENS
+========================================= */
 
 :root {
     --brown: var(--color-brown);
@@ -13,6 +14,13 @@
 
     --heading-font: var(--font-display);
     --body-font: var(--font-body);
+
+    --container-width: 1264px;
+    --container-padding: 32px;
+
+    --shadow-green: 4px 4px 0 var(--olive);
+    --shadow-yellow: 4px 4px 0 var(--gold);
+    --shadow-red: 4px 4px 0 var(--red);
 }
 
 * {
@@ -26,14 +34,14 @@ html {
 }
 
 body {
-    font-family: var(--body-font);
-    color: var(--brown);
     background: var(--brown);
+    color: var(--brown);
+    font-family: var(--body-font);
 }
 
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
 
 button {
@@ -41,57 +49,61 @@ button {
 }
 
 img {
+    display: block;
     max-width: 100%;
 }
 
 
-/* =================================
+/* =========================================
    2. HERO SECTION
-================================= */
+========================================= */
 
 .hero {
-    background: var(--brown);
-    color: var(--cream);
-    min-height: 328px;
     display: flex;
     align-items: center;
+    min-height: 328px;
+    background: var(--brown);
+    color: var(--cream);
 }
 
 .hero-container {
-    max-width: 1200px;
-    width: 100%;
-    margin: auto;
-    padding: 48px 7%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 50px;
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 48px var(--container-padding);
 }
 
 .eyebrow {
     display: block;
+    margin-bottom: 8px;
+    color: var(--gold);
     font-size: 9px;
     font-weight: 600;
     letter-spacing: 0.3px;
-    margin-bottom: 8px;
-    color: var(--gold);
 }
 
 .hero-content h1 {
+    margin-bottom: 14px;
+    color: var(--cream);
     font-family: var(--heading-font);
     font-size: clamp(42px, 5vw, 70px);
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 14px;
-    color: var(--cream);
 }
 
 .hero-content p {
     max-width: 440px;
-    font-size: 12px;
+    color: rgba(254, 255, 196, 0.85);
+    font-size: 13px;
     line-height: 1.8;
-    color: rgba(254,255,196,0.85);
 }
+
+
+/* Hero Buttons */
 
 .hero-buttons {
     display: flex;
@@ -113,7 +125,6 @@ img {
     font-size: 13px;
     font-weight: 700;
     line-height: 1;
-    text-decoration: none;
     white-space: nowrap;
     transition:
         background-color 0.2s ease,
@@ -166,10 +177,13 @@ img {
     color: var(--brown);
 }
 
+
+/* Hero Image */
+
 .hero-image {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .hero-image img {
@@ -180,30 +194,37 @@ img {
 }
 
 
-/* =================================
+/* =========================================
    3. PROGRAM SECTION
-================================= */
+========================================= */
 
-.program-section {
-    width: 100vw;
-    max-width: none;
+.program-section,
+.booking-section {
     position: relative;
     left: 50%;
+    width: 100vw;
+    max-width: none;
     margin-left: -50vw;
-    background: var(--cream);
+}
+
+.program-section {
     padding: 43px 0 35px;
+    background: var(--cream);
 }
 
 .section-container {
-    max-width: 1200px;
     width: 100%;
-    margin: auto;
-    padding: 0 7%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
 }
+
+
+/* Section Heading */
 
 .section-heading {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     justify-content: space-between;
     margin-bottom: 23px;
 }
@@ -213,60 +234,70 @@ img {
 }
 
 .section-heading h2 {
+    color: var(--brown);
     font-family: var(--heading-font);
     font-size: clamp(25px, 3vw, 38px);
     line-height: 1.15;
-    color: var(--brown);
 }
 
 .see-all {
-    font-size: 11px;
-    font-weight: 600;
     padding-bottom: 5px;
     border-bottom: 1px solid var(--red);
+    font-size: 11px;
+    font-weight: 600;
     white-space: nowrap;
 }
+
+
+/* Program Grid */
 
 .program-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 20px;
     align-items: stretch;
+    gap: 20px;
 }
+
+
+/* Program Cards */
 
 .program-card {
-    background: var(--white);
-    border: 1px solid var(--brown);
-    min-width: 0;
     display: flex;
     flex-direction: column;
-    box-shadow: 4px 4px 0 var(--olive);
+    min-width: 0;
+    background: var(--white);
+    border: 1px solid var(--brown);
+    box-shadow: var(--shadow-green);
 }
 
-.card-yellow {
-    box-shadow: 4px 4px 0 var(--gold);
+/* Warna card bergantian */
+.program-card:nth-child(3n + 2) {
+    box-shadow: var(--shadow-yellow);
 }
 
-.card-red {
-    box-shadow: 4px 4px 0 var(--red);
+.program-card:nth-child(3n + 3) {
+    box-shadow: var(--shadow-red);
 }
+
+
+/* Program Image */
 
 .program-image {
-    height: 140px;
     position: relative;
-    background: rgba(145, 160, 82, 0.35);
     display: flex;
-    justify-content: center;
     align-items: center;
-    border-bottom: 1px solid var(--brown);
+    justify-content: center;
+    height: 140px;
     overflow: hidden;
+    background: rgba(145, 160, 82, 0.35);
+    border-bottom: 1px solid var(--brown);
 }
 
-.card-yellow .program-image {
+.program-card:nth-child(3n + 2) .program-image {
     background: rgba(255, 188, 76, 0.4);
 }
 
-.card-red .program-image {
+.program-card:nth-child(3n + 3) .program-image {
     background: rgba(193, 39, 45, 0.22);
 }
 
@@ -279,57 +310,58 @@ img {
 }
 
 .program-image span {
-    font-size: 10px;
     color: rgba(60, 24, 8, 0.55);
+    font-size: 10px;
 }
 
+
+/* Program Content */
+
 .program-content {
-    padding: 13px 14px 15px;
     display: flex;
-    flex-direction: column;
     flex: 1;
+    flex-direction: column;
     align-items: flex-start;
+    padding: 13px 14px 15px;
 }
 
 .program-tag {
+    margin-bottom: 8px;
+    padding: 4px 10px;
+    color: var(--brown);
     font-size: 8px;
     font-weight: 600;
-    padding: 4px 10px;
-    margin-bottom: 8px;
-    color: var(--brown);
-}
-
-.tag-green {
     background: var(--olive);
 }
 
-.tag-yellow {
+.program-card:nth-child(3n + 2) .program-tag {
     background: var(--gold);
 }
 
-.tag-red {
+.program-card:nth-child(3n + 3) .program-tag {
     background: var(--red);
     color: var(--white);
 }
 
 .program-content h3 {
+    margin-bottom: 9px;
+    color: var(--brown);
     font-family: var(--heading-font);
     font-size: 18px;
     line-height: 1.15;
-    margin-bottom: 9px;
-    color: var(--brown);
 }
 
 .program-content p {
+    margin-bottom: 14px;
     font-size: 11px;
     line-height: 1.7;
-    margin-bottom: 14px;
 }
 
 .program-content a {
+    margin-top: auto;
     font-size: 10px;
     font-weight: 700;
-    margin-top: auto;
+    transition: color 0.2s ease;
 }
 
 .program-content a:hover {
@@ -337,34 +369,34 @@ img {
 }
 
 
-/* =================================
+/* =========================================
    4. OTHER PROGRAM CARD
-================================= */
+========================================= */
 
 .other-program {
-    background: var(--brown);
-    color: var(--cream);
-    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding: 20px;
+    background: var(--brown);
+    color: var(--cream);
 }
 
 .other-program > span {
-    font-size: 9px;
-    color: var(--gold);
     margin-bottom: 10px;
+    color: var(--gold);
+    font-size: 9px;
 }
 
 .other-program h3 {
+    margin-bottom: 10px;
     font-family: var(--heading-font);
     font-size: 20px;
     line-height: 1.15;
-    margin-bottom: 10px;
 }
 
 .other-program p {
-    color: rgba(254,255,196,0.8);
+    color: rgba(254, 255, 196, 0.8);
     font-size: 11px;
     line-height: 1.7;
 }
@@ -374,31 +406,26 @@ img {
 }
 
 
-/* =================================
+/* =========================================
    5. BOOKING SECTION
-================================= */
+========================================= */
 
 .booking-section {
-    width: 100vw;
-    max-width:none;
-    position: relative;
-    left: 50%;
-    margin-left: -50vw;
+    padding: 32px 0;
     background: var(--olive);
     border-top: 2px solid var(--brown);
     border-bottom: 2px solid var(--brown);
-    padding: 32px 0;
 }
 
 .booking-container {
-    max-width: 1200px;
-    width: 100%;
-    padding: 0 7%;
-    margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 30px;
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
 }
 
 .booking-content {
@@ -410,42 +437,45 @@ img {
 }
 
 .booking-content h2 {
+    margin-bottom: 12px;
+    color: var(--brown);
     font-family: var(--heading-font);
     font-size: clamp(25px, 3vw, 36px);
     line-height: 1.15;
-    margin-bottom: 12px;
-    color: var(--brown);
 }
 
 .booking-content p {
-    font-size: 12px;
-    line-height: 1.7;
     max-width: 470px;
     margin-bottom: 12px;
+    font-size: 12px;
+    line-height: 1.7;
 }
 
 .booking-link {
     display: inline-block;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--brown);
     font-size: 11px;
     font-weight: 600;
-    border-bottom: 1px solid var(--brown);
-    padding-bottom: 4px;
 }
+
+
+/* Booking Button */
 
 .booking-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background: var(--brown);
-    box-shadow: 3px 3px 0 var(--cream);
-    color: var(--cream);
     padding: 16px 28px;
+    background: var(--brown);
+    color: var(--cream);
     border-radius: 50px;
+    box-shadow: 3px 3px 0 var(--cream);
     font-size: 15px;
     font-weight: 500;
     text-decoration: none;
-    transition: 0.3s;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .booking-button:hover {
@@ -454,12 +484,11 @@ img {
 }
 
 
-/* =================================
-   6. RESPONSIVE TABLET
-================================= */
+/* =========================================
+   6. TABLET
+========================================= */
 
 @media (max-width: 900px) {
-
     .hero-container {
         gap: 20px;
     }
@@ -479,21 +508,20 @@ img {
 }
 
 
-/* =================================
-   7. RESPONSIVE MOBILE
-================================= */
+/* =========================================
+   7. MOBILE
+========================================= */
 
 @media (max-width: 650px) {
-
     .hero {
         min-height: auto;
     }
 
     .hero-container {
         grid-template-columns: 1fr;
-        text-align: center;
-        padding: 55px 7% 40px;
         gap: 20px;
+        padding: 55px 24px 40px;
+        text-align: center;
     }
 
     .hero-content h1 {
@@ -501,8 +529,8 @@ img {
     }
 
     .hero-content p {
+        margin: 0 auto;
         font-size: 12px;
-        margin: auto;
     }
 
     .hero-buttons {
@@ -510,12 +538,12 @@ img {
     }
 
     .hero-buttons .btn {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .hero-image img {
-        height: 210px;
         max-width: 250px;
+        height: 210px;
     }
 
     .program-section {
@@ -523,12 +551,12 @@ img {
     }
 
     .section-container {
-        padding: 0 6%;
+        padding: 0 24px;
     }
 
     .section-heading {
-        align-items: flex-start;
         flex-direction: column;
+        align-items: flex-start;
         gap: 12px;
     }
 
@@ -579,15 +607,15 @@ img {
     }
 
     .other-program p {
-        font-size: 12px;
         margin-bottom: 20px;
+        font-size: 12px;
     }
 
     .booking-container {
-        padding: 0 7%;
         flex-direction: column;
         align-items: flex-start;
         gap: 25px;
+        padding: 0 24px;
     }
 
     .booking-content h2 {
@@ -605,16 +633,14 @@ img {
     .booking-button {
         align-self: flex-start;
     }
-
 }
 
 
-/* =================================
-    8. SMALL MOBILE
-================================= */
+/* =========================================
+   8. SMALL MOBILE
+========================================= */
 
 @media (max-width: 380px) {
-
     .hero-content h1 {
         font-size: 42px;
     }
@@ -625,7 +651,23 @@ img {
 
     .hero-buttons .btn {
         padding: 9px 12px;
-        font-size: 9px;
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================
+   9. REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
     }
 
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
 }

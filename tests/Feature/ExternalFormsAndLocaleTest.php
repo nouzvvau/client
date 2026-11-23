@@ -2,11 +2,14 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExternalFormsAndLocaleTest extends TestCase
 {
-    public function test_form_links_fall_back_to_internal_pages_without_google_form_urls(): void
+    use RefreshDatabase;
+
+    public function test_form_links_fall_back_to_internal_information_pages_without_google_form_urls(): void
     {
         config()->set('forms.registration_url', null);
         config()->set('forms.booking_url', null);
@@ -18,11 +21,16 @@ class ExternalFormsAndLocaleTest extends TestCase
 
         $this->get(route('pendaftaran.index'))
             ->assertOk()
-            ->assertSee('action="'.route('pendaftaran.store').'"', false);
+            ->assertSee('Formulir belum tersedia')
+            ->assertSee('Hubungi pengurus')
+            ->assertDontSee('name="nama_murid"', false)
+            ->assertDontSee('action="'.route('pendaftaran.index').'"', false);
 
         $this->get(route('booking'))
             ->assertOk()
-            ->assertSee('action="'.route('booking.store').'"', false);
+            ->assertSee('Formulir belum tersedia')
+            ->assertSee('Hubungi pengurus')
+            ->assertDontSee('id="booking-form"', false);
     }
 
     public function test_invalid_external_form_urls_fall_back_to_internal_pages(): void
@@ -55,13 +63,13 @@ class ExternalFormsAndLocaleTest extends TestCase
             ->assertOk()
             ->assertSee($registrationUrl, false)
             ->assertSee('Buka formulir pendaftaran')
-            ->assertDontSee('action="'.route('pendaftaran.store').'"', false);
+            ->assertDontSee('name="nama_murid"', false);
 
         $this->get(route('booking'))
             ->assertOk()
             ->assertSee($bookingUrl, false)
             ->assertSee('Buka formulir booking')
-            ->assertDontSee('action="'.route('booking.store').'"', false);
+            ->assertDontSee('id="booking-form"', false);
     }
 
     public function test_language_switch_persists_locale_and_translates_shared_ui(): void

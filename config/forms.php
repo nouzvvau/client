@@ -12,8 +12,8 @@ return [
     |
     */
 
-    'registration_url' => env('GOOGLE_FORM_PENDAFTARAN_URL'),
+    'registration_url' => env('GOOGLE_FORM_REGISTRATION'),
 
-    'booking_url' => env('GOOGLE_FORM_BOOKING_URL'),
+    'booking_url' => env('GOOGLE_FORM_BOOKING'),
 
 ];

@@ -33,7 +33,7 @@
 ========================================= */
 
 .booking-page .container {
-    width: 90%;
+    width: 100%;
     max-width: 1300px;
     margin-inline: auto;
 }
@@ -488,7 +488,7 @@
     }
 
     .booking-page .container {
-        width: 90%;
+        width: 100%;
     }
 
     .booking-page .content-grid {
