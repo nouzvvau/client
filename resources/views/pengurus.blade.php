@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
-@section('title', 'Pengurus | Sanggar Seni Cakra Aji')
-@section('description', 'Pelatih, asisten, dan admin Sanggar Seni Cakra Aji yang menemani setiap latihan.')
+@section('title', __('Pengurus | Sanggar Seni Cakra Aji'))
+@section('description', __('Pelatih, asisten, dan admin Sanggar Seni Cakra Aji yang menemani setiap latihan.'))
 @section('page', 'pengurus')
 @section('activeNav', 'tentang')
 
@@ -14,20 +14,18 @@
 {{-- BAGIAN PENGURUS --}}
 <section class="about-section">
 
-    <p class="section-label">Pengurus</p>
+    <p class="section-label">{{ __('Pengurus') }}</p>
 
     <h1 class="main-title">
-        Tangan-tangan yang<br>
-        merawat bunyi.
+        {!! __('Tangan-tangan yang<br>merawat bunyi.') !!}
     </h1>
 
     <p class="main-description">
-        Pelatih, asisten, dan admin yang menemani setiap latihan
-        di Sanggar Seni Cakra Aji.
+        {{ __('Pelatih, asisten, dan admin yang menemani setiap latihan di Sanggar Seni Cakra Aji.') }}
     </p>
 
     <p class="section-label team-label">
-        Pelatih & Admin
+        {{ __('Pelatih & Admin') }}
     </p>
 
     <div class="team-grid">
@@ -47,7 +45,7 @@
                         </span>
 
                         <span class="photo-caption">
-                            GANTI DENGAN FOTO
+                            {{ __('GANTI DENGAN FOTO') }}
                         </span>
                     @endif
 
@@ -60,7 +58,7 @@
                     </h3>
 
                     <span class="role {{ $orang['jabatan'] === 'Pelatih' ? 'yellow' : 'green' }}">
-                        {{ $orang['jabatan'] }}
+                        {{ __($orang['jabatan']) }}
                     </span>
 
                 </div>
@@ -78,11 +76,11 @@
 <section class="assistant-section">
 
     <p class="section-label">
-        Bersama Para Pelatih
+        {{ __('Bersama Para Pelatih') }}
     </p>
 
     <h2 class="assistant-title">
-        Asisten Pelatih
+        {{ __('Asisten Pelatih') }}
     </h2>
 
     <div class="team-grid">
@@ -102,7 +100,7 @@
                         </span>
 
                         <span class="photo-caption">
-                            GANTI DENGAN FOTO
+                            {{ __('GANTI DENGAN FOTO') }}
                         </span>
                     @endif
 
@@ -132,17 +130,16 @@
 
         <div>
             <h2 class="cta-title">
-                Ingin ikut berlatih bersama kami?
+                {{ __('Ingin ikut berlatih bersama kami?') }}
             </h2>
 
             <p class="cta-description">
-                Daftar jadi murid dan mulai belajar karawitan
-                di Sanggar Seni Cakra Aji.
+                {{ __('Daftar jadi murid dan mulai belajar karawitan di Sanggar Seni Cakra Aji.') }}
             </p>
         </div>
 
         <x-form-link form="registration" class="cta-button">
-            Daftar Murid
+            {{ __('Daftar Murid') }}
         </x-form-link>
 
     </div>

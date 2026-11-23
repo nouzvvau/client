@@ -18,13 +18,27 @@ Route::get('/', function () {
     return view('beranda');
 });
 
+// Route untuk Ganti Bahasa (IDN / ENG)
 Route::get('/bahasa/{locale}', function (Request $request, string $locale) {
     abort_unless(in_array($locale, ['id', 'en'], true), 404);
 
     $request->session()->put('locale', $locale);
+    // Menyimpan session secara permanen sebelum redirect
+    $request->session()->save();
 
     return redirect()->back();
 })->name('language.switch');
+
+// SEMENTARA: halaman tes bahasa. Hapus blok ini setelah selesai dites.
+Route::get('/cek-bahasa', function () {
+    return [
+        'locale'    => app()->getLocale(),
+        'session'   => session('locale'),
+        'tes'       => __('Daftar Jadi Murid'),
+        'lang_path' => lang_path(),
+        'en_json'   => file_exists(lang_path('en.json')),
+    ];
+});
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])
