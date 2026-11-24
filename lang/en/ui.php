@@ -113,6 +113,7 @@ return [
     'beranda' => [
         'eyebrow' => 'ART STUDIO · SINCE 2020',
         'intro' => 'Sanggar Seni Cakra Aji is a space for preserving traditional and contemporary music. Here children, youth, and the community learn, practice, and create together. Our doors are open for workshops, performances, and collaborations.',
+        'alumni' => 'More than 200 alumni have graduated from our sanggar.',
         'register_cta' => 'Become a Student',
         'booking_cta' => 'Book an Event',
         'know_us' => 'Get to Know Us',
