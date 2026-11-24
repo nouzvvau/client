@@ -113,6 +113,7 @@ return [
     'beranda' => [
         'eyebrow' => 'SANGGAR SENI · SEJAK 2020',
         'intro' => 'Sanggar Seni Cakra Aji adalah ruang pelestarian musik tradisi dan kontemporer. Di sini anak-anak, pemuda, dan masyarakat belajar, berlatih, dan berkarya bersama. Pintu kami terbuka untuk workshop, pentas, dan kolaborasi.',
+        'alumni' => 'Lebih dari 200 alumni telah lahir dari sanggar kami',
         'register_cta' => 'Daftar Jadi Murid',
         'booking_cta' => 'Booking Acara',
         'know_us' => 'Kenali Sanggar',

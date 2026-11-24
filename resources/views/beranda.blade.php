@@ -26,6 +26,10 @@
                 <p>
                     {{ __('ui.beranda.intro') }}
                 </p>
+                <p class="alumni-text">
+                    {{ __('ui.beranda.alumni') }}
+                </p>
+
 
                 <div class="hero-buttons">
                     <x-form-link form="registration" class="btn btn-gold">

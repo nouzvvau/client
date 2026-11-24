@@ -102,6 +102,16 @@ img {
     line-height: 1.8;
 }
 
+.alumni-text {
+    font-family: 'Plus Jakarta Sans', serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #FFBC4C !important;
+    border-top: 1px solid #ffbc4c;
+    padding-top: 12px;
+    margin-top: 18px;
+    display: inline-block;
+}
 
 /* Hero Buttons */
 
