@@ -1,345 +1,858 @@
-/* Stylesheet halaman Pengurus (diekstrak dari inline style) */
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* =========================================
+   PENGURUS - SANGGAR CAKRA AJI
+   FULL CSS DESKTOP, TABLET & MOBILE
+========================================= */
 
-        body {
-            background: var(--color-cream);
-            color: var(--color-brown);
-            font-family: var(--font-body);
-            overflow-x: clip;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* HERO / PENGURUS */
+body {
+    background: var(--color-cream);
+    color: var(--color-brown);
+    font-family: var(--font-body);
+    overflow-x: clip;
+}
 
-        .about-section {
-            background: var(--color-cream);
-            padding: 38px 7.7% 45px;
-        }
+/* =========================================
+   HEADER PENGURUS
+========================================= */
 
-        .section-label {
-            color: var(--color-red);
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
+.about-section {
+    background: var(--color-cream);
+    padding: 38px 5.5% 28px;
+}
 
-        .main-title {
-            font-family: var(--font-display);
-            font-size: clamp(30px, 4vw, 45px);
-            line-height: 1.12;
-            max-width: 550px;
-            margin-bottom: 18px;
-        }
+.section-label {
+    color: var(--color-red);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
 
-        .main-description {
-            font-size: 13px;
-            line-height: 1.8;
-            margin-bottom: 38px;
-            color: rgba(60, 24, 8, 0.65);
-        }
+.main-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 46px);
+    line-height: 1.12;
+    max-width: 600px;
+    margin-bottom: 16px;
+}
 
-        .team-label {
-            margin-bottom: 16px;
-        }
+.main-description {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(60, 24, 8, .7);
+    max-width: 700px;
+}
 
-        /* CARD */
+/* =========================================
+   PROFIL PENDIRI - TOTTI
+========================================= */
 
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 18px;
-        }
+.founder-section {
+    background: var(--color-gold);
+    border-top: 2px solid var(--color-brown);
+    border-bottom: 2px solid var(--color-brown);
+    padding: 45px 5.5% 55px;
+}
 
-        .team-card {
-            background: var(--color-white);
-            border: 2px solid var(--color-brown);
-            box-shadow: 6px 6px 0 var(--color-brown);
-            min-width: 0;
-            transition: transform .25s ease;
-        }
+.founder-layout {
+    display: grid;
+    grid-template-columns: 310px minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+}
 
-        .team-card:hover {
-            transform: translateY(-5px);
-        }
+/* KOLOM KIRI */
 
-        .team-photo {
-            height: 174px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            border-bottom: 2px solid var(--color-brown);
-            position: relative;
-            overflow: hidden;
-        }
+.founder-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+}
 
-        .team-photo.hijau {
-            background: var(--color-olive);
-        }
+/* KARTU FOTO */
 
-        .team-photo.kuning {
-            background: var(--color-gold);
-        }
+.founder-photo-card {
+    background: var(--color-white);
+    border: 2px solid var(--color-brown);
+    box-shadow: 6px 6px 0 var(--color-brown);
+    overflow: hidden;
+}
 
-        .team-photo.krem {
-            background: var(--color-cream);
-        }
+.founder-photo {
+    height: 260px;
+    background: var(--color-olive);
+    border-bottom: 2px solid var(--color-brown);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
 
-        .team-photo.merah {
-            background: var(--color-red);
-        }
+.founder-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+}
 
-        .team-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            inset: 0;
-        }
+.founder-initials {
+    font-family: var(--font-display);
+    font-size: 90px;
+    font-weight: 700;
+    color: var(--color-brown);
+}
 
-        .initials {
-            font-family: var(--font-display);
-            font-size: 52px;
-            font-weight: 700;
-            z-index: 1;
-        }
+.founder-photo-caption {
+    position: absolute;
+    bottom: 15px;
+    font-size: 10px;
+    color: rgba(60, 24, 8, .6);
+}
 
-        .team-photo.merah .initials {
-            color: var(--color-cream);
-        }
+.founder-photo-info {
+    padding: 17px 18px 19px;
+    background: var(--color-white);
+}
 
-        .photo-caption {
-            position: absolute;
-            bottom: 12px;
-            font-size: 8px;
-            color: rgba(60, 24, 8, .65);
-            font-weight: 600;
-        }
+.founder-photo-info h2 {
+    font-family: var(--font-display);
+    font-size: 19px;
+    line-height: 1.35;
+    margin-bottom: 12px;
+}
 
-        .team-info {
-            min-height: 96px;
-            padding: 11px 14px 13px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 10px;
-        }
+.founder-role {
+    display: inline-block;
+    background: var(--color-gold);
+    border: 1px solid var(--color-brown);
+    border-radius: 30px;
+    padding: 6px 17px;
+    font-size: 11px;
+    font-weight: 700;
+}
 
-        .team-name {
-            font-family: var(--font-display);
-            font-size: 15px;
-            font-weight: 700;
-            line-height: 1.3;
-        }
+/* INFORMASI PROFIL PUTIH */
 
-        .role {
-            display: inline-block;
-            border: 1px solid var(--color-brown);
-            border-radius: 30px;
-            padding: 4px 12px;
-            font-size: 9px;
-            font-weight: 700;
-        }
+.founder-extra-info {
+    background: var(--color-white);
+    border-radius: 13px;
+    padding: 21px 20px;
+    box-shadow: 4px 4px 0 rgba(60, 24, 8, .15);
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
 
-        .role.yellow {
-            background: var(--color-gold);
-        }
+.founder-info-group {
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(60, 24, 8, .25);
+}
 
-        .role.green {
-            background: var(--color-olive);
-        }
+.founder-info-group:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
 
-        /* ASISTEN */
+.founder-info-group h3 {
+    font-size: 13px;
+    color: var(--color-red);
+    font-weight: 800;
+    margin-bottom: 9px;
+}
 
-        .assistant-section {
-            background: var(--color-gold);
-            border-top: 3px solid var(--color-brown);
-            padding: 42px 7.3% 105px;
-        }
+.founder-info-group p {
+    font-size: 15px;
+    line-height: 1.6;
+}
 
-        .assistant-title {
-            font-family: var(--font-display);
-            font-size: 32px;
-            margin-bottom: 38px;
-        }
+/* KEAHLIAN */
 
-        .assistant-card .team-photo {
-            height: 174px;
-        }
+.expertise-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
 
-        .assistant-card .team-info {
-            min-height: 96px;
-            justify-content: flex-start;
-        }
+.expertise-list span {
+    display: inline-block;
+    background: var(--color-brown);
+    color: var(--color-cream);
+    padding: 8px 12px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 600;
+}
 
-        /* CTA */
+/* PENDIDIKAN */
 
-        .cta-section {
-            background: var(--color-olive);
-            border-top: 3px solid var(--color-brown);
-            padding: 30px 7.5% 35px;
-        }
+.education-group {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
 
-        .cta-box {
-            background: var(--color-brown);
-            border-radius: 20px;
-            padding: 27px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            box-shadow: 9px 9px 0 var(--color-cream);
-        }
+.education-group h3 {
+    margin-bottom: 0;
+}
 
-        .cta-title {
-            color: var(--color-cream);
-            font-family: var(--font-display);
-            font-size: 21px;
-            margin-bottom: 5px;
-        }
+.education-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+}
 
-        .cta-description {
-            color: rgba(254, 255, 196, 0.85);
-            font-size: 11px;
-        }
+.education-item strong {
+    font-family: var(--font-display);
+    font-size: 23px;
+    min-width: 65px;
+}
 
-        .cta-button {
-            display: inline-block;
-            background: var(--color-gold);
-            color: var(--color-brown);
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 13px 28px;
-            border-radius: 30px;
-            white-space: nowrap;
-            transition: .2s;
-        }
+.education-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 3px;
+}
 
-        .cta-button:hover {
-            background: var(--color-cream);
-            transform: translateY(-2px);
-        }
+.education-item b {
+    font-size: 13px;
+}
 
-        /* TABLET */
+.education-item small {
+    font-size: 10px;
+    line-height: 1.5;
+    color: rgba(60, 24, 8, .7);
+}
 
-        @media (max-width: 900px) {
-            .team-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 20px;
-            }
+/* =========================================
+   KONTEN KANAN PROFIL
+========================================= */
 
-            .about-section {
-                padding: 35px 32px;
-            }
+.founder-content {
+    min-width: 0;
+}
 
-            .assistant-section {
-                padding: 40px 32px 75px;
-            }
+.founder-heading {
+    padding: 7px 0 23px;
+    border-bottom: 1px solid rgba(60, 24, 8, .35);
+    margin-bottom: 25px;
+}
 
-            .team-photo,
-            .assistant-card .team-photo {
-                height: 190px;
-            }
-        }
+.founder-heading .section-label {
+    margin-bottom: 12px;
+}
 
-        /* HP */
+.founder-heading h2 {
+    font-family: var(--font-display);
+    font-size: clamp(29px, 3vw, 42px);
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
 
-        @media (max-width: 600px) {
-            .about-section {
-                padding: 30px 24px 40px;
-            }
+.founder-nickname {
+    font-size: 16px;
+    color: rgba(60, 24, 8, .8);
+}
 
-            .main-title {
-                font-size: 32px;
-            }
+/* ALASAN DAN HARAPAN */
 
-            .main-description {
-                font-size: 12px;
-                margin-bottom: 30px;
-            }
+.founder-story-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px;
+}
 
-            .team-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 14px;
-                column-gap: 13px;
-            }
+.story-card {
+    background: var(--color-cream);
+    border: 1.5px dashed var(--color-brown);
+    border-radius: 15px;
+    padding: 23px 22px;
+    min-width: 0;
+}
 
-            .team-card {
-                box-shadow: 4px 4px 0 var(--color-brown);
-            }
+.story-card h3 {
+    color: var(--color-red);
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 13px;
+}
 
-            .team-photo,
-            .assistant-card .team-photo {
-                height: 135px;
-            }
+.story-card p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(60, 24, 8, .85);
+}
 
-            .initials {
-                font-size: 40px;
-            }
+/* SOSIAL MEDIA */
 
-            .team-info {
-                min-height: 95px;
-                padding: 10px;
-            }
+.founder-social {
+    margin-top: 26px;
+}
 
-            .team-name {
-                font-size: 12px;
-            }
+.founder-social h3 {
+    color: var(--color-red);
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 13px;
+}
 
-            .role {
-                font-size: 8px;
-                padding: 4px 9px;
-            }
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
 
-            .assistant-section {
-                padding: 35px 24px 65px;
-            }
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    background: var(--color-cream);
+    color: var(--color-brown);
+    border: 1.5px solid var(--color-brown);
+    border-radius: 40px;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: .2s ease;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
 
-            .assistant-title {
-                font-size: 27px;
-                margin-bottom: 25px;
-            }
+.social-link:hover {
+    background: var(--color-white);
+    transform: translateY(-3px);
+}
 
-            .cta-section {
-                padding: 25px 24px 30px;
-            }
+.social-icon {
+    font-size: 25px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
 
-            .cta-box {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 24px 20px;
-                gap: 18px;
-                border-radius: 16px;
-            }
+/* =========================================
+   PELATIH DAN ADMIN
+========================================= */
 
-            .cta-title {
-                font-size: 19px;
-            }
+.team-section {
+    background: var(--color-cream);
+    padding: 42px 5.5% 55px;
+    border-bottom: 2px solid var(--color-brown);
+}
 
-            .cta-description {
-                font-size: 10px;
-                line-height: 1.6;
-            }
+.team-label {
+    margin-bottom: 18px;
+}
 
-            .cta-button {
-                padding: 11px 25px;
-            }
-        }
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
 
-        @media (max-width: 350px) {
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
+.team-card {
+    background: var(--color-white);
+    border: 2px solid var(--color-brown);
+    box-shadow: 6px 6px 0 var(--color-brown);
+    min-width: 0;
+    transition: transform .25s ease;
+}
 
-            .team-photo,
-            .assistant-card .team-photo {
-                height: 180px;
-            }
-        }
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.team-photo {
+    height: 174px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-bottom: 2px solid var(--color-brown);
+    position: relative;
+    overflow: hidden;
+}
+
+.team-photo.hijau {
+    background: var(--color-olive);
+}
+
+.team-photo.kuning {
+    background: var(--color-gold);
+}
+
+.team-photo.krem {
+    background: var(--color-cream);
+}
+
+.team-photo.merah {
+    background: var(--color-red);
+}
+
+.team-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+}
+
+.initials {
+    font-family: var(--font-display);
+    font-size: 52px;
+    font-weight: 700;
+    z-index: 1;
+}
+
+.team-photo.merah .initials {
+    color: var(--color-cream);
+}
+
+.photo-caption {
+    position: absolute;
+    bottom: 12px;
+    font-size: 8px;
+    color: rgba(60, 24, 8, .65);
+    font-weight: 600;
+}
+
+.team-info {
+    min-height: 96px;
+    padding: 12px 14px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.team-name {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.role {
+    display: inline-block;
+    border: 1px solid var(--color-brown);
+    border-radius: 30px;
+    padding: 5px 12px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.role.yellow {
+    background: var(--color-gold);
+}
+
+.role.green {
+    background: var(--color-olive);
+}
+
+/* =========================================
+   ASISTEN PELATIH
+========================================= */
+
+.assistant-section {
+    background: var(--color-gold);
+    border-top: 2px solid var(--color-brown);
+    padding: 42px 5.5% 85px;
+}
+
+.assistant-title {
+    font-family: var(--font-display);
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.assistant-card .team-photo {
+    height: 174px;
+}
+
+.assistant-card .team-info {
+    min-height: 96px;
+    justify-content: flex-start;
+}
+
+/* =========================================
+   CTA MENDAFTAR
+========================================= */
+
+.cta-section {
+    background: var(--color-olive);
+    border-top: 3px solid var(--color-brown);
+    padding: 30px 7.5% 35px;
+}
+
+.cta-box {
+    background: var(--color-brown);
+    border-radius: 20px;
+    padding: 27px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 9px 9px 0 var(--color-cream);
+}
+
+.cta-title {
+    color: var(--color-cream);
+    font-family: var(--font-display);
+    font-size: 23px;
+    margin-bottom: 7px;
+}
+
+.cta-description {
+    color: rgba(254, 255, 196, .85);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--color-gold);
+    color: var(--color-brown);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 13px 28px;
+    border-radius: 30px;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.cta-button:hover {
+    background: var(--color-cream);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .founder-layout {
+        grid-template-columns: 270px minmax(0, 1fr);
+        gap: 23px;
+    }
+
+    .founder-photo {
+        height: 220px;
+    }
+
+    .founder-story-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .story-card {
+        padding: 19px;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    /* HEADER */
+
+    .about-section {
+        padding: 30px 24px 25px;
+    }
+
+    .section-label {
+        font-size: 10px;
+    }
+
+    .main-title {
+        font-size: 32px;
+    }
+
+    .main-description {
+        font-size: 12px;
+        line-height: 1.8;
+    }
+
+    /* PROFIL TOTTI */
+
+    .founder-section {
+        padding: 25px 20px 35px;
+    }
+
+    .founder-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "photo"
+            "heading"
+            "info"
+            "story"
+            "social";
+        gap: 20px;
+    }
+
+    /* MEMBUAT ISI SIDEBAR DAN CONTENT
+       BISA DIATUR URUTANNYA */
+
+    .founder-sidebar,
+    .founder-content {
+        display: contents;
+    }
+
+    /* FOTO */
+
+    .founder-photo-card {
+        grid-area: photo;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+        box-shadow: 4px 4px 0 var(--color-brown);
+    }
+
+    .founder-photo {
+        height: 190px;
+    }
+
+    .founder-initials {
+        font-size: 55px;
+    }
+
+    .founder-photo-info {
+        background: var(--color-white) !important;
+        padding: 13px;
+    }
+
+    .founder-photo-info h2 {
+        font-size: 16px;
+    }
+
+    .founder-role {
+        font-size: 9px;
+        padding: 5px 12px;
+    }
+
+    /* NAMA BESAR DI BAWAH FOTO */
+
+    .founder-heading {
+        grid-area: heading;
+        padding: 0 0 16px;
+        margin: 0;
+    }
+
+    .founder-heading .section-label {
+        font-size: 11px;
+        margin-bottom: 9px;
+    }
+
+    .founder-heading h2 {
+        font-size: 27px;
+        line-height: 1.3;
+        margin-bottom: 8px;
+    }
+
+    .founder-nickname {
+        font-size: 13px;
+    }
+
+    /* KOTAK PUTIH INFORMASI PROFIL */
+
+    .founder-extra-info {
+        grid-area: info;
+        width: 100%;
+        padding: 18px;
+        border-radius: 12px;
+        background: var(--color-white);
+        gap: 16px;
+    }
+
+    .founder-info-group h3 {
+        font-size: 11px;
+    }
+
+    .founder-info-group p {
+        font-size: 13px;
+    }
+
+    .expertise-list span {
+        font-size: 10px;
+        padding: 7px 10px;
+    }
+
+    .education-item strong {
+        font-size: 20px;
+    }
+
+    .education-item b {
+        font-size: 12px;
+    }
+
+    .education-item small {
+        font-size: 10px;
+    }
+
+    /* ALASAN DAN HARAPAN */
+
+    .founder-story-grid {
+        grid-area: story;
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .story-card {
+        padding: 17px;
+        border-radius: 12px;
+    }
+
+    .story-card h3 {
+        font-size: 12px;
+        margin-bottom: 9px;
+    }
+
+    .story-card p {
+        font-size: 12px;
+        line-height: 1.8;
+    }
+
+    /* SOSIAL MEDIA */
+
+    .founder-social {
+        grid-area: social;
+        margin-top: 0;
+    }
+
+    .founder-social h3 {
+        font-size: 12px;
+    }
+
+    .social-grid {
+        grid-template-columns: 1fr;
+        gap: 11px;
+    }
+
+    .social-link {
+        padding: 12px 16px;
+        font-size: 11px;
+    }
+
+    .social-icon {
+        font-size: 21px;
+    }
+
+    /* PELATIH DAN ADMIN */
+
+    .team-section {
+        padding: 35px 24px 40px;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        column-gap: 13px;
+    }
+
+    .team-card {
+        box-shadow: 4px 4px 0 var(--color-brown);
+    }
+
+    .team-photo,
+    .assistant-card .team-photo {
+        height: 135px;
+    }
+
+    .initials {
+        font-size: 40px;
+    }
+
+    .team-info {
+        min-height: 95px;
+        padding: 10px;
+    }
+
+    .team-name {
+        font-size: 12px;
+    }
+
+    .role {
+        font-size: 8px;
+        padding: 4px 9px;
+    }
+
+    /* ASISTEN */
+
+    .assistant-section {
+        padding: 35px 24px 65px;
+    }
+
+    .assistant-title {
+        font-size: 27px;
+        margin-bottom: 25px;
+    }
+
+    /* CTA */
+
+    .cta-section {
+        padding: 25px 24px 30px;
+    }
+
+    .cta-box {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 20px;
+        gap: 18px;
+        border-radius: 16px;
+    }
+
+    .cta-title {
+        font-size: 19px;
+    }
+
+    .cta-description {
+        font-size: 10px;
+        line-height: 1.6;
+    }
+
+    .cta-button {
+        padding: 11px 25px;
+    }
+}
+
+/* =========================================
+   HP KECIL
+========================================= */
+
+@media (max-width: 350px) {
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-photo,
+    .assistant-card .team-photo {
+        height: 180px;
+    }
+
+    .founder-heading h2 {
+        font-size: 23px;
+    }
+
+    .founder-photo {
+        height: 170px;
+    }
+}
