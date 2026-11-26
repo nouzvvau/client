@@ -136,6 +136,7 @@ body {
     position: relative;
     padding: 25px 0;
     transition: 0.3s;
+    left: -80px;
 }
 
 .nav-menu > a:hover,
