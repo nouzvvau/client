@@ -403,8 +403,34 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 45%;
     position: absolute;
     inset: 0;
+}
+
+/* KHUSUS FOTO YULI */
+.team-grid .team-card:first-child .team-photo img {
+    object-position: center 30%;
+}
+
+/* KHUSUS FOTO MAYLA */
+.team-grid .team-card:nth-child(4) .team-photo img {
+    object-position: center 60%;
+}
+
+/* KHUSUS FOTO ZEFANYA */
+.assistant-section .assistant-card:first-child .team-photo img {
+    object-position: center 50%;
+}
+
+/* KHUSUS FOTO ANGGA RAMADHAN */
+.assistant-section .assistant-card:nth-child(3) .team-photo img {
+    object-position: center 60%;
+}
+
+/* KHUSUS FOTO MARIO BIMA */
+.assistant-section .assistant-card:nth-child(4) .team-photo img {
+    object-position: center 50%;
 }
 
 .initials {

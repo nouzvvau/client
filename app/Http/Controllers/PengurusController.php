@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
@@ -11,9 +10,6 @@ class PengurusController extends Controller
         return view('pengurus', $this->staticTeam());
     }
 
-    /**
-     * @return array{pengurus: array<int, array{nama: string, jabatan: string, tipe: string, inisial: string, warna: string, foto: null}>, asisten: array<int, array{nama: string, inisial: string, warna: string, foto: null}>}
-     */
     private function staticTeam(): array
     {
         $pengurus = [
@@ -23,7 +19,7 @@ class PengurusController extends Controller
                 'tipe' => 'coach',
                 'inisial' => 'YW',
                 'warna' => 'hijau',
-                'foto' => null,
+                'foto' => 'assets/images/pengurus/yuli-wildan.jpg',
             ],
             [
                 'nama' => 'Anwar Fajar Sidiq, S.Sn.',
@@ -39,7 +35,7 @@ class PengurusController extends Controller
                 'tipe' => 'coach',
                 'inisial' => 'IA',
                 'warna' => 'krem',
-                'foto' => null,
+                'foto' => 'assets/images/pengurus/imas.jpg',
             ],
             [
                 'nama' => 'Mayla Nazwa Putri Aisyah',
@@ -47,7 +43,7 @@ class PengurusController extends Controller
                 'tipe' => 'admin',
                 'inisial' => 'MN',
                 'warna' => 'merah',
-                'foto' => null,
+                'foto' => 'assets/images/pengurus/mayla.jpg',
             ],
         ];
 
@@ -56,25 +52,25 @@ class PengurusController extends Controller
                 'nama' => 'Zefanya Widya',
                 'inisial' => 'ZW',
                 'warna' => 'hijau',
-                'foto' => null,
+                'foto' => 'assets/images/pengurus/zeffan.jpg',
             ],
             [
                 'nama' => 'Jawwada Hayyu Setya Gita',
                 'inisial' => 'JG',
                 'warna' => 'kuning',
-                'foto' => null,
+                'foto' => 'assets/images/pengurus/jawada.jpg',
             ],
             [
                 'nama' => 'Angga Ramadhan',
                 'inisial' => 'AR',
                 'warna' => 'krem',
-                'foto' => null,
+                'foto' => 'assets/images/pengurus/angga.jpg',
             ],
             [
                 'nama' => 'Mario Bima',
                 'inisial' => 'MB',
                 'warna' => 'merah',
-                'foto' => null,
+                'foto' => 'assets/images/pengurus/mario.jpg',
             ],
         ];
 
