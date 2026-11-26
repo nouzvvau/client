@@ -11,6 +11,7 @@ class ProgramPageController extends Controller
     {
         $programs = Program::query()
             ->active()
+            ->with('thumbnailPhotos')
             ->orderBy('name')
             ->get();
 
@@ -21,8 +22,11 @@ class ProgramPageController extends Controller
     {
         $program = Program::query()
             ->active()
+            ->with('documentations.photos')
             ->get()
-            ->first(fn (Program $program): bool => $program->slug === $slug);
+            ->first(
+                fn (Program $program): bool => $program->slug === $slug
+            );
 
         abort_if($program === null, 404);
 

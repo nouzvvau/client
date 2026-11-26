@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EventDocumentation;
+use App\Models\GalleryPhoto;
 use Illuminate\View\View;
 
 class GaleriPageController extends Controller
@@ -10,19 +10,10 @@ class GaleriPageController extends Controller
     public function index(): View
     {
         return view('galeri', [
-            'activities' => EventDocumentation::query()
-                ->with('photos')
-                ->orderByDesc('event_date')
-                ->orderByDesc('id')
+            'photos' => GalleryPhoto::query()
+                ->latest()
                 ->get(),
             'schedules' => collect(),
         ]);
-    }
-
-    public function show(EventDocumentation $eventDocumentation): View
-    {
-        $eventDocumentation->load('photos');
-
-        return view('galeri-acara', compact('eventDocumentation'));
     }
 }

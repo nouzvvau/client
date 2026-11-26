@@ -177,20 +177,37 @@ return [
         'location_desc' => 'Sanggar Karawitan Cakra Aji hadir di dua lokasi tempat latihan untuk memudahkan Anda mempelajari dan melestarikan seni karawitan.',
         'location_cta' => 'Info alamat sanggar',
     ],
+    
     'pengurus' => [
-        'label' => 'Pengurus',
-        'title_1' => 'Tangan-tangan yang',
-        'title_2' => 'merawat bunyi.',
-        'description' => 'Pelatih, asisten, dan admin yang menemani setiap latihan di Sanggar Seni Cakra Aji.',
-        'team_label' => 'Pelatih & Admin',
-        'role_coach' => 'Pelatih',
-        'role_admin' => 'Admin & Sosmed Spesialis',
-        'assistant_label' => 'Bersama Para Pelatih',
-        'assistant_title' => 'Asisten Pelatih',
-        'cta_title' => 'Ingin ikut berlatih bersama kami?',
-        'cta_desc' => 'Daftar jadi murid dan mulai belajar karawitan di Sanggar Seni Cakra Aji.',
-        'cta_button' => 'Daftar Murid',
-    ],
+    // Key yang sudah ada tetap dipertahankan
+
+    'mentor_label' => 'Pembina',
+    'nickname_label' => 'AKRAB DISAPA',
+    'expertise_label' => 'KEAHLIAN',
+    'expertise_composer' => 'Pelinting Bunyi (Komposer)',
+    'expertise_musician' => 'Musisi',
+
+    'education_label' => 'RIWAYAT PENDIDIKAN',
+    'degree_bachelor' => 'Sarjana Seni',
+    'degree_master' => 'Magister Seni',
+
+    'founder_role' => 'PENDIRI / PIMPINAN',
+    'nickname_intro' => 'Akrab disapa',
+
+    'founder_reason_label' => 'ALASAN MENDIRIKAN SANGGAR',
+    'founder_reason' => 'Saat berkuliah di ISI Surakarta pada 2020, saya melihat besar potensinya karawitan di Tulungagung. Namun, pembelajarannya masih sebatas hafalan lagu tanpa pemahaman teori dan konsep. Melihat hal itu, saya mendirikan Sanggar Cakra Aji untuk menyediakan wadah belajar karawitan yang terstruktur dan sistematis — mulai dari dasar hingga mahir, baik secara teori maupun praktik.',
+
+    'future_hope_label' => 'HARAPAN KE DEPAN',
+    'future_hope' => 'Semoga sanggar ini terus berkembang menjadi acuan dan sumber inspirasi bagi generasi muda maupun senior. Dengan terus beradaptasi secara digital serta menghadirkan metode pembelajaran yang inovatif, sanggar ini diharapkan mampu mencetak generasi seniman karawitan yang unggul dan kompeten di masa depan.',
+
+    'social_media_label' => 'SOSIAL MEDIA',
+    'instagram' => 'Instagram',
+    'tiktok' => 'TikTok',
+
+    'student_list_title' => 'Daftar Seluruh Nama Murid',
+    'student_list_desc' => 'Lihat daftar lengkap murid Sanggar Seni Cakra Aji.',
+],
+
     'program' => [
         'eyebrow' => 'KOLABORASI',
         'title' => 'Dalam kolaborasi Cakra Aji, setiap ide dirajut menjadi karya yang menawan',
@@ -227,6 +244,7 @@ return [
     ],
     'detail' => [
         'eyebrow' => 'PROGRAM & KEGIATAN',
+        'year_label' => 'Tahun',
         'schedule_label' => 'Jadwal',
         'main_moment' => 'MOMEN UTAMA',
         'story_eyebrow' => 'CERITA KEGIATAN',

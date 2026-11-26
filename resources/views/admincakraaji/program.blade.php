@@ -54,9 +54,10 @@
                     <textarea id="description_en" name="description_en" rows="4" class="admin-textarea">{{ old('description_en') }}</textarea>
                 </div>
 
+
                 <div class="admin-field">
-                    <label for="image">Gambar</label>
-                    <input id="image" type="file" name="image" accept="image/jpeg,image/png,image/webp" class="admin-input">
+                    <label for="year">Tahun program</label>
+                    <input id="year" type="number" name="year" value="{{ old('year') }}" min="1900" max="2100" placeholder="Contoh: 2026" class="admin-input">
                 </div>
 
                 <div class="admin-field" style="justify-content:flex-end;">
@@ -65,6 +66,24 @@
                         <input type="checkbox" name="is_active" value="1" @checked(old('is_active', true))>
                         <span>Tampilkan di halaman publik</span>
                     </label>
+                </div>
+
+                <div class="admin-field admin-field--full">
+                    <label for="photos">Foto dokumentasi</label>
+                    <input
+                        id="photos"
+                        type="file"
+                        name="photos[]"
+                        accept="image/jpeg,image/png,image/webp"
+                        multiple
+                        class="admin-file-input"
+                        data-preview-input="#photo-preview"
+                    >
+                    <small style="font-size:11px;color:var(--admin-muted);">
+                        Opsional. Maksimal 5 foto dokumentasi, format JPG, JPEG, PNG, atau WEBP,
+                        masing-masing maksimal 2 MB. Tampil pada halaman detail program.
+                    </small>
+                    <div id="photo-preview" class="admin-preview"></div>
                 </div>
             </div>
 
@@ -101,7 +120,7 @@
                     <thead>
                         <tr>
                             <th>Program</th>
-                            <th>Jadwal</th>
+                            <th>Tahun</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
@@ -116,11 +135,9 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {{ $program->schedule ?: '—' }}
-                                    @if ($program->schedule_en)
-                                        <span class="admin-table__secondary">{{ $program->schedule_en }}</span>
-                                    @endif
+                                    {{ $program->year ?: '—' }}
                                 </td>
+                                
                                 <td>
                                     <span class="admin-badge admin-badge--{{ $program->is_active ? 'accepted' : 'rejected' }}">
                                         {{ $program->is_active ? 'Aktif' : 'Nonaktif' }}

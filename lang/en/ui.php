@@ -177,20 +177,37 @@ return [
         'location_desc' => 'Sanggar Karawitan Cakra Aji is present at two practice locations to make it easier for you to learn and preserve the art of karawitan.',
         'location_cta' => 'Studio address info',
     ],
+    
     'pengurus' => [
-        'label' => 'Team',
-        'title_1' => 'The hands that',
-        'title_2' => 'care for the sound.',
-        'description' => 'The coaches, assistants, and admin who accompany every practice at Sanggar Seni Cakra Aji.',
-        'team_label' => 'Coaches & Admin',
-        'role_coach' => 'Coach',
-        'role_admin' => 'Admin & Social Media Specialist',
-        'assistant_label' => 'Together with the Coaches',
-        'assistant_title' => 'Assistant Coaches',
-        'cta_title' => 'Want to practice with us?',
-        'cta_desc' => 'Register as a student and start learning karawitan at Sanggar Seni Cakra Aji.',
-        'cta_button' => 'Register as Student',
-    ],
+    // Key yang sudah ada tetap dipertahankan
+
+    'mentor_label' => 'Advisor',
+    'nickname_label' => 'ALSO KNOWN AS',
+    'expertise_label' => 'AREAS OF EXPERTISE',
+    'expertise_composer' => 'Sound Composer',
+    'expertise_musician' => 'Musician',
+
+    'education_label' => 'EDUCATIONAL BACKGROUND',
+    'degree_bachelor' => 'Bachelor of Arts',
+    'degree_master' => 'Master of Arts',
+
+    'founder_role' => 'FOUNDER / DIRECTOR',
+    'nickname_intro' => 'Known as',
+
+    'founder_reason_label' => 'WHY THE STUDIO WAS ESTABLISHED',
+    'founder_reason' => 'While studying at the Indonesian Institute of the Arts Surakarta in 2020, I recognized the great potential of karawitan in Tulungagung. However, learning was still largely limited to memorizing songs without understanding the underlying theories and concepts. This inspired me to establish Sanggar Cakra Aji as a structured and systematic learning space for karawitan, from the basics to advanced levels, covering both theory and practice.',
+
+    'future_hope_label' => 'FUTURE ASPIRATIONS',
+    'future_hope' => 'I hope this studio will continue to grow into a reference point and source of inspiration for both younger and older generations. By embracing digital developments and introducing innovative learning methods, the studio aims to nurture a generation of skilled and competent karawitan artists.',
+
+    'social_media_label' => 'SOCIAL MEDIA',
+    'instagram' => 'Instagram',
+    'tiktok' => 'TikTok',
+
+    'student_list_title' => 'Complete Student List',
+    'student_list_desc' => 'View the complete list of Sanggar Seni Cakra Aji students.',
+],
+
     'program' => [
         'eyebrow' => 'COLLABORATION',
         'title' => 'In Cakra Aji collaborations, every idea is woven into captivating works',
@@ -227,6 +244,7 @@ return [
     ],
     'detail' => [
         'eyebrow' => 'PROGRAMS & ACTIVITIES',
+        'year_label' => 'Year',
         'schedule_label' => 'Schedule',
         'main_moment' => 'MAIN MOMENT',
         'story_eyebrow' => 'ACTIVITY STORY',

@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Database\Factories\EventDocumentationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class EventDocumentation extends Model
 {
-    /** @use HasFactory<\Database\Factories\EventDocumentationFactory> */
+    /** @use HasFactory<EventDocumentationFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -16,6 +18,7 @@ class EventDocumentation extends Model
         'description',
         'event_date',
         'location',
+        'program_id',
     ];
 
     /**
@@ -31,6 +34,11 @@ class EventDocumentation extends Model
     public function photos(): HasMany
     {
         return $this->hasMany(EventDocumentationPhoto::class)->orderBy('id');
+    }
+
+    public function program(): BelongsTo
+    {
+        return $this->belongsTo(Program::class);
     }
 
     public function getCoverUrlAttribute(): ?string

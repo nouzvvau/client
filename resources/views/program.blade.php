@@ -7,6 +7,23 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/program-kegiatan.css') }}">
+    <style>
+        .card__photo-placeholder {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f1f1;
+            color: #999;
+        }
+
+        .card__photo-placeholder svg {
+            width: 56px;
+            height: 56px;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -26,26 +43,44 @@
                     @foreach ($programs as $program)
                         @php
                             $style = $styles[$loop->index % count($styles)];
+                            $thumbnail = $program->thumbnail_photo;
                         @endphp
 
                         <article class="card card--{{ $style }}">
                             <div class="card__photo">
-                                <img
-                                    src="{{ $program->image_url }}"
-                                    alt="{{ __('ui.common.documentation_of', ['name' => $program->localized_name]) }}"
-                                    loading="lazy"
-                                >
+                                @if ($thumbnail)
+                                    <img
+                                        src="{{ $thumbnail->url }}"
+                                        alt="{{ __('ui.common.documentation_of', ['name' => $program->localized_name]) }}"
+                                        loading="lazy"
+                                    >
+                                @else
+                                    <div class="card__photo-placeholder" aria-label="Belum ada foto thumbnail">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            aria-hidden="true"
+                                        >
+                                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                                            <circle cx="8.5" cy="8.5" r="1.5" />
+                                            <path d="m21 15-5-5L5 21" />
+                                        </svg>
+                                    </div>
+                                @endif
                             </div>
 
                             <div class="card__body">
-                                <div class="card__body">
-                                    @if (!empty($program->year))
-                                        <span class="badge badge--{{ $style }}">
-                                            {{ $program->year }}
-                                        </span>
-                                    @endif
-                                    <h3>{{ $program->localized_name }}</h3>
-                                </div>
+                                @if (!empty($program->year))
+                                    <span class="badge badge--{{ $style }}">
+                                        {{ $program->year }}
+                                    </span>
+                                @endif
+                                <h3>{{ $program->localized_name }}</h3>
                             </div>
 
                             <div class="card__action">

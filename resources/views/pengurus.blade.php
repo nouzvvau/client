@@ -33,60 +33,54 @@
 
 </section>
 
-
-{{-- ============================= --}}
-{{-- PROFIL PENDIRI / TOTTI --}}
-{{-- ============================= --}}
-
 <section class="founder-section">
 
     <div class="founder-layout">
 
-        {{-- KOLOM KIRI --}}
         <div class="founder-sidebar">
 
-            {{-- KARTU FOTO --}}
             <div class="founder-photo-card">
 
                 <div class="founder-photo">
                     <span class="founder-initials">TW</span>
                     <span class="founder-photo-caption">
-                        GANTI DENGAN FOTO
+                        {{ __('ui.common.photo_replace') }}
                     </span>
                 </div>
 
                 <div class="founder-photo-info">
                     <h2>Totti Wahyu Bathara</h2>
-                    <span class="founder-role">Pembina</span>
+                    <span class="founder-role">
+                        {{ __('ui.pengurus.mentor_label') }}
+                    </span>
                 </div>
 
             </div>
 
-            {{-- INFORMASI PROFIL TERPISAH --}}
             <div class="founder-extra-info">
 
                 <div class="founder-info-group">
-                    <h3>AKRAB DISAPA</h3>
+                    <h3>{{ __('ui.pengurus.nickname_label') }}</h3>
                     <p>Totti</p>
                 </div>
 
                 <div class="founder-info-group">
-                    <h3>KEAHLIAN</h3>
+                    <h3>{{ __('ui.pengurus.expertise_label') }}</h3>
 
                     <div class="expertise-list">
-                        <span>Pelinting Bunyi (Komposer)</span>
+                        <span>{{ __('ui.pengurus.expertise_composer') }}</span>
                         <span>Music Director &amp; Producer</span>
-                        <span>Musisi</span>
+                        <span>{{ __('ui.pengurus.expertise_musician') }}</span>
                     </div>
                 </div>
 
                 <div class="founder-info-group education-group">
-                    <h3>RIWAYAT PENDIDIKAN</h3>
+                    <h3>{{ __('ui.pengurus.education_label') }}</h3>
 
                     <div class="education-item">
                         <strong>2022</strong>
                         <div>
-                            <b>Sarjana Seni</b>
+                            <b>{{ __('ui.pengurus.degree_bachelor') }}</b>
                             <small>Institut Seni Indonesia Surakarta</small>
                         </div>
                     </div>
@@ -94,7 +88,7 @@
                     <div class="education-item">
                         <strong>2025</strong>
                         <div>
-                            <b>Magister Seni</b>
+                            <b>{{ __('ui.pengurus.degree_master') }}</b>
                             <small>Institut Seni Indonesia Surakarta</small>
                         </div>
                     </div>
@@ -106,69 +100,42 @@
         </div>
 
 
-        {{-- KOLOM KANAN --}}
         <div class="founder-content">
 
             <div class="founder-heading">
 
                 <p class="section-label">
-                    PENDIRI / PIMPINAN
+                    {{ __('ui.pengurus.founder_role') }}
                 </p>
 
                 <h2>Totti Wahyu Bathara, M.Sn.</h2>
 
                 <p class="founder-nickname">
-                    Akrab disapa <strong>Totti</strong>
+                    {{ __('ui.pengurus.nickname_intro') }}
+                    <strong>Totti</strong>
                 </p>
 
             </div>
 
 
-            {{-- ALASAN DAN HARAPAN --}}
             <div class="founder-story-grid">
 
                 <div class="story-card">
-
-                    <h3>ALASAN MENDIRIKAN SANGGAR</h3>
-
-                    <p>
-                        Saat berkuliah di ISI Surakarta pada 2020,
-                        saya melihat besar potensinya karawitan di
-                        Tulungagung. Namun, pembelajarannya masih
-                        sebatas hafalan lagu tanpa pemahaman teori
-                        dan konsep. Melihat hal itu, saya mendirikan
-                        Sanggar Cakra Aji untuk menyediakan wadah
-                        belajar karawitan yang terstruktur dan
-                        sistematis — mulai dari dasar hingga mahir,
-                        baik secara teori maupun praktik.
-                    </p>
-
+                    <h3>{{ __('ui.pengurus.founder_reason_label') }}</h3>
+                    <p>{{ __('ui.pengurus.founder_reason') }}</p>
                 </div>
 
-
                 <div class="story-card">
-
-                    <h3>HARAPAN KE DEPAN</h3>
-
-                    <p>
-                        Semoga sanggar ini terus berkembang menjadi
-                        acuan dan sumber inspirasi bagi generasi muda
-                        maupun senior. Dengan terus beradaptasi secara
-                        digital serta menghadirkan metode pembelajaran
-                        yang inovatif, sanggar ini diharapkan mampu
-                        mencetak generasi seniman karawitan yang unggul
-                        dan kompeten di masa depan.
-                    </p>
-
+                    <h3>{{ __('ui.pengurus.future_hope_label') }}</h3>
+                    <p>{{ __('ui.pengurus.future_hope') }}</p>
                 </div>
 
             </div>
 
 
-            {{-- SOSIAL MEDIA --}}
             <div class="founder-social">
 
-                <h3>SOSIAL MEDIA</h3>
+                <h3>{{ __('ui.pengurus.social_media_label') }}</h3>
 
                 <div class="social-grid">
 
@@ -178,17 +145,17 @@
                        class="social-link">
 
                         <span class="social-icon">◎</span>
-                        <span>Instagram @Twbathara</span>
+                        <span>{{ __('ui.pengurus.instagram') }} @Twbathara</span>
 
                     </a>
 
-                    <a href="https://www.tiktok.com/@tottiwahyu"
+                    <a href="https://www.tiktok.com/@tottiwb"
                        target="_blank"
                        rel="noopener noreferrer"
                        class="social-link">
 
                         <span class="social-icon">♪</span>
-                        <span>TikTok @tottiwahyu</span>
+                        <span>{{ __('ui.pengurus.tiktok') }} @tottiwb</span>
 
                     </a>
 
@@ -201,7 +168,6 @@
     </div>
 
 </section>
-
 
 {{-- ============================= --}}
 {{-- PELATIH DAN ADMIN --}}
@@ -247,7 +213,9 @@
                     </h3>
 
                     <span class="role {{ $orang['tipe'] === 'coach' ? 'yellow' : 'green' }}">
-                        {{ $orang['jabatan'] }}
+                        {{ $orang['tipe'] === 'coach'
+                            ? __('ui.pengurus.role_coach')
+                            : __('ui.pengurus.role_admin') }}
                     </span>
 
                 </div>
@@ -329,17 +297,17 @@
 
         <div>
             <h2 class="cta-title">
-                Daftar Seluruh Nama Murid
+                {{ __('ui.pengurus.student_list_title') }}
             </h2>
 
             <p class="cta-description">
-                Lihat daftar lengkap murid Sanggar Seni Cakra Aji.
+                {{ __('ui.pengurus.student_list_desc') }}
             </p>
         </div>
 
-        <x-form-link form="registration" class="cta-button">
-            Selengkapnya
-        </x-form-link>
+        <a href="{{ route('murid.index') }}" class="student-button">
+            {{ __('ui.common.read_more') }}
+        </a>
 
     </div>
 

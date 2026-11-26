@@ -8,8 +8,7 @@
     <div class="admin-page-head">
         <div>
             <a href="{{ route('admin.program.index') }}" class="admin-btn admin-btn--sm" style="margin-bottom:10px;">
-                <x-admin.icon name="arrow-left" />
-                Kembali
+                <x-admin.icon name="arrow-left" /> Kembali
             </a>
             <h2 class="admin-page-head__title">Ubah program</h2>
             <p class="admin-page-head__desc">{{ $program->name }}</p>
@@ -18,7 +17,7 @@
 
     <div class="admin-detail-grid">
         <section class="admin-card">
-            <form action="{{ route('admin.program.update', $program) }}" method="POST" class="admin-form">
+            <form action="{{ route('admin.program.update', $program) }}" method="POST" enctype="multipart/form-data" class="admin-form">
                 @csrf
                 @method('PUT')
 
@@ -44,11 +43,6 @@
                     </div>
 
                     <div class="admin-field">
-                        <label for="image">Gambar</label>
-                        <input id="image" type="file" name="image" accept="image/jpeg,image/png,image/webp" class="admin-input">
-                    </div>
-
-                    <div class="admin-field">
                         <label for="year">Tahun program</label>
                         <input id="year" type="number" name="year" value="{{ old('year', $program->year) }}" min="1900" max="2100" placeholder="Contoh: 2026" class="admin-input">
                     </div>
@@ -64,8 +58,7 @@
 
                 <div class="admin-form-actions">
                     <button type="submit" class="admin-btn admin-btn--primary">
-                        <x-admin.icon name="check" />
-                        Simpan perubahan
+                        <x-admin.icon name="check" /> Simpan perubahan
                     </button>
                     <a href="{{ route('admin.program.index') }}" class="admin-btn">Batal</a>
                 </div>
@@ -73,19 +66,6 @@
         </section>
 
         <div>
-            <section class="admin-card">
-                <div class="admin-card__head">
-                    <div>
-                        <h3 class="admin-card__title">Pratinjau gambar</h3>
-                        <p class="admin-card__desc">Gambar yang dipakai di halaman publik.</p>
-                    </div>
-                </div>
-
-                <div style="border:1px solid var(--admin-line);border-radius:var(--admin-radius);overflow:hidden;background:var(--admin-cream-deep);">
-                    <img src="{{ $program->image_url }}" alt="{{ $program->name }}" style="display:block;width:100%;height:auto;">
-                </div>
-            </section>
-
             <section class="admin-card" style="border-color:#e3b1b3;">
                 <div class="admin-card__head">
                     <div>
@@ -98,11 +78,142 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="admin-btn admin-btn--danger admin-btn--block">
-                        <x-admin.icon name="trash" />
-                        Hapus program
+                        <x-admin.icon name="trash" /> Hapus program
                     </button>
                 </form>
             </section>
         </div>
     </div>
+
+    @php
+        $maxPhotos = 5;
+        $photoCount = $documentationPhotos->count();
+        $remainingSlots = max($maxPhotos - $photoCount, 0);
+
+        $selectedThumbnailId = old(
+            'thumbnail_photo_id',
+            $documentationPhotos->firstWhere('is_thumbnail', true)?->id
+                ?? $documentationPhotos->first()?->id
+        );
+
+        $removedPhotoIds = collect(old('remove_photos', []))
+            ->map(fn ($id) => (int) $id);
+    @endphp
+
+    <section class="admin-card" style="margin-top:20px;">
+        <div class="admin-card__head">
+            <div>
+                <h3 class="admin-card__title">Foto dokumentasi</h3>
+                <p class="admin-card__desc">
+                    Terpakai <strong>{{ $photoCount }}/{{ $maxPhotos }}</strong> foto ·
+                    sisa slot <strong>{{ $remainingSlots }}</strong>.
+                    Pilih satu foto sebagai thumbnail program.
+                </p>
+            </div>
+        </div>
+
+        <form action="{{ route('admin.program.documentation-photos', $program) }}" method="POST" enctype="multipart/form-data" class="admin-form">
+            @csrf
+
+            @if ($photoCount > 0)
+                <div class="admin-form-grid">
+                    @foreach ($documentationPhotos as $photo)
+                        @php
+                            $isSelectedThumbnail = (int) $selectedThumbnailId === (int) $photo->id;
+                            $isMarkedForRemoval = $removedPhotoIds->contains((int) $photo->id);
+
+                            $previewUrl = $isSelectedThumbnail && $photo->thumbnail_url
+                                ? $photo->thumbnail_url
+                                : $photo->url;
+                        @endphp
+
+                        <div class="admin-existing-photo">
+                            <div class="admin-existing-photo__media">
+                                <img
+                                    src="{{ $previewUrl }}"
+                                    alt="{{ $photo->caption ?: $program->name }}"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </div>
+
+                            <div class="admin-existing-photo__body">
+                                @if ($isSelectedThumbnail)
+                                    <span style="display:inline-block;margin-bottom:8px;padding:4px 9px;background:#e5f4e8;color:#24733a;border-radius:20px;font-size:11px;font-weight:700;">
+                                        Thumbnail aktif
+                                    </span>
+                                @endif
+
+                                <label style="display:flex;align-items:center;gap:7px;margin-bottom:10px;cursor:pointer;">
+                                    <input
+                                        type="radio"
+                                        name="thumbnail_photo_id"
+                                        value="{{ $photo->id }}"
+                                        @checked($isSelectedThumbnail)
+                                    >
+                                    <span>Jadikan thumbnail</span>
+                                </label>
+
+                                <p style="margin:0 0 6px;">
+                                    {{ $photo->caption ?: 'Tanpa keterangan' }}
+                                </p>
+
+                                <label class="admin-existing-photo__remove">
+                                    <input
+                                        type="checkbox"
+                                        name="remove_photos[]"
+                                        value="{{ $photo->id }}"
+                                        @checked($isMarkedForRemoval)
+                                    >
+                                    Hapus foto ini saat menyimpan
+                                </label>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="admin-card__desc">
+                    Belum ada foto dokumentasi untuk program ini.
+                </p>
+            @endif
+
+            @error('thumbnail_photo_id')
+                <p style="color:var(--admin-red);font-size:12px;margin-top:10px;">
+                    {{ $message }}
+                </p>
+            @enderror
+
+            <div class="admin-field admin-field--full" style="margin-top:16px;">
+                <label for="photos">Tambah foto baru</label>
+
+                <input
+                    id="photos"
+                    type="file"
+                    name="photos[]"
+                    accept="image/jpeg,image/png,image/webp"
+                    multiple
+                    class="admin-file-input"
+                    data-preview-input="#photo-preview"
+                    @disabled($remainingSlots === 0)
+                >
+
+                <small style="font-size:11px;color:var(--admin-muted);">
+                    Format JPG, JPEG, PNG, atau WEBP. Maksimal {{ $maxPhotos }} foto per program,
+                    masing-masing maksimal 2 MB.
+
+                    @if ($remainingSlots === 0)
+                        Semua slot foto penuh — hapus salah satu foto untuk menambah foto baru.
+                    @endif
+                </small>
+
+                <div id="photo-preview" class="admin-preview"></div>
+            </div>
+
+            <div class="admin-form-actions">
+                <button type="submit" class="admin-btn admin-btn--primary">
+                    <x-admin.icon name="check" /> Simpan foto dokumentasi
+                </button>
+            </div>
+        </form>
+    </section>
 @endsection

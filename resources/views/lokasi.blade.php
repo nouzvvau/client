@@ -244,7 +244,7 @@
                             <span class="location-pin" aria-hidden="true">2</span>
 
                             <iframe
-                                src="https://www.google.com/maps?q=Jl.+Tembus+Manggisan,+Manggisan,+Plosokandang,+Kec.+Kedungwaru,+Kabupaten+Tulungagung,+Jawa+Timur&amp;output=embed"
+                                src="https://maps.app.goo.gl/6WFmpALAXroBMsF1A"
                                 title="{{ __('ui.lokasi.plosokandang_map_title') }}"
                                 loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"
@@ -298,7 +298,7 @@
                             <div class="location-actions">
                                 <a
                                     class="btn btn--brown"
-                                    href="https://www.google.com/maps/search/?api=1&amp;query=Jl.+Tembus+Manggisan%2C+Manggisan%2C+Plosokandang%2C+Kec.+Kedungwaru%2C+Kabupaten+Tulungagung%2C+Jawa+Timur"
+                                    href="https://maps.app.goo.gl/6WFmpALAXroBMsF1A"
                                     target="_blank"
                                     rel="noopener">
                                     {{ __('ui.common.open_maps') }}
@@ -306,7 +306,7 @@
 
                                 <a
                                     class="btn btn--outline-brown"
-                                    href="https://www.google.com/maps/dir/?api=1&amp;destination=Jl.+Tembus+Manggisan%2C+Manggisan%2C+Plosokandang%2C+Kec.+Kedungwaru%2C+Kabupaten+Tulungagung%2C+Jawa+Timur"
+                                    href="https://maps.app.goo.gl/6WFmpALAXroBMsF1A"
                                     target="_blank"
                                     rel="noopener">
                                     {{ __('ui.common.directions') }}

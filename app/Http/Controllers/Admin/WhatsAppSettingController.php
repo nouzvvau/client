@@ -18,7 +18,7 @@ class WhatsAppSettingController extends Controller
         $message = Setting::get('whatsapp_message', config('whatsapp.message'));
         $ctaLabel = Setting::get('whatsapp_cta_label', config('whatsapp.cta_label'));
 
-        return view('admincakraaji.whatsapp.edit', [
+        return view('admincakraaji.kontak', [
             'number' => $number,
             'message' => $message,
             'ctaLabel' => $ctaLabel,
