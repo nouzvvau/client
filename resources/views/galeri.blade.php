@@ -85,23 +85,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($schedules as $schedule)
+                        @foreach (__('ui.galeri.schedule_rows') as $row)
                             <tr>
-                                <td data-label="{{ __('ui.galeri.table_group') }}">{{ $schedule->program?->name ?? '-' }}</td>
-                                <td data-label="{{ __('ui.galeri.table_day') }}">{{ $schedule->day_of_week }}</td>
-                                <td data-label="{{ __('ui.galeri.table_time') }}">{{ substr($schedule->start_time, 0, 5) }} - {{ substr($schedule->end_time, 0, 5) }}</td>
-                                <td data-label="{{ __('ui.galeri.table_place') }}">{{ $schedule->location?->name ?? '-' }}</td>
+                                <td data-label="{{ __('ui.galeri.table_group') }}">{{ $row['group'] }}</td>
+                                <td data-label="{{ __('ui.galeri.table_day') }}">{{ $row['day'] }}</td>
+                                <td data-label="{{ __('ui.galeri.table_time') }}">{{ $row['time'] }}</td>
+                                <td data-label="{{ __('ui.galeri.table_place') }}">{{ $row['place'] }}</td>
                             </tr>
-                        @empty
-                            @foreach (__('ui.galeri.schedule_rows') as $row)
-                                <tr>
-                                    <td data-label="{{ __('ui.galeri.table_group') }}">{{ $row['group'] }}</td>
-                                    <td data-label="{{ __('ui.galeri.table_day') }}">{{ $row['day'] }}</td>
-                                    <td data-label="{{ __('ui.galeri.table_time') }}">{{ $row['time'] }}</td>
-                                    <td data-label="{{ __('ui.galeri.table_place') }}">{{ $row['place'] }}</td>
-                                </tr>
-                            @endforeach
-                        @endforelse
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -69,7 +69,7 @@
 
                     <div class="expertise-list">
                         <span>{{ __('ui.pengurus.expertise_composer') }}</span>
-                        <span>Music Director &amp; Producer</span>
+                        <span>{{ __('ui.pengurus.expertise_music_director') }}</span>
                         <span>{{ __('ui.pengurus.expertise_musician') }}</span>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                         <strong>2022</strong>
                         <div>
                             <b>{{ __('ui.pengurus.degree_bachelor') }}</b>
-                            <small>Institut Seni Indonesia Surakarta</small>
+                            <small>{{ __('ui.pengurus.institution') }}</small>
                         </div>
                     </div>
 
@@ -89,7 +89,7 @@
                         <strong>2025</strong>
                         <div>
                             <b>{{ __('ui.pengurus.degree_master') }}</b>
-                            <small>Institut Seni Indonesia Surakarta</small>
+                            <small>{{ __('ui.pengurus.institution') }}</small>
                         </div>
                     </div>
 
@@ -305,7 +305,7 @@
             </p>
         </div>
 
-        <a href="{{ route('murid.index') }}" class="student-button">
+        <a href="{{ route('murid.index') }}" class="cta-button">
             {{ __('ui.common.read_more') }}
         </a>
 

@@ -177,36 +177,48 @@ return [
         'location_desc' => 'Sanggar Karawitan Cakra Aji hadir di dua lokasi tempat latihan untuk memudahkan Anda mempelajari dan melestarikan seni karawitan.',
         'location_cta' => 'Info alamat sanggar',
     ],
-    
+
     'pengurus' => [
-    // Key yang sudah ada tetap dipertahankan
+        'label' => 'PENGURUS',
+        'title_1' => 'Yang merawat bunyi,',
+        'title_2' => 'menumbuhkan tradisi.',
+        'description' => 'Kenali pembina, pelatih, admin, dan asisten yang menemani setiap latihan di Sanggar Seni Cakra Aji.',
+        // Key yang sudah ada tetap dipertahankan
 
-    'mentor_label' => 'Pembina',
-    'nickname_label' => 'AKRAB DISAPA',
-    'expertise_label' => 'KEAHLIAN',
-    'expertise_composer' => 'Pelinting Bunyi (Komposer)',
-    'expertise_musician' => 'Musisi',
+        'mentor_label' => 'Pembina',
+        'nickname_label' => 'AKRAB DISAPA',
+        'expertise_label' => 'KEAHLIAN',
+        'expertise_composer' => 'Pelinting Bunyi (Komposer)',
+        'expertise_music_director' => 'Direktur Musik & Produser',
+        'expertise_musician' => 'Musisi',
 
-    'education_label' => 'RIWAYAT PENDIDIKAN',
-    'degree_bachelor' => 'Sarjana Seni',
-    'degree_master' => 'Magister Seni',
+        'education_label' => 'RIWAYAT PENDIDIKAN',
+        'degree_bachelor' => 'Sarjana Seni',
+        'degree_master' => 'Magister Seni',
+        'institution' => 'Institut Seni Indonesia Surakarta',
 
-    'founder_role' => 'PENDIRI / PIMPINAN',
-    'nickname_intro' => 'Akrab disapa',
+        'founder_role' => 'PENDIRI / PIMPINAN',
+        'nickname_intro' => 'Akrab disapa',
 
-    'founder_reason_label' => 'ALASAN MENDIRIKAN SANGGAR',
-    'founder_reason' => 'Saat berkuliah di ISI Surakarta pada 2020, saya melihat besar potensinya karawitan di Tulungagung. Namun, pembelajarannya masih sebatas hafalan lagu tanpa pemahaman teori dan konsep. Melihat hal itu, saya mendirikan Sanggar Cakra Aji untuk menyediakan wadah belajar karawitan yang terstruktur dan sistematis — mulai dari dasar hingga mahir, baik secara teori maupun praktik.',
+        'founder_reason_label' => 'ALASAN MENDIRIKAN SANGGAR',
+        'founder_reason' => 'Saat berkuliah di ISI Surakarta pada 2020, saya melihat besar potensinya karawitan di Tulungagung. Namun, pembelajarannya masih sebatas hafalan lagu tanpa pemahaman teori dan konsep. Melihat hal itu, saya mendirikan Sanggar Cakra Aji untuk menyediakan wadah belajar karawitan yang terstruktur dan sistematis — mulai dari dasar hingga mahir, baik secara teori maupun praktik.',
 
-    'future_hope_label' => 'HARAPAN KE DEPAN',
-    'future_hope' => 'Semoga sanggar ini terus berkembang menjadi acuan dan sumber inspirasi bagi generasi muda maupun senior. Dengan terus beradaptasi secara digital serta menghadirkan metode pembelajaran yang inovatif, sanggar ini diharapkan mampu mencetak generasi seniman karawitan yang unggul dan kompeten di masa depan.',
+        'future_hope_label' => 'HARAPAN KE DEPAN',
+        'future_hope' => 'Semoga sanggar ini terus berkembang menjadi acuan dan sumber inspirasi bagi generasi muda maupun senior. Dengan terus beradaptasi secara digital serta menghadirkan metode pembelajaran yang inovatif, sanggar ini diharapkan mampu mencetak generasi seniman karawitan yang unggul dan kompeten di masa depan.',
 
-    'social_media_label' => 'SOSIAL MEDIA',
-    'instagram' => 'Instagram',
-    'tiktok' => 'TikTok',
+        'social_media_label' => 'SOSIAL MEDIA',
+        'instagram' => 'Instagram',
+        'tiktok' => 'TikTok',
 
-    'student_list_title' => 'Daftar Seluruh Nama Murid',
-    'student_list_desc' => 'Lihat daftar lengkap murid Sanggar Seni Cakra Aji.',
-],
+        'team_label' => 'PELATIH DAN ADMIN',
+        'role_coach' => 'Pelatih',
+        'role_admin' => 'Admin',
+        'assistant_label' => 'ASISTEN PELATIH',
+        'assistant_title' => 'Mereka yang tumbuh bersama sanggar',
+
+        'student_list_title' => 'Daftar Seluruh Nama Murid',
+        'student_list_desc' => 'Lihat daftar lengkap murid Sanggar Seni Cakra Aji.',
+    ],
 
     'program' => [
         'eyebrow' => 'KOLABORASI',

@@ -89,6 +89,28 @@ class LanguageSwitchTest extends TestCase
             ->assertDontSee('ui.');
     }
 
+    public function test_pengurus_page_is_fully_translated(): void
+    {
+        $this->get(route('pengurus'))
+            ->assertOk()
+            ->assertSee('PENGURUS')
+            ->assertSee('PELATIH DAN ADMIN')
+            ->assertSee('ASISTEN PELATIH')
+            ->assertSee('Pelatih')
+            ->assertDontSee('ui.');
+
+        $this->useEnglish();
+
+        $this->get(route('pengurus'))
+            ->assertOk()
+            ->assertSee('TEAM')
+            ->assertSee('COACHES AND ADMIN')
+            ->assertSee('ASSISTANT COACHES')
+            ->assertSee('Music Director &amp; Producer', false)
+            ->assertSee('Indonesian Institute of the Arts Surakarta')
+            ->assertDontSee('ui.');
+    }
+
     public function test_english_program_content_uses_database_translations(): void
     {
         Program::create([

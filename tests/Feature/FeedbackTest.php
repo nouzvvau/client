@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Feedback;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -71,11 +70,14 @@ class FeedbackTest extends TestCase
             ->assertSee(__('ui.feedback.validation.required', ['field' => __('ui.feedback.field_subject')]));
     }
 
-    public function test_faq_page_links_to_the_feedback_page(): void
+    public function test_faq_feedback_button_does_not_link_to_the_internal_feedback_page(): void
     {
+        config()->set('forms.feedback_url', null);
+
         $this->get(route('faq'))
             ->assertOk()
-            ->assertSee(route('kritik-saran'), false)
-            ->assertSee(__('ui.faq.feedback_button'));
+            ->assertDontSee(route('kritik-saran'), false)
+            ->assertSee(__('ui.faq.feedback_button'))
+            ->assertSee(__('ui.common.not_available'));
     }
 }

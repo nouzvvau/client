@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\EventBooking;
 use App\Models\EventDocumentation;
 use App\Models\EventDocumentationPhoto;
 use App\Models\Program;
 use App\Models\Student;
-use App\Models\StudentRegistration;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -22,26 +20,8 @@ class AdminPageController extends Controller
             'jumlahMurid' => Student::query()->count(),
             'jumlahProgramAktif' => Program::query()->active()->count(),
             'jumlahProgramNonaktif' => Program::query()->where('is_active', false)->count(),
-            'jumlahPendaftar' => StudentRegistration::query()->count(),
-            'jumlahPendaftarMenunggu' => StudentRegistration::query()
-                ->where('status', StudentRegistration::STATUS_PENDING)
-                ->count(),
-            'jumlahBooking' => EventBooking::query()->count(),
-            'jumlahBookingMenunggu' => EventBooking::query()
-                ->where('status', EventBooking::STATUS_PENDING)
-                ->count(),
             'jumlahDokumentasi' => EventDocumentation::query()->count(),
             'jumlahFoto' => EventDocumentationPhoto::query()->count(),
-            'pendaftarTerbaru' => StudentRegistration::query()
-                ->latest('created_at')
-                ->latest('id')
-                ->limit(5)
-                ->get(),
-            'bookingTerbaru' => EventBooking::query()
-                ->orderByDesc('event_date')
-                ->orderByDesc('id')
-                ->limit(5)
-                ->get(),
             'dokumentasiTerbaru' => EventDocumentation::query()
                 ->with('photos')
                 ->orderByDesc('event_date')

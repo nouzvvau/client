@@ -45,7 +45,7 @@
             ? max(1, (int) ceil($wordCount / 200))
             : 0;
 
-        // Pisahkan deskripsi menjadi beberapa paragraf.
+        // Pisahkan deskripsi menjadi paragraf.
         $paragraphs = $description !== ''
             ? preg_split('/\R+/u', $description, -1, PREG_SPLIT_NO_EMPTY)
             : [];
@@ -60,43 +60,45 @@
         // Foto pertama menjadi foto utama.
         $featuredPhoto = $documentationPhotos->first();
 
-        // Foto sisanya menjadi foto sisipan.
+        // Foto sisanya menjadi kandidat foto artikel.
         $inlinePhotos = $documentationPhotos->slice(1)->values();
 
-        // Susun paragraf dan foto secara berurutan.
+        /*
+         * Maksimal satu foto sisipan untuk setiap paragraf.
+         * Foto yang tidak mendapatkan tempat akan masuk galeri bawah.
+         */
+        $paragraphCount = count($paragraphs);
+
+        $articlePhotoCount = min(
+            $inlinePhotos->count(),
+            $paragraphCount
+        );
+
+        $articlePhotos = $inlinePhotos->take($articlePhotoCount)->values();
+
+        $remainingPhotos = $inlinePhotos
+            ->slice($articlePhotoCount)
+            ->values();
+
+        // Susun paragraf dan foto secara bergantian.
         $articleBlocks = [];
 
         $photoIndex = 0;
-        $paragraphCount = count($paragraphs);
-        $inlinePhotoCount = $inlinePhotos->count();
 
-        if ($paragraphCount > 0) {
-            foreach ($paragraphs as $index => $paragraph) {
-                $articleBlocks[] = [
-                    'type' => 'paragraph',
-                    'content' => trim($paragraph),
-                ];
+        foreach ($paragraphs as $index => $paragraph) {
+            $articleBlocks[] = [
+                'type' => 'paragraph',
+                'content' => trim($paragraph),
+            ];
 
-                // Sebarkan foto secara merata di antara paragraf.
-                $targetPhotoCount = (int) ceil(
-                    (($index + 1) / $paragraphCount) * $inlinePhotoCount
-                );
-
-                while ($photoIndex < $targetPhotoCount) {
-                    $articleBlocks[] = [
-                        'type' => 'photo',
-                        'content' => $inlinePhotos[$photoIndex],
-                    ];
-
-                    $photoIndex++;
-                }
-            }
-        } else {
-            foreach ($inlinePhotos as $photo) {
+            // Sisipkan foto jika masih tersedia.
+            if ($photoIndex < $articlePhotoCount) {
                 $articleBlocks[] = [
                     'type' => 'photo',
-                    'content' => $photo,
+                    'content' => $articlePhotos[$photoIndex],
                 ];
+
+                $photoIndex++;
             }
         }
     @endphp
@@ -146,7 +148,7 @@
                     {{-- KONTEN EDITORIAL --}}
                     <div class="activity-article__content">
 
-                        {{-- FOTO UTAMA: POSISI KANAN --}}
+                        {{-- FOTO UTAMA --}}
                         @if ($featuredPhoto)
                             <figure class="activity-article__figure activity-article__figure--featured">
 
@@ -219,6 +221,50 @@
                     </div>
 
                 </article>
+
+                {{-- GALERI FOTO TAMBAHAN --}}
+                @if ($remainingPhotos->isNotEmpty())
+                    <section class="activity-gallery">
+
+                        <header class="activity-gallery__heading">
+                            <p class="eyebrow">
+                                {{ __('ui.detail.story_eyebrow') }}
+                            </p>
+
+                            <h2>Dokumentasi Kegiatan</h2>
+
+                            <p>
+                                Beberapa momen lainnya dari kegiatan ini.
+                            </p>
+                        </header>
+
+                        <div class="activity-gallery__grid">
+
+                            @foreach ($remainingPhotos as $photo)
+                                <figure class="activity-gallery__item">
+
+                                    <div class="activity-gallery__media">
+                                        <img
+                                            src="{{ $photo->thumbnail_url ?: $photo->url }}"
+                                            alt="{{ $photo->caption ?: $program->localized_name }}"
+                                            loading="lazy"
+                                            decoding="async"
+                                        >
+                                    </div>
+
+                                    @if (filled($photo->caption))
+                                        <figcaption class="activity-gallery__caption">
+                                            {{ $photo->caption }}
+                                        </figcaption>
+                                    @endif
+
+                                </figure>
+                            @endforeach
+
+                        </div>
+
+                    </section>
+                @endif
 
             </div>
         </section>

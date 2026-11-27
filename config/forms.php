@@ -16,4 +16,6 @@ return [
 
     'booking_url' => env('GOOGLE_FORM_BOOKING'),
 
+    'feedback_url' => env('GOOGLE_FORM_FEEDBACK_URL'),
+
 ];

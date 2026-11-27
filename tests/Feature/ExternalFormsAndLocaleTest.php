@@ -104,6 +104,40 @@ class ExternalFormsAndLocaleTest extends TestCase
             ->assertSee('assets/js/script2.js', false);
     }
 
+    public function test_faq_feedback_button_uses_google_form_when_configured(): void
+    {
+        config()->set('forms.feedback_url', 'https://docs.google.com/forms/d/e/feedback-test/viewform');
+
+        $this->get(route('faq'))
+            ->assertOk()
+            ->assertSee('https://docs.google.com/forms/d/e/feedback-test/viewform', false)
+            ->assertSee('target="_blank"', false)
+            ->assertSee(__('ui.faq.feedback_button'));
+    }
+
+    public function test_faq_feedback_button_does_not_link_to_internal_page_when_url_is_invalid(): void
+    {
+        config()->set('forms.feedback_url', 'javascript:alert(1)');
+
+        $this->get(route('faq'))
+            ->assertOk()
+            ->assertDontSee(route('kritik-saran'), false)
+            ->assertDontSee('javascript:alert(1)', false)
+            ->assertSee(__('ui.faq.feedback_button'))
+            ->assertSee(__('ui.common.not_available'));
+    }
+
+    public function test_faq_feedback_button_does_not_link_to_internal_page_when_url_is_empty(): void
+    {
+        config()->set('forms.feedback_url', null);
+
+        $this->get(route('faq'))
+            ->assertOk()
+            ->assertDontSee(route('kritik-saran'), false)
+            ->assertSee(__('ui.faq.feedback_button'))
+            ->assertSee(__('ui.common.not_available'));
+    }
+
     public function test_faq_loads_the_plain_faq_asset_instead_of_vite(): void
     {
         $this->get(route('faq'))

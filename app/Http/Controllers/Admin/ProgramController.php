@@ -6,19 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\EventDocumentation;
 use App\Models\EventDocumentationPhoto;
 use App\Models\Program;
+use App\Support\ImageCompressor;
 use App\Support\PhotoThumbnail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use RuntimeException;
 
 class ProgramController extends Controller
 {
-    private const MAX_PHOTOS = 5;
-    private const MAX_PHOTO_SIZE = 2048;
+    private const MAX_PHOTOS = 6;
+
+    private const MAX_PHOTO_SIZE = 10240;
 
     public function index(Request $request): View
     {
@@ -52,7 +55,6 @@ class ProgramController extends Controller
             });
         } catch (\Throwable $exception) {
             $this->cleanupNewFiles($newFiles);
-
             throw $exception;
         }
 
@@ -105,7 +107,6 @@ class ProgramController extends Controller
             });
         } catch (\Throwable $exception) {
             $this->cleanupNewFiles($newFiles);
-
             throw $exception;
         }
 
@@ -147,11 +148,6 @@ class ProgramController extends Controller
         );
     }
 
-    /**
-     * Validasi data program.
-     *
-     * @return array<string, mixed>
-     */
     private function validateProgram(Request $request): array
     {
         $validated = $request->validate([
@@ -171,15 +167,6 @@ class ProgramController extends Controller
         return $validated;
     }
 
-    /**
-     * Validasi foto dokumentasi program.
-     *
-     * @return array{
-     *     photos: array<int, UploadedFile>,
-     *     remove_photos: array<int>,
-     *     thumbnail_photo_id: ?int
-     * }
-     */
     private function validateDocumentationPhotos(
         Request $request,
         ?Program $program
@@ -199,7 +186,7 @@ class ProgramController extends Controller
             'photos.max' => 'Maksimal '.self::MAX_PHOTOS.' foto dokumentasi untuk satu program.',
             'photos.*.image' => 'File :attribute bukan gambar yang valid.',
             'photos.*.mimes' => 'Format :attribute harus JPG, JPEG, PNG, atau WEBP.',
-            'photos.*.max' => 'Upload gagal! Ukuran foto :attribute melebihi batas maksimal 2 MB. Silakan pilih foto yang ukurannya tidak lebih dari 2 MB.',
+            'photos.*.max' => 'Ukuran foto asli maksimal 10 MB per foto.',
         ], [
             'photos.*' => 'foto dokumentasi',
         ]);
@@ -267,16 +254,6 @@ class ProgramController extends Controller
         ];
     }
 
-    /**
-     * Sinkronisasi foto dokumentasi dan thumbnail program.
-     *
-     * @param array{
-     *     photos: array<int, UploadedFile>,
-     *     remove_photos: array<int>,
-     *     thumbnail_photo_id: ?int
-     * } $payload
-     * @param array<int, string> $newFiles
-     */
     private function syncDocumentationPhotos(
         Program $program,
         array $payload,
@@ -285,7 +262,6 @@ class ProgramController extends Controller
         $disk = Storage::disk('public');
         $pathsToDelete = [];
 
-        // Hapus foto yang dipilih untuk dihapus.
         if ($payload['remove_photos'] !== []) {
             $documentationIds = $program->documentations()->pluck('id');
 
@@ -305,7 +281,6 @@ class ProgramController extends Controller
             }
         }
 
-        // Simpan foto baru sebagai foto asli tanpa kompresi.
         if ($payload['photos'] !== []) {
             $documentation = $program->documentations()
                 ->orderBy('id')
@@ -314,19 +289,21 @@ class ProgramController extends Controller
                     'title' => $program->name,
                 ]);
 
-            foreach ($payload['photos'] as $photo) {
-                $photoPath = $photo->store(
-                    'event-documentation',
-                    'public'
-                );
+            $compressor = new ImageCompressor;
 
-                if (! $photoPath) {
-                    throw new \RuntimeException(
+            foreach ($payload['photos'] as $photo) {
+                $compressed = $compressor->compress($photo);
+
+                $photoPath = 'event-documentation/'.Str::uuid().'.webp';
+
+                $saved = $disk->put($photoPath, $compressed);
+
+                if (! $saved) {
+                    throw new RuntimeException(
                         'Gagal menyimpan foto dokumentasi.'
                     );
                 }
 
-                // Catat file baru agar bisa dibersihkan jika transaksi gagal.
                 $newFiles[] = $photoPath;
 
                 $documentation->photos()->create([
@@ -337,7 +314,6 @@ class ProgramController extends Controller
             }
         }
 
-        // Ambil seluruh foto milik program.
         $documentationIds = $program->documentations()->pluck('id');
 
         $programPhotos = EventDocumentationPhoto::query()
@@ -351,7 +327,6 @@ class ProgramController extends Controller
             return;
         }
 
-        // Tentukan foto yang menjadi thumbnail.
         $thumbnailPhotoId = $payload['thumbnail_photo_id'];
 
         if ($thumbnailPhotoId === null) {
@@ -363,7 +338,6 @@ class ProgramController extends Controller
             $thumbnailPhotoId = $programPhotos->first()->id;
         }
 
-        // Buat atau pertahankan thumbnail foto terpilih.
         foreach ($programPhotos as $photo) {
             if ((int) $photo->id === $thumbnailPhotoId) {
                 if (
@@ -371,8 +345,6 @@ class ProgramController extends Controller
                     ! $disk->exists($photo->thumbnail)
                 ) {
                     $newThumbnail = PhotoThumbnail::create($photo->photo);
-
-                    // Catat thumbnail baru untuk pembersihan jika transaksi gagal.
                     $newFiles[] = $newThumbnail;
 
                     if ($photo->thumbnail) {
@@ -395,15 +367,9 @@ class ProgramController extends Controller
             $photo->save();
         }
 
-        // Hapus file lama hanya setelah transaksi berhasil.
         $this->deleteFilesAfterCommit($pathsToDelete);
     }
 
-    /**
-     * Bersihkan file baru jika transaksi database gagal.
-     *
-     * @param array<int, string> $paths
-     */
     private function cleanupNewFiles(array $paths): void
     {
         $paths = array_values(array_unique(array_filter($paths)));
@@ -413,11 +379,6 @@ class ProgramController extends Controller
         }
     }
 
-    /**
-     * Hapus file fisik setelah transaksi database berhasil.
-     *
-     * @param array<int, string|null> $paths
-     */
     private function deleteFilesAfterCommit(array $paths): void
     {
         $paths = array_values(array_unique(array_filter($paths)));

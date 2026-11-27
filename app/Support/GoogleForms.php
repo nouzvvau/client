@@ -13,14 +13,22 @@ final class GoogleForms
             'config' => 'forms.booking_url',
             'fallback' => 'booking',
         ],
+        'feedback' => [
+            'config' => 'forms.feedback_url',
+            'fallback' => null,
+        ],
     ];
 
-    public static function url(string $form): string
+    public static function url(string $form): ?string
     {
         $definition = self::definition($form);
         $url = self::configuredUrl($definition['config']);
 
-        return $url ?? route($definition['fallback']);
+        if ($url !== null) {
+            return $url;
+        }
+
+        return $definition['fallback'] === null ? null : route($definition['fallback']);
     }
 
     public static function isExternal(string $form): bool
@@ -47,7 +55,7 @@ final class GoogleForms
     }
 
     /**
-     * @return array{config: string, fallback: string}
+     * @return array{config: string, fallback: string|null}
      */
     private static function definition(string $form): array
     {

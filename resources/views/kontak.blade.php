@@ -1,3 +1,4 @@
+
 @extends('layouts.main')
 
 @section('title', __('ui.meta.kontak.title'))
@@ -11,11 +12,14 @@
 
 @section('content')
 <div class="contact-page">
+
+    {{-- HERO DAN CONTACT PERSON --}}
     <div class="contact-container">
 
-        {{-- HERO --}}
         <section class="contact-hero">
-            <p class="contact-eyebrow">{{ __('ui.kontak.hero_eyebrow') }}</p>
+            <p class="contact-eyebrow">
+                {{ __('ui.kontak.hero_eyebrow') }}
+            </p>
 
             <h1 class="contact-hero-title">
                 {{ __('ui.kontak.hero_title_1') }}<br>
@@ -111,13 +115,28 @@
                         </div>
                     </article>
                 @endforelse
+
+                @if ($whatsappLink)
+                    <div class="contact-whatsapp-cta">
+                        <a
+                            href="{{ $whatsappLink }}"
+                            class="contact-btn contact-btn--brown"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {{ $whatsappCtaLabel }}
+                        </a>
+                    </div>
+                @endif
             </div>
         </section>
+
     </div>
 
     {{-- SECTION GOLD --}}
     <section class="contact-actions" aria-labelledby="contact-actions-title">
         <div class="contact-container">
+
             <h2 class="sr-only" id="contact-actions-title">
                 {{ __('ui.kontak.actions_sr_title') }}
             </h2>
@@ -126,6 +145,7 @@
 
                 {{-- REGISTRATION AND BOOKING --}}
                 <div class="contact-actions-intro">
+
                     <h3 class="contact-actions-heading">
                         {{ __('ui.kontak.actions_heading') }}
                     </h3>
@@ -134,6 +154,7 @@
                         {{ __('ui.kontak.actions_text') }}
                     </p>
 
+                    {{-- REGISTRATION --}}
                     <x-form-link form="registration" class="contact-action-card">
                         <span class="contact-action-label">
                             {{ __('ui.kontak.registration_label') }}
@@ -152,6 +173,7 @@
                         </span>
                     </x-form-link>
 
+                    {{-- BOOKING --}}
                     <x-form-link form="booking" class="contact-action-card">
                         <span class="contact-action-label">
                             {{ __('ui.kontak.booking_label') }}
@@ -169,70 +191,71 @@
                             {{ __('ui.kontak.booking_link') }}
                         </span>
                     </x-form-link>
+
                 </div>
 
                 {{-- LOCATION INFORMATION --}}
                 <div class="contact-meet">
+
                     <h3 class="contact-actions-heading">
                         {{ __('ui.kontak.meet_heading') }}
                     </h3>
 
                     <article class="contact-info-card">
+
                         <dl class="contact-info-list">
 
-                            @forelse ($locations as $location)
-                                <div class="contact-info-item">
-                                    <dt>
-                                        {{ $loop->first
-                                            ? __('ui.kontak.address_first')
-                                            : __('ui.kontak.address_other') }}
-                                    </dt>
-
-                                    <dd>
-                                        {{ $location->name }} —
-                                        {{ $location->address ?? __('ui.kontak.address_unavailable') }}
-                                    </dd>
-                                </div>
-
-                                @php
-                                    $jamLatihan = $location->schedules
-                                        ->map(fn ($schedule) => trim(
-                                            ($schedule->day_of_week ?? '')
-                                            . (isset($schedule->start_time)
-                                                ? ', ' . substr($schedule->start_time, 0, 5)
-                                                    . '–' . substr($schedule->end_time, 0, 5)
-                                                : '')
-                                        ))
-                                        ->filter()
-                                        ->unique()
-                                        ->values();
-                                @endphp
-
-                                <div class="contact-info-item">
-                                    <dt>{{ __('ui.kontak.practice_hours') }}</dt>
-
-                                    <dd>
-                                        @if ($jamLatihan->isNotEmpty())
-                                            {{ $jamLatihan->implode('; ') }}
-                                            {{ __('ui.kontak.practice_hours_suffix') }}
-                                        @else
-                                            {{ __('ui.kontak.practice_hours_fallback') }}
-                                        @endif
-                                    </dd>
-                                </div>
-
-                            @empty
-                                <div class="contact-info-item">
-                                    <dt>{{ __('ui.kontak.address_first') }}</dt>
-
-                                    <dd>
-                                        {{ __('ui.kontak.address_sanggar_unavailable') }}
-                                    </dd>
-                                </div>
-                            @endforelse
-
+                            {{-- BEJI ADDRESS --}}
                             <div class="contact-info-item">
-                                <dt>{{ __('ui.common.email_social') }}</dt>
+                                <dt>
+                                    {{ __('ui.kontak.address_first') }}
+                                </dt>
+
+                                <dd>
+                                    {{ __('ui.lokasi.beji_name') }} —
+                                    {{ __('ui.lokasi.beji_address') }}
+                                </dd>
+                            </div>
+
+                            {{-- BEJI SCHEDULE --}}
+                            <div class="contact-info-item">
+                                <dt>
+                                    {{ __('ui.kontak.practice_hours') }}
+                                </dt>
+
+                                <dd>
+                                    {{ __('ui.lokasi.beji_schedule') }}
+                                </dd>
+                            </div>
+
+                            {{-- PLOSOKANDANG ADDRESS --}}
+                            <div class="contact-info-item">
+                                <dt>
+                                    {{ __('ui.kontak.address_other') }}
+                                </dt>
+
+                                <dd>
+                                    {{ __('ui.lokasi.plosokandang_name') }} —
+                                    {{ __('ui.lokasi.plosokandang_address') }}
+                                </dd>
+                            </div>
+
+                            {{-- PLOSOKANDANG SCHEDULE --}}
+                            <div class="contact-info-item">
+                                <dt>
+                                    {{ __('ui.kontak.practice_hours') }}
+                                </dt>
+
+                                <dd>
+                                    {{ __('ui.lokasi.plosokandang_schedule') }}
+                                </dd>
+                            </div>
+
+                            {{-- EMAIL AND SOCIAL MEDIA --}}
+                            <div class="contact-info-item">
+                                <dt>
+                                    {{ __('ui.common.email_social') }}
+                                </dt>
 
                                 <dd>
                                     {{ __('ui.kontak.email_social_unavailable') }}
@@ -241,71 +264,55 @@
 
                         </dl>
 
-                        {{-- GOOGLE MAPS --}}
-                        @forelse ($locations as $location)
-                            <div class="contact-map">
-                                @if ($location->address || $location->google_maps_url)
-                                    @php
-                                        $mapsQuery = rawurlencode(
-                                            $location->address ?? $location->name
-                                        );
+                        {{-- BEJI MAP --}}
+                        <div class="contact-location-map">
 
-                                        $mapsLink = $location->google_maps_url
-                                            ?: 'https://www.google.com/maps/search/?api=1&query=' . $mapsQuery;
-                                    @endphp
+                            <h4 class="contact-location-map-title">
+                                {{ __('ui.lokasi.beji_name') }}
+                            </h4>
 
-                                    <iframe
-                                        src="https://www.google.com/maps?q={{ $mapsQuery }}&amp;output=embed"
-                                        title="{{ __('ui.lokasi.map_title', ['name' => $location->name]) }}"
-                                        loading="lazy"
-                                        referrerpolicy="no-referrer-when-downgrade"
-                                        allowfullscreen>
-                                    </iframe>
-                                @else
-                                    <div
-                                        class="contact-map contact-map--pending"
-                                        role="img"
-                                        aria-label="{{ __('ui.kontak.map_pending_aria', ['name' => $location->name]) }}"
-                                    >
-                                        <strong>
-                                            {{ __('ui.common.map_coming_soon') }}
-                                        </strong>
-
-                                        <span>
-                                            {{ __('ui.kontak.map_pending_desc') }}
-                                        </span>
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="contact-map-actions">
-                                @if ($location->address || $location->google_maps_url)
-                                    <a
-                                        class="contact-btn contact-btn--brown"
-                                        href="{{ $mapsLink }}"
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        {{ __('ui.common.open_maps') }}
-                                    </a>
-                                @endif
-                            </div>
-
-                        @empty
-                            <div
-                                class="contact-map contact-map--pending"
-                                role="img"
-                                aria-label="{{ __('ui.kontak.map_sanggar_aria') }}"
-                            >
+                            <div class="contact-map contact-map--pending">
                                 <strong>
                                     {{ __('ui.common.map_coming_soon') }}
                                 </strong>
 
                                 <span>
-                                    {{ __('ui.kontak.map_pending_desc') }}
+                                    {{ __('ui.lokasi.beji_map_desc') }}
                                 </span>
                             </div>
-                        @endforelse
+
+                        </div>
+
+                        {{-- PLOSOKANDANG MAP --}}
+                        <div class="contact-location-map">
+
+                            <h4 class="contact-location-map-title">
+                                {{ __('ui.lokasi.plosokandang_name') }}
+                            </h4>
+
+                            <div class="contact-map">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.249198233089!2d111.9205559!3d-8.0760474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78e3007c0fba43%3A0x7166363c489ecc1e!2sSanggar%20Karawitan%20Cakra%20Aji%2C%20Cabang%20Plosokandang!5e0!3m2!1sid!2sid!4v1795668788907!5m2!1sid!2sid"
+                                    title="{{ __('ui.lokasi.plosokandang_map_title') }}"
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+
+                        </div>
+
+                        {{-- GOOGLE MAPS BUTTON --}}
+                        <div class="contact-map-actions">
+                            <a
+                                class="contact-btn contact-btn--brown"
+                                href="https://maps.app.goo.gl/6WFmpALAXroBMsF1A"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {{ __('ui.common.open_maps') }}
+                            </a>
+                        </div>
 
                     </article>
                 </div>
@@ -313,5 +320,6 @@
             </div>
         </div>
     </section>
+
 </div>
 @endsection

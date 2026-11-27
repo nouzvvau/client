@@ -8,8 +8,6 @@ class LokasiPageController extends Controller
 {
     public function index(): View
     {
-        return view('lokasi', [
-            'locations' => collect(),
-        ]);
+        return view('lokasi');
     }
 }

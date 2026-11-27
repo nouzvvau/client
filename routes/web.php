@@ -1,11 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminPageController;
-use App\Http\Controllers\Admin\EventBookingController;
 use App\Http\Controllers\Admin\EventDocumentationController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ProgramController as AdminProgramController;
-use App\Http\Controllers\Admin\StudentRegistrationController;
 use App\Http\Controllers\Admin\WhatsAppSettingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DaftarMuridController;
@@ -26,6 +24,7 @@ Route::get('/', fn () => view('beranda', ['programs' => Program::latest()->take(
 Route::get('/bahasa/{locale}', function (Request $request, string $locale) {
     abort_unless(in_array($locale, ['id', 'en'], true), 404);
     $request->session()->put('locale', $locale);
+
     return redirect()->back();
 })->name('language.switch');
 
@@ -46,57 +45,32 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminPageController::class, 'dashboard'])->name('admin.dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // Registrations
-    Route::prefix('admin/pendaftar')->name('admin.registrations.')->controller(StudentRegistrationController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/tambah', 'create')->name('create');
-        Route::post('/', 'store')->name('store');
-        Route::get('/{registration}', 'show')->name('show');
-        Route::get('/{registration}/ubah', 'edit')->name('edit');
-        Route::put('/{registration}', 'update')->name('update');
-        Route::patch('/{registration}/status', 'updateStatus')->name('status');
-        Route::post('/{registration}/jadikan-murid', 'convert')->name('convert');
-        Route::delete('/{registration}', 'destroy')->name('destroy');
-    });
-
-    // Event bookings
-    Route::prefix('admin/booking')->name('admin.bookings.')->controller(EventBookingController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/tambah', 'create')->name('create');
-        Route::post('/', 'store')->name('store');
-        Route::get('/{booking}', 'show')->name('show');
-        Route::get('/{booking}/ubah', 'edit')->name('edit');
-        Route::put('/{booking}', 'update')->name('update');
-        Route::patch('/{booking}/status', 'updateStatus')->name('status');
-        Route::delete('/{booking}', 'destroy')->name('destroy');
-    });
-
     // Dokumentasi acara (terhubung dengan Program & Kegiatan)
-Route::prefix('admin/dokumentasi-kegiatan')
-    ->name('admin.event-documentations.')
-    ->controller(EventDocumentationController::class)
-    ->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/tambah', 'create')->name('create');
-        Route::post('/', 'store')->name('store');
-        Route::get('/{documentation}', 'show')->name('show');
-        Route::get('/{documentation}/ubah', 'edit')->name('edit');
-        Route::put('/{documentation}', 'update')->name('update');
-        Route::delete('/{documentation}', 'destroy')->name('destroy');
-        Route::delete('/foto/{photo}', 'destroyPhoto')->name('photo.destroy');
-    });
+    Route::prefix('admin/dokumentasi-kegiatan')
+        ->name('admin.event-documentations.')
+        ->controller(EventDocumentationController::class)
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/tambah', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{documentation}', 'show')->name('show');
+            Route::get('/{documentation}/ubah', 'edit')->name('edit');
+            Route::put('/{documentation}', 'update')->name('update');
+            Route::delete('/{documentation}', 'destroy')->name('destroy');
+            Route::delete('/foto/{photo}', 'destroyPhoto')->name('photo.destroy');
+        });
 
-// Galeri umum (mandiri)
-Route::prefix('admin/galeri')
-    ->name('admin.public-gallery.')
-    ->controller(GalleryController::class)
-    ->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::post('/', 'store')->name('store');
-        Route::put('/{photo}', 'update')->name('update');
-        Route::delete('/{photo}', 'destroy')->name('destroy');
-    });
-    
+    // Galeri umum (mandiri)
+    Route::prefix('admin/galeri')
+        ->name('admin.public-gallery.')
+        ->controller(GalleryController::class)
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'store')->name('store');
+            Route::put('/{photo}', 'update')->name('update');
+            Route::delete('/{photo}', 'destroy')->name('destroy');
+        });
+
     // WhatsApp settings
     Route::get('/admin/pengaturan/whatsapp', [WhatsAppSettingController::class, 'edit'])->name('admin.whatsapp.edit');
     Route::put('/admin/pengaturan/whatsapp', [WhatsAppSettingController::class, 'update'])->name('admin.whatsapp.update');

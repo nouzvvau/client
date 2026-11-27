@@ -101,16 +101,41 @@
                         {{ __('ui.faq.unanswered_text') }}
                     </p>
 
+                    @php
+                        $contactUrl = $whatsappLink ?? route('kontak');
+                        $feedbackUrl = \App\Support\GoogleForms::url('feedback');
+                    @endphp
+
                     <div class="faq-unanswered-actions">
-                        <a class="faq-button-link faq-button-primary"
-                           href="{{ route('kontak') }}">
+                        <a
+                            class="faq-button-link faq-button-primary"
+                            href="{{ $contactUrl }}"
+                            @if ($whatsappLink) target="_blank" rel="noopener noreferrer" @endif
+                        >
                             {{ __('ui.faq.contact_button') }}
                         </a>
-                        <a class="faq-button-link"
-                           href="{{ route('kritik-saran') }}">
-                            {{ __('ui.faq.feedback_button') }}
-                        </a>
+
+                        @if ($feedbackUrl)
+                            <a
+                                class="faq-button-link faq-button-outline"
+                                href="{{ $feedbackUrl }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {{ __('ui.faq.feedback_button') }}
+                            </a>
+                        @else
+                            <span class="faq-button-link faq-button-outline faq-button-link--disabled" aria-disabled="true">
+                                {{ __('ui.faq.feedback_button') }}
+                            </span>
+                        @endif
                     </div>
+
+                    @unless ($feedbackUrl)
+                        <p class="faq-feedback-unavailable">
+                            {{ __('ui.common.not_available') }}
+                        </p>
+                    @endunless
                 </section>
 
             </aside>

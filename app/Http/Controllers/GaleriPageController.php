@@ -13,7 +13,6 @@ class GaleriPageController extends Controller
             'photos' => GalleryPhoto::query()
                 ->latest()
                 ->get(),
-            'schedules' => collect(),
         ]);
     }
 }

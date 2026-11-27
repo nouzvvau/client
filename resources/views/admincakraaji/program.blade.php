@@ -80,7 +80,7 @@
                         data-preview-input="#photo-preview"
                     >
                     <small style="font-size:11px;color:var(--admin-muted);">
-                        Opsional. Maksimal 5 foto dokumentasi, format JPG, JPEG, PNG, atau WEBP,
+                        Opsional. Maksimal 6 foto dokumentasi, format JPG, JPEG, PNG, atau WEBP,
                         masing-masing maksimal 2 MB. Tampil pada halaman detail program.
                     </small>
                     <div id="photo-preview" class="admin-preview"></div>

@@ -350,17 +350,29 @@ SANGGAR CAKRA AJI - HALAMAN TANYA JAWAB
     min-height: 41px;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     padding: 9px 17px;
     border: 2px solid var(--faq-gold);
     border-radius: 24px;
     font-size: 13px;
     font-weight: 700;
+    line-height: 1;
+    text-align: center;
     text-decoration: none;
-    transition: .2s ease;
+    transition:
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
 }
 
 .faq-page .faq-button-link:hover {
     transform: translateY(-2px);
+}
+
+.faq-page .faq-button-link:focus-visible {
+    outline: 3px solid var(--faq-red);
+    outline-offset: 3px;
 }
 
 .faq-page .faq-button-primary {
@@ -383,6 +395,26 @@ SANGGAR CAKRA AJI - HALAMAN TANYA JAWAB
     color: var(--faq-brown);
     background: var(--faq-cream);
     border-color: var(--faq-cream);
+}
+
+.faq-page .faq-button-link--disabled {
+    cursor: not-allowed;
+    opacity: .55;
+}
+
+.faq-page .faq-button-link--disabled:hover {
+    transform: none;
+    color: var(--faq-cream);
+    background: transparent;
+    border-color: var(--faq-gold);
+}
+
+.faq-page .faq-feedback-unavailable {
+    margin: 8px 0 0;
+    color: var(--faq-cream);
+    font-size: 11px;
+    line-height: 1.5;
+    opacity: .75;
 }
 
 /* =========================================
@@ -503,5 +535,13 @@ SANGGAR CAKRA AJI - HALAMAN TANYA JAWAB
 
     .faq-page .faq-unanswered-card {
         padding: 19px;
+    }
+
+    .faq-page .faq-unanswered-actions {
+        flex-direction: column;
+    }
+
+    .faq-page .faq-button-link {
+        width: 100%;
     }
 }
